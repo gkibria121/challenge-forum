@@ -1,0 +1,52 @@
+flowchart TD
+    Start([Enter Site]) --> Login{Login Required?}
+    
+    %% Login Flow
+    Login -->|Yes| LoginType{User Type}
+    LoginType -->|Admin| AdminLogin[Admin Login]
+    LoginType -->|Regular| UserLogin[User Login]
+    
+    AdminLogin -->|Valid| AdminDash[Admin Dashboard]
+    AdminLogin -->|Invalid| ShowError1[Show Error Message]
+    ShowError1 --> LoginType
+    
+    UserLogin -->|Valid| UserDash[User Dashboard]
+    UserLogin -->|Invalid| ShowError2[Show Error Message]
+    ShowError2 --> LoginType
+    
+    %% Session Management
+    AdminDash --> ValidateSession{Validate Session}
+    UserDash --> ValidateSession
+    ValidateSession -->|Invalid| Login
+    ValidateSession -->|Valid| StoreSession[Store in LocalStorage]
+    
+    %% Main Features
+    Login -->|No| ViewChallenges[View Challenges]
+    ValidateSession -->|Valid| ViewChallenges
+    
+    ViewChallenges --> ChallengeDetails[View Challenge Details]
+    ChallengeDetails --> ViewTips[View Tips]
+    ChallengeDetails --> SubmitSolution{Submit Solution?}
+    
+    SubmitSolution -->|Yes| ValidateSolution{Validate Input}
+    ValidateSolution -->|Valid| PostSolution[Submit to API]
+    ValidateSolution -->|Invalid| ShowError3[Show Error Message]
+    ShowError3 --> SubmitSolution
+    
+    %% Admin Features
+    AdminDash --> ManageChallenges{Manage Challenges}
+    ManageChallenges -->|Add| AddChallenge[Create New Challenge]
+    ManageChallenges -->|Update| UpdateChallenge[Update Challenge]
+    ManageChallenges -->|Delete| DeleteChallenge[Delete Challenge]
+    
+    AddChallenge --> ValidateInput{Validate Input}
+    UpdateChallenge --> ValidateInput
+    ValidateInput -->|Valid| SaveChanges[Save to API]
+    ValidateInput -->|Invalid| ShowError4[Show Error Message]
+    ShowError4 --> ManageChallenges
+    
+    %% Session Timeout
+    StoreSession --> CheckTimeout{Session Timeout?}
+    CheckTimeout -->|Yes| Logout[Logout]
+    CheckTimeout -->|No| Continue([Continue])
+    Logout --> Login
