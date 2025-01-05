@@ -15,9 +15,13 @@ body {
   width: 100vw;
   font-family: "Poppins", sans-serif;
   background-color: #F4F4F4;
+}
+
+.main {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: calc(100vh - 10rem);
 }
 
 .form {
@@ -129,15 +133,6 @@ body {
   margin-top: 4rem;
 }
 
-.container {
-  max-width: 120rem;
-  margin-inline: auto;
-}
-
-.container--small {
-  max-width: 80rem;
-}
-
 .title {
   font-size: 3rem;
   color: rgb(59, 59, 59);
@@ -189,9 +184,6 @@ body {
   height: 10rem;
   background-color: #FFFFFF;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 .nav__list {
   max-width: 100%;
@@ -220,6 +212,20 @@ body {
   font-size: 1.4rem;
   text-align: center;
   color: red;
+}
+
+.container {
+  max-width: 120rem;
+  background-color: white;
+  width: 90vw;
+  height: 90%;
+  margin-inline: auto;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container--small {
+  max-width: 80rem;
 }
 
 /*# sourceMappingURL=main.css.map */
