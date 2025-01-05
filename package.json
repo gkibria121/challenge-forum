@@ -1,0 +1,18 @@
+{
+  "name": "challenge-forum",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": { 
+    "sass": "sass src/sass/main.scss public/assets/css/main.css --watch",
+    "dev" : ""
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "sass": "^1.83.1"
+  }
+}
