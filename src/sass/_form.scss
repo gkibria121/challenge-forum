@@ -1,0 +1,93 @@
+.form {
+  min-width: 30rem;
+  max-width: 50rem;
+  width: 50vw;  
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: #ffff;
+
+  &__divider {
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    padding-inline: 5px;
+    position: relative;
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      background-color: rgb(150, 150, 150);
+      top: 50%;
+      left: 0;
+      z-index: 1;
+    }
+
+    &-content {
+      position: relative;
+      z-index: 2;
+      width: 8rem;
+      background-color: white;
+      text-align: center;
+    }
+  }
+
+  &__group {
+    margin-top: 1.5rem;
+
+    &--icon-container {
+      background-color: #ececec;
+      border-radius: 10px;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .input-container {
+      flex-grow: 1;
+      position: relative;
+
+      & label {
+        position: absolute;
+      }
+      & input {
+        width: 100%;
+        border: none;
+        font-family: inherit;
+        padding: 0.5rem;
+        border-radius: 5px;
+        background-color: #ececec;
+      }
+      & input:focus {
+        outline: none;
+      }
+      & i {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
+.social {
+  width: 100%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.remember-me {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

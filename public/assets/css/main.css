@@ -11,7 +11,215 @@ html {
 
 body {
   font-size: 1.6rem;
+  height: 100vh;
+  width: 100vw;
   font-family: "Poppins", sans-serif;
+  background-color: #F4F4F4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  min-width: 30rem;
+  max-width: 50rem;
+  width: 50vw;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: white;
+}
+.form__divider {
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  padding-inline: 5px;
+  position: relative;
+}
+.form__divider::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  background-color: rgb(150, 150, 150);
+  top: 50%;
+  left: 0;
+  z-index: 1;
+}
+.form__divider-content {
+  position: relative;
+  z-index: 2;
+  width: 8rem;
+  background-color: white;
+  text-align: center;
+}
+.form__group {
+  margin-top: 1.5rem;
+}
+.form__group--icon-container {
+  background-color: #ececec;
+  border-radius: 10px;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.form__group .input-container {
+  flex-grow: 1;
+  position: relative;
+}
+.form__group .input-container label {
+  position: absolute;
+}
+.form__group .input-container input {
+  width: 100%;
+  border: none;
+  font-family: inherit;
+  padding: 0.5rem;
+  border-radius: 5px;
+  background-color: #ececec;
+}
+.form__group .input-container input:focus {
+  outline: none;
+}
+.form__group .input-container i {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.social {
+  width: 100%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  align-items: center;
+}
+.social:hover {
+  cursor: pointer;
+}
+
+.remember-me {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ml-1 {
+  margin-left: 1rem;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mt-3 {
+  margin-top: 3rem;
+}
+
+.mt-4 {
+  margin-top: 4rem;
+}
+
+.container {
+  max-width: 120rem;
+  margin-inline: auto;
+}
+
+.container--small {
+  max-width: 80rem;
+}
+
+.title {
+  font-size: 3rem;
+  color: rgb(59, 59, 59);
+}
+
+.title--highlighted {
+  font-size: 3rem;
+  font-weight: 1000;
+  color: #6358dc;
+}
+
+.icon {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+.icon--google {
+  width: 3rem;
+  height: 3rem;
+}
+
+.link--active {
+  color: blue !important;
+}
+
+.btn, .btn:active {
+  width: 100%;
+  border: none;
+  font-family: inherit;
+  color: white;
+  background-color: #6358dc;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text--samll {
+  font-size: 1.4rem !important;
+}
+
+.nav {
+  width: 100%;
+  height: 10rem;
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.nav__list {
+  max-width: 100%;
+  display: flex;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+.nav__link, .nav__link:active {
+  text-decoration: none;
+  color: black;
+  font-size: 1.7rem;
+  display: inline-block;
+}
+.nav__link--active::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: black;
+}
+
+.errors {
+  margin-top: 2rem;
+  font-size: 1.4rem;
+  text-align: center;
+  color: red;
 }
 
 /*# sourceMappingURL=main.css.map */
