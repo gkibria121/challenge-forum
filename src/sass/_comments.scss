@@ -1,0 +1,34 @@
+.comments{
+    position: relative;
+    box-shadow: var(--box-shadow-1);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    &__title{
+
+    }
+    &--short{
+        display: block;
+    }
+    &__short{
+        padding: 2rem;
+    }
+    &__input{
+        width: 100%;
+        height: 8rem;
+        font-family: inherit;
+        border: 1px solid var(--color-secondary-3);
+        padding: 1rem;
+    }
+    &__input:focus{
+         outline: none;
+    }
+    &__add,&__content{
+        
+        width: 100%; 
+        padding: 2rem 2rem 4rem;
+    }
+    &__content:not(:last-child){
+        border-bottom: 1px solid rgb(158, 158, 158);
+    }
+}

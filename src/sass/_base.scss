@@ -19,6 +19,7 @@ body{
 .main{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
+    margin-top: 2rem;
     height: calc(100vh - 10rem);
 }

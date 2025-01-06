@@ -1,0 +1,39 @@
+.btn {
+  border: none;
+  font-family: inherit;
+  border-radius: 5px;
+  padding: 1rem;
+  cursor: pointer;
+
+  &--login {
+    width: 100%;
+    color: var(--color-primary);
+    background-color: #6358dc;
+  }
+  &--back,&--add {
+    color: white;
+    
+    padding: 5px 1.2rem;
+    border-radius: 20px; 
+    float: right;
+  }
+  &--back{
+    background-color: var(--color-danger-2);
+  }
+  &--add { 
+    right: .8rem;
+    top: .8rem;
+    background-color: var(--color--success);
+ 
+  }
+  &--next,
+  &--prev {
+    padding: 0.2rem 1rem;
+    background-color: var(--color-secondary-4);
+    color: white;
+    border-radius: 1rem;
+  }
+  &:focus {
+    outline: none;
+  }
+}

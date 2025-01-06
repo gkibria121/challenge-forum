@@ -2,7 +2,8 @@
     max-width: 120rem;
     background-color: var(--color-primary);
     width: 90vw; 
-    height: 90%;
+    // height: 90%;
+    min-height: 90%;
     margin-inline: auto;
     border-radius: 2rem;
     box-shadow: var(--box-shadow-1);
