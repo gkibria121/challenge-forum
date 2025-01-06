@@ -23,7 +23,7 @@
 .title--highlighted {
   font-size: 3rem;
   font-weight: 1000;
-  color: #6358dc;
+  color: var(--color-secondary-2);
 }
 .icon {
     width: 2.4rem;
@@ -43,7 +43,7 @@
     width: 100%;
     border: none;
     font-family: inherit;
-    color: white;
+    color: var(--color-primary);
     background-color: #6358dc;
     border-radius: 5px;
     padding: 1rem;
