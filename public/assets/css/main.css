@@ -11,6 +11,7 @@
   --color-secondary-3: rgb(202, 202, 202);
   --color-secondary-4: #9197B3;
   --color--success:#50C878 ;
+  --border-black: 1px solid black;
 }
 
 * {
@@ -126,6 +127,45 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.challenge__title {
+  display: block;
+  height: 3rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 1rem;
+}
+.challenge__title:focus {
+  outline: none;
+}
+.challenge__description {
+  display: block;
+  width: 100%;
+  height: 45vh;
+  outline: none;
+  resize: none;
+  border-radius: 5px;
+  padding: 1rem;
+  font-family: inherit;
+}
+.challenge__tags {
+  display: block;
+  border-radius: 5px;
+  font-family: inherit;
+  border: var(--border-black);
+  outline: none;
+  padding: 0.5rem;
+  width: 40%;
+}
+
+.hints {
+  width: 100%;
+  height: 60vh;
+  resize: none;
+  border-radius: 5px;
+  padding: 1rem;
+  font-family: inherit;
 }
 
 .ml-1 {
@@ -363,34 +403,45 @@ body {
   border-radius: 5px;
   padding: 1rem;
   cursor: pointer;
+  outline: none; /* Combined focus styles */
+  text-decoration: none;
 }
 .btn--login {
   width: 100%;
   color: var(--color-primary);
   background-color: #6358dc;
 }
-.btn--back, .btn--add {
+.btn--back, .btn--add, .btn--next, .btn--prev, .btn--edit, .btn--delete {
+  padding: 0.3rem 1rem; /* Default padding */
+  border-radius: 1rem; /* Default border-radius */
   color: white;
-  padding: 5px 1.2rem;
+}
+.btn--back, .btn--add {
+  padding: 5px 1.2rem; /* Specific padding for back/add */
   border-radius: 20px;
+  margin-left: 1rem;
   float: right;
 }
 .btn--back {
   background-color: var(--color-danger-2);
 }
 .btn--add {
-  right: 0.8rem;
-  top: 0.8rem;
-  background-color: var(--color--success);
+  background-color: var(--color--success); /* Assuming a primary color for add */
 }
 .btn--next, .btn--prev {
   padding: 0.2rem 1rem;
   background-color: var(--color-secondary-4);
-  color: white;
-  border-radius: 1rem;
 }
-.btn:focus {
-  outline: none;
+.btn--edit, .btn--delete {
+  padding: 0.8rem 1.5rem;
+  color: white;
+  font-size: 1.3rem;
+}
+.btn--edit {
+  background-color: var(--color-secondary-2);
+}
+.btn--delete {
+  background-color: var(--color-danger-2);
 }
 
 .comments {
@@ -452,6 +503,20 @@ body {
   box-shadow: var(--box-shadow-1);
   padding: 2rem;
 }
+.submission__input {
+  width: 100%;
+  height: 95%;
+  resize: none;
+  font-family: inherit;
+  padding: 1rem;
+}
+.submission__input::-webkit-resizer {
+  display: none;
+}
+.submission__actions {
+  width: 100%;
+  height: 5rem;
+}
 
 .card {
   box-shadow: var(--box-shadow-1);
@@ -459,10 +524,23 @@ body {
   width: 100%;
   height: 15rem;
   padding: 1rem;
+  cursor: pointer;
+}
+.card--active {
+  border: 1px solid var(--color-secondary-2);
 }
 
 .user__info {
   font-size: 1rem;
+}
+
+.selection {
+  border: 1px solid var(--color-secondary-4);
+  border-radius: 5px;
+}
+
+.selection:focus {
+  outline: none;
 }
 
 /*# sourceMappingURL=main.css.map */

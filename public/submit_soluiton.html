@@ -36,8 +36,9 @@
               Submissions
             </button>
             <button class="tab__link" data-tab-id="3">Hints</button>
-            <button class="btn btn--add">Add</button>
-            <button class="btn btn--back">&leftarrow; Back</button>
+     
+
+            
           </div>
           <div class="tabs__body">
             <div class="tab">
@@ -57,7 +58,7 @@
             <div class="tab tab--active">
               <div class="submissions">
                 <div class="submissions__list">
-                  <div class="card card--active">
+                  <div class="card">
                     <div class="user__info">
                       <p class="user__name">gkibria</p>
                     </div>
@@ -79,7 +80,23 @@
                   </div>
                 </div>
                 <div class="submission">
-                  <div class="submission__content">this is a solution...</div>
+                  <div class="submission__content">
+                    <select name="language" id="language" class="selection">
+                        <option class="selection__option" value="python">Python</option>
+                        <option class="selection__option" value="c#">C#</option>
+                        <option class="selection__option" value="java">Java</option>
+                        <option class="selection__option" value="javascript">JavaScript</option>
+                        <option class="selection__option" value="php">PHP</option>
+                    </select>
+                    <textarea name="submission" id="submission"  class="submission__input"> 
+                        this...
+                    </textarea>
+                   <div class="submission__actions">
+                    <button class="btn btn--add">Save</button>
+                    <button class="btn btn--back">  Cancel</button>
+                   </div>
+                    
+                  </div>
                   <div class="comments comments--short  ">
                     <p class="comments__title">Comments(10)</p>
                     <button class="btn btn--add">Add</button>
