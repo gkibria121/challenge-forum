@@ -1,0 +1,34 @@
+.table{
+    
+    width: 100%; 
+    margin-top: 2rem;  
+    border-spacing: 0 2.5rem; 
+    &__thead{
+        & tr{
+            text-align: left;
+        }
+        & tr th{
+             color: gray;
+             opacity: .8;
+        }
+    }
+    &__tbody{
+       
+         
+    }
+    &__row{
+        position: relative; 
+        padding-bottom: 1rem;
+    }
+    &__row::after{
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -10px;
+        left: 0; 
+        width: 100%;
+        height: 1px;
+        background-color: black;
+        opacity: .1; 
+    }
+}

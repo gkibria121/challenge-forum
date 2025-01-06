@@ -1,0 +1,27 @@
+.pagination{
+    display: flex;
+    margin-top: 1rem; 
+    justify-self: center;
+    gap: 1rem;
+    .page {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: 5px;
+        border: 1.5px solid var(--color-secondary-3);
+        text-align: center; 
+        font-size: 1.4rem; 
+        &--active{
+            border-color: var(--color-secondary-2);
+        }
+        &--disabled{
+            border-color: var(--color-secondary-3);
+            background-color: var(--color-secondary-3);
+            color: white;
+        }   
+    }
+
+}
