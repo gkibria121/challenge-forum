@@ -19,6 +19,7 @@
     &__row{
         position: relative; 
         padding-bottom: 1rem;
+        cursor: pointer;
     }
     &__row::after{
         content: "";

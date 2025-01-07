@@ -55,10 +55,10 @@ function page() {
                   string is a palindrome.
                 </p>
               </div>
-              <div class="tab">
-              <h4 class="tab__heading">1.Palindrome checker</h4>
+              <div className="tab">
+              <h4 className="tab__heading">1.Palindrome checker</h4>
 
-              <p class="tab__content">
+              <p className="tab__content">
                 Write a program to determine whether a given string is a
                 palindrome.<br />
                 The string may contain spaces, punctuation, or mixed-case
@@ -111,78 +111,78 @@ function page() {
                   </div>
                 </div>
               </div>
-              <div class="tab tab--active">
-                <div class="submissions">
-                  <div class="submissions__list">
-                    <div class="card">
-                      <div class="user__info">
-                        <p class="user__name">gkibria</p>
+              <div className="tab tab--active">
+                <div className="submissions">
+                  <div className="submissions__list">
+                    <div className="card">
+                      <div className="user__info">
+                        <p className="user__name">gkibria</p>
                       </div>
-                      <div class="card__description">
+                      <div className="card__description">
                         Easy solve with ptyhon.
                       </div>
                     </div>
-                    <div class="card">
-                      <div class="user__info">
-                        <p class="user__name">mehedi</p>
+                    <div className="card">
+                      <div className="user__info">
+                        <p className="user__name">mehedi</p>
                       </div>
-                      <div class="card__description">Implemented with java</div>
+                      <div className="card__description">Implemented with java</div>
                     </div>
-                    <div class="card">
-                      <div class="user__info">
-                        <p class="user__name">talha</p>
+                    <div className="card">
+                      <div className="user__info">
+                        <p className="user__name">talha</p>
                       </div>
-                      <div class="card__description">
+                      <div className="card__description">
                         Implemented with javascript
                       </div>
                     </div>
                   </div>
-                  <div class="submission">
-                    <div class="submission__content">this is a solution...</div>
-                    <div class="comments comments--short hidden">
-                      <p class="comments__title">Comments(10)</p>
-                      <button class="btn btn--add">Add</button>
-                      <div class="comments__short">
+                  <div className="submission">
+                    <div className="submission__content">this is a solution...</div>
+                    <div className="comments comments--short hidden">
+                      <p className="comments__title">Comments(10)</p>
+                      <button className="btn btn--add">Add</button>
+                      <div className="comments__short">
                         <p>Solution is acceptable. but it can be imporved.</p>
                       </div>
                     </div>
-                    <div class="comments">
-                      <p class="comments__title">Comments(10)</p>
-                      <div class="comments__add">
-                        <div class="user__info">admin</div>
-                        <div class="comments__input-container">
+                    <div className="comments">
+                      <p className="comments__title">Comments(10)</p>
+                      <div className="comments__add">
+                        <div className="user__info">admin</div>
+                        <div className="comments__input-container">
                           <textarea
                             name="comment"
                             id="comment"
-                            class="comments__input"
+                            className="comments__input"
                           ></textarea>
                         </div>
-                        <div class="comments__actions">
-                          <button class="btn btn--back">cancel</button>
-                          <button class="btn btn--add">save</button>
+                        <div className="comments__actions">
+                          <button className="btn btn--back">cancel</button>
+                          <button className="btn btn--add">save</button>
                         </div>
                       </div>
-                      <div class="comments__content">
-                        <div class="user__info">admin</div>
-                        <div class="comments__description">
+                      <div className="comments__content">
+                        <div className="user__info">admin</div>
+                        <div className="comments__description">
                           <p>Solution is acceptable. but it can be imporved.</p>
                         </div>
                       </div>
-                      <div class="comments__content">
-                        <div class="user__info">admin</div>
-                        <div class="comments__description">
+                      <div className="comments__content">
+                        <div className="user__info">admin</div>
+                        <div className="comments__description">
                           <p>Solution is acceptable. but it can be imporved.</p>
                         </div>
                       </div>
-                      <div class="comments__content">
-                        <div class="user__info">admin</div>
-                        <div class="comments__description">
+                      <div className="comments__content">
+                        <div className="user__info">admin</div>
+                        <div className="comments__description">
                           <p>Solution is acceptable. but it can be imporved.</p>
                         </div>
                       </div>
-                      <div class="comments__content">
-                        <div class="user__info">admin</div>
-                        <div class="comments__description">
+                      <div className="comments__content">
+                        <div className="user__info">admin</div>
+                        <div className="comments__description">
                           <p>Solution is acceptable. but it can be imporved.</p>
                         </div>
                       </div>
