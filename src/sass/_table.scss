@@ -12,13 +12,12 @@
              opacity: .8;
         }
     }
-    &__tbody{
-       
-         
-    }
+    // &__tbody{ 
+    // }
     &__row{
         position: relative; 
         padding-bottom: 1rem;
+        cursor: pointer;
     }
     &__row::after{
         content: "";
