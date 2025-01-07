@@ -1,33 +1,42 @@
-.table{
-    
-    width: 100%; 
-    margin-top: 2rem;  
-    border-spacing: 0 2.5rem; 
-    &__thead{
-        & tr{
-            text-align: left;
-        }
-        & tr th{
-             color: gray;
-             opacity: .8;
-        }
+.table {
+  width: 100%;
+  margin-top: 2rem;
+  border-spacing: 0 2.5rem;
+  &__thead {
+    & tr {
+      text-align: left;
     }
-    // &__tbody{ 
-    // }
-    &__row{
-        position: relative; 
-        padding-bottom: 1rem;
-        cursor: pointer;
+  }
+  &__th {
+    color: gray;
+    opacity: 0.8;
+
+    &--tag,
+    &--actions {
+      text-align: center;
+      width: 20rem;
     }
-    &__row::after{
-        content: "";
-        display: block;
-        position: absolute;
-        bottom: -10px;
-        left: 0; 
-        width: 100%;
-        height: 1px;
-        background-color: black;
-        opacity: .1; 
-    }
+  }
+
+  // &__tbody{
+  // }
+  &__row {
+    position: relative;
+    padding-bottom: 1rem;
+    cursor: pointer;
+  }
+  &__row::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    opacity: 0.1;
+  }
+  &__column--tags {
+    width: 20rem;
+  }
 }

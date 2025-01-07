@@ -22,9 +22,9 @@ function page() {
         <thead className="table__thead">
             <tr>
               <th>No.</th>
-              <th colSpan="3">Title</th>
-              <th>Tag</th>  
-              <th>Actions</th>
+              <th colSpan="3" className="table__th">Title</th>
+              <th className="table__th table__th--tag">Tag</th>  
+              <th className="table__th table__th--actions">Actions</th>
             </tr>
            
            
@@ -33,7 +33,7 @@ function page() {
           <tr className="table__row">
             <td className="table__column">1</td>
             <td className="table__column" colSpan="3">Palindrome Checker</td>
-            <td className="table__column" ><span className="tag">principles</span></td>
+            <td className="table__column table__column--tags tags" ><span className="tag">coding</span></td>
             <td className="table__column" >
                  <button className="btn btn--edit">edit</button>
                  <button className="btn btn--delete">delete</button>
@@ -42,7 +42,7 @@ function page() {
           <tr className="table__row">
             <td className="table__column">2</td>
             <td className="table__column" colSpan="3">FizzBuzz</td>
-            <td className="table__column"><span className="tag">principles</span></td>
+            <td className="table__column table__column--tags tags"><span className="tag">principles</span></td>
             <td className="table__column" >
                 <button className="btn btn--edit">edit</button>
                 <button className="btn btn--delete">delete</button>
@@ -51,7 +51,11 @@ function page() {
           <tr className="table__row"> 
             <td className="table__column">3</td>
             <td className="table__column" colSpan="3">Reverse a String</td>
-            <td className="table__column"><span className="tag">principles</span></td>
+            <td className="table__column table__column--tags tags">
+              <span className="tag">coding</span>
+              <span className="tag">principles</span>
+              <span className="tag">Design pattern</span> 
+            </td>
             <td className="table__column" >
                 <button className="btn btn--edit">edit</button>
                 <button className="btn btn--delete">delete</button>
@@ -60,7 +64,7 @@ function page() {
           <tr className="table__row">
             <td className="table__column">4</td>
             <td className="table__column" colSpan="3">Tower of Hanoi Algorithm</td>
-            <td className="table__column"><span className="tag">principles</span></td>
+            <td className="table__column table__column--tags tags"><span className="tag">singleton</span></td>
             <td className="table__column" >
                 <button className="btn btn--edit">edit</button>
                 <button className="btn btn--delete">delete</button>
@@ -69,7 +73,7 @@ function page() {
           <tr className="table__row"> 
             <td className="table__column">5</td>
             <td className="table__column" colSpan="3">Publisher Subscriber pattern</td>
-            <td className="table__column"><span className="tag">principles</span></td>
+            <td className="table__column table__column--tags tags"><span className="tag">experimental</span></td>
             <td className="table__column" >
                 <button className="btn btn--edit">edit</button>
                 <button className="btn btn--delete">delete</button>
@@ -78,7 +82,7 @@ function page() {
           <tr className="table__row"> 
             <td className="table__column">6</td>
             <td className="table__column" colSpan="3">Create a virtual DOM using JavaScript</td>
-            <td className="table__column"><span className="tag">principles</span></td>
+            <td className="table__column table__column--tags tags"><span className="tag">data modeling</span></td>
             <td className="table__column" >
                 <button className="btn btn--edit">edit</button>
                 <button className="btn btn--delete">delete</button>
@@ -87,7 +91,7 @@ function page() {
           <tr className="table__row"> 
             <td className="table__column">7</td>
             <td className="table__column" colSpan="3">Singleton Method Design Pattern</td>
-            <td className="table__column"><span className="tag">principles</span></td>
+            <td className="table__column table__column--tags tags"><span className="tag">DOM</span></td>
             <td className="table__column" >
                 <button className="btn btn--edit">edit</button>
                 <button className="btn btn--delete">delete</button>
@@ -96,7 +100,7 @@ function page() {
           <tr className="table__row">
             <td className="table__column">8</td>
             <td className="table__column" colSpan="3">Design a URL Shortener</td>
-            <td className="table__column"><span className="tag">principles</span></td>
+            <td className="table__column table__column--tags tags"><span className="tag">AJAX</span></td>
             <td className="table__column" >
                 <button className="btn btn--edit">edit</button>
                 <button className="btn btn--delete">delete</button>
@@ -105,7 +109,7 @@ function page() {
           <tr className="table__row">
             <td className="table__column">9</td>
             <td className="table__column" colSpan="3">Create a todo app maintaining SOLID</td>
-            <td className="table__column"><span className="tag">principles</span></td>
+            <td className="table__column table__column--tags tags"><span className="tag">IFI</span></td>
             <td className="table__column" >
                 <button className="btn btn--edit">edit</button>
                 <button className="btn btn--delete">delete</button>
@@ -114,7 +118,7 @@ function page() {
           <tr className="table__row">
             <td className="table__column">10</td>
             <td className="table__column" colSpan="3">Square Root</td>
-            <td className="table__column"><span className="tag">principles</span></td>
+            <td className="table__column table__column--tags tags"><span className="tag">principles</span></td>
             <td className="table__column" >
                 <button className="btn btn--edit">edit</button>
                 <button className="btn btn--delete">delete</button>

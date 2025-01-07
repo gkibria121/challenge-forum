@@ -42,11 +42,11 @@ function page() {
 
           <table className="table">
             <thead className="table__thead">
-              <tr>
-                <th>No.</th>
-                <th colSpan="3">Title</th>
-                <th>Tag</th>
-              </tr>
+            <tr>
+              <th>No.</th>
+              <th colSpan="3" className="table__th">Title</th>
+              <th className="table__th table__th--tag">Tag</th>   
+            </tr>
             </thead>
             <tbody
               className="table__tbody"onClick={handleOnclick} >
@@ -55,7 +55,7 @@ function page() {
                 <td className="table__column" colSpan="3">
                   Palindrome Checker
                 </td>
-                <td className="table__column">
+                <td className="table__column tags">
                   <span className="tag">principles</span>
                 </td>
               </tr>
@@ -64,7 +64,7 @@ function page() {
                 <td className="table__column" colSpan="3">
                   FizzBuzz
                 </td>
-                <td className="table__column">
+                <td className="table__column tags">
                   <span className="tag">principles</span>
                 </td>
               </tr>
@@ -73,7 +73,7 @@ function page() {
                 <td className="table__column" colSpan="3">
                   Reverse a String
                 </td>
-                <td className="table__column">
+                <td className="table__column tags">
                   <span className="tag">principles</span>
                 </td>
               </tr>
@@ -82,7 +82,7 @@ function page() {
                 <td className="table__column" colSpan="3">
                   Tower of Hanoi Algorithm
                 </td>
-                <td className="table__column">
+                <td className="table__column tags">
                   <span className="tag">principles</span>
                 </td>
               </tr>
@@ -91,7 +91,7 @@ function page() {
                 <td className="table__column" colSpan="3">
                   Publisher Subscriber pattern
                 </td>
-                <td className="table__column">
+                <td className="table__column tags">
                   <span className="tag">principles</span>
                 </td>
               </tr>
@@ -100,7 +100,7 @@ function page() {
                 <td className="table__column" colSpan="3">
                   Create a virtual DOM using JavaScript
                 </td>
-                <td className="table__column">
+                <td className="table__column tags">
                   <span className="tag">principles</span>
                 </td>
               </tr>
@@ -109,7 +109,7 @@ function page() {
                 <td className="table__column" colSpan="3">
                   Singleton Method Design Pattern
                 </td>
-                <td className="table__column">
+                <td className="table__column tags">
                   <span className="tag">principles</span>
                 </td>
               </tr>
@@ -118,7 +118,7 @@ function page() {
                 <td className="table__column" colSpan="3">
                   Design a URL Shortener
                 </td>
-                <td className="table__column">
+                <td className="table__column tags">
                   <span className="tag">principles</span>
                 </td>
               </tr>
@@ -127,7 +127,7 @@ function page() {
                 <td className="table__column" colSpan="3">
                   Create a todo app maintaining SOLID
                 </td>
-                <td className="table__column">
+                <td className="table__column tags">
                   <span className="tag">principles</span>
                 </td>
               </tr>
@@ -136,7 +136,7 @@ function page() {
                 <td className="table__column" colSpan="3">
                   Square Root
                 </td>
-                <td className="table__column">
+                <td className="table__column tags">
                   <span className="tag">principles</span>
                 </td>
               </tr>
