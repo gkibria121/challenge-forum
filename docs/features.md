@@ -10,7 +10,8 @@
    1. Allow users to submit a solution to a challenge using a POST request to the API.  
    2. Validate solution input before submission to ensure correctness and completeness.  
    3. Show a success or error message based on the API response.  
-
+   4. Add rating to a submition.
+   5. Add feedback to a submition.
 3. **Manage Challenges** (Admin Only):  
    1. Add a new challenge using a POST request to the API.  
    2. Delete an existing challenge using a DELETE request to the API.  

@@ -12,6 +12,7 @@
    - As an admin, I want to update challenges so that I can fix any errors.  
    - As an admin, I want to provide tips for challenges so that users can get help.  
    - As an admin, I want to log in so that I can manage challenges.  
-   - As an admin, I want to give feedback to a solution so that user can improve himself
+   - As an admin, I want to give feedback to a solution so that user can improve himself.
+   - As an admin, I want to give rating to a solution so that user can improve himself.
 
  
