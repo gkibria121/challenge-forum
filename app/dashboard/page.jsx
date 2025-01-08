@@ -1,19 +1,8 @@
 import React from "react";
 
 function page() {
-  return <>    <nav className="nav">
-  <ul className="nav__list">
-    <li className="nav__list-item">
-      <a href="Dashboard.html" className="nav__link nav__link--active">Dashboard</a>
-      <a href="/challenges" className="nav__link ml-1 ">Challenges</a>
-    </li>
-    <li className="nav__list-item">
-      <a href="login.html" className="nav__link">login</a>
-    </li>
-  </ul>
-</nav>
+    <> 
 <main className="main">
-
     <div className="container">
 
       <h4 className="">All challenges</h4>

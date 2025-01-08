@@ -13,13 +13,13 @@ body{
     width: 100vw;
     font-family: "Poppins",sans-serif;
     background-color: var(--color-secondary);
+    overflow-x: hidden;
    
 
 }
 .main{
     display: flex;
     justify-content: center;
-    align-items: start;
-    margin-top: 2rem;
+    align-items: start; 
     height: calc(100vh - 10rem);
 }

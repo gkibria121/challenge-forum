@@ -2,24 +2,7 @@ import React from "react";
 
 function page() {
   return (
-    <> 
-      <nav className="nav">
-        <ul className="nav__list">
-          <li className="nav__list-item">
-            <a href="Dashboard.html" className="nav__link">
-              Dashboard
-            </a>
-            <a href="Challenges.html" className="nav__link ml-1 nav__link--active">
-              Challenges
-            </a>
-          </li>
-          <li className="nav__list-item">
-            <a href="login.html" className="nav__link">
-              login
-            </a>
-          </li>
-        </ul>
-      </nav>
+    <>  
       <main className="main">
         <div className="container">
           <div className="tabs">

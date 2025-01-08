@@ -1,8 +1,6 @@
-"use client"
-import Link from "next/link";
+"use client" 
 import { useRouter } from "next/navigation";
-import React from "react";
-
+import React from "react"; 
 function page() {
   const router = useRouter();
   const handleOnclick =(event)=>{
@@ -18,24 +16,7 @@ function page() {
     router.push(`/challenges/${challengeId}`)
   }
   return (
-    <>
-      <nav className="nav">
-        <ul className="nav__list">
-          <li className="nav__list-item">
-            <Link href="/dashboard" className="nav__link ">
-              Dashboard
-            </Link>
-            <Link href="/challenges" className="nav__link ml-1 nav__link--active">
-              Challenges
-            </Link>
-          </li>
-          <li className="nav__list-item">
-            <Link href="/login" className="nav__link">
-              login
-            </Link>
-          </li>
-        </ul>
-      </nav>
+    <> 
       <main className="main">
         <div className="container">
           <h4 className="">All challenges</h4>

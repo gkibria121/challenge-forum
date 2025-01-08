@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState } from "react"; 
 
 function page() {
   const router = useRouter();
@@ -21,24 +21,7 @@ function page() {
     };
   };
   return (
-    <>
-      <nav className="nav">
-        <ul className="nav__list">
-          <li className="nav__list-item">
-            <a href="Dashboard.html" className="nav__link ">
-              Dashboard
-            </a>
-            <a href="/challenges" className="nav__link ml-1">
-              Challenges
-            </a>
-          </li>
-          <li className="nav__list-item">
-            <a href="login.html" className="nav__link">
-              login
-            </a>
-          </li>
-        </ul>
-      </nav>
+    <> 
       <main className="main">
         <div className="container">
           <div className="tabs">
