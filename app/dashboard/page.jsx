@@ -1,8 +1,8 @@
 import React from "react";
 
 function page() {
-    <> 
-<main className="main">
+    
+return <main className="main">
     <div className="container">
 
       <h4 className="">All challenges</h4>
@@ -128,7 +128,7 @@ function page() {
 
     </div>
    
-</main></>;
+</main> ;
 }
 
 export default page;
