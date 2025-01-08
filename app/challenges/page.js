@@ -43,7 +43,7 @@ function page() {
           <table className="table">
             <thead className="table__thead">
             <tr>
-              <th>No.</th>
+              <th className="table__th">No.</th>
               <th colSpan="3" className="table__th">Title</th>
               <th className="table__th table__th--tag">Tag</th>   
             </tr>
