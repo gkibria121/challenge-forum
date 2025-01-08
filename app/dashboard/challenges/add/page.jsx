@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
 import Tabs from "./Tabs";
-import TabHeader from "./TabHeader";
-import TabBody from "./TabBody";
+import TabHeader from "../../../../src/components/TabHeader";
+import TabBody from "../../../../src/components/TabBody";
 import Form from "./Form";
 import HintEditor from "./HintEditor";
-import TabActions from "./TabActions";
+import TabActions from "../../../../src/components/TabActions";
 
 const Page = () => {
   return (

@@ -1,13 +1,14 @@
-"use client"
+"use client";
 
 import { useParams } from "next/navigation";
 import { useState } from "react";
-import TabHeader from "./TabHeader"
-import SubmissionCard from "./SubmissionCard"
-import Comments from "./Comments"
-import Description from './Description'
-import Hints from './Hints'
-import SubmissionEditor from "./SubmissionEditor"
+import SubmissionCard from "./SubmissionCard";
+import Comments from "./Comments";
+import Description from "./Description";
+import Hints from "./Hints";
+import SubmissionEditor from "./SubmissionEditor";
+import TabHeader from "./../../../src/components/TabHeader";
+import { useRouter } from "next/navigation";
 // Main Page Component
 export default function Page() {
   const [isCommenting, setIsCommenting] = useState(false);
@@ -17,12 +18,8 @@ export default function Page() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { id } = useParams();
   const ratings = [2, 4, 6, 8, 10];
-
-  const handleTabLinkClick = (event) => {
-    const tabLinkEl = event.target.closest(".tab__link");
-    if (!tabLinkEl) return;
-    const tabId = tabLinkEl.dataset.tabId;
-    if (!tabId) return;
+  const router = useRouter();
+  const handleTabLinkClick = (tabId) => {
     setActiveTab(tabId);
   };
   const isClickOnLeftHalf = (element, event) => {
@@ -50,12 +47,19 @@ export default function Page() {
     });
   };
 
+  const goTo = (link) => {
+    console.log(link);
+
+    return () => router.push(link);
+  };
 
   const handleRatingChange = (event) => {
     const star = event.target.closest(".ratings__rating");
     if (!star) return;
     const isLeft = isClickOnLeftHalf(star, event);
-    const selectedRating = isLeft ? +star.dataset.rating - 1 : +star.dataset.rating;
+    const selectedRating = isLeft
+      ? +star.dataset.rating - 1
+      : +star.dataset.rating;
     updateRatingClasses(selectedRating);
     setRating(selectedRating);
   };
@@ -63,26 +67,53 @@ export default function Page() {
   return (
     <main className="main">
       <div className="container">
+        <TabHeader
+          activeTab={activeTab}
+          onTabClick={handleTabLinkClick}
+          isSubmitting={isSubmitting}
+          setIsSubmitting={setIsSubmitting}
+          setActivTab={setActiveTab}
+          goTo={goTo}
+          tabs={[
+            { id: "1", label: "Description" },
+            { id: "2", label: "Submissions" },
+            { id: "3", label: "Hints" },
+          ]}
+        >
+          <button
+            className={`btn btn--add ${isSubmitting ? "hidden" : ""}`}
+            onClick={() => setIsSubmitting(true)}
+          >
+            Add
+          </button>
+          <button onClick={goTo("/challenges")} className="btn btn--back">
+            {String.fromCharCode(8592)} Back
+          </button>
+        </TabHeader>
         <div className="tabs">
-          <TabHeader 
-            activeTab={activeTab}
-            onTabClick={handleTabLinkClick}
-            isSubmitting={isSubmitting}
-            setIsSubmitting={setIsSubmitting}
-            setActivTab={setActiveTab}
-          />
-          
           <div className="tabs__body">
             {activeTab === "1" && <Description />}
-            
+
             {activeTab === "2" && (
               <div className="submissions">
                 <div className="submissions__list">
                   {[
-                    { id: "1", username: "gkibria", description: "Easy solve with python." },
-                    { id: "2", username: "mehedi", description: "Implemented with java" },
-                    { id: "3", username: "talha", description: "Implemented with javascript" }
-                  ].map(submission => (
+                    {
+                      id: "1",
+                      username: "gkibria",
+                      description: "Easy solve with python.",
+                    },
+                    {
+                      id: "2",
+                      username: "mehedi",
+                      description: "Implemented with java",
+                    },
+                    {
+                      id: "3",
+                      username: "talha",
+                      description: "Implemented with javascript",
+                    },
+                  ].map((submission) => (
                     <SubmissionCard
                       key={submission.id}
                       {...submission}
@@ -91,7 +122,7 @@ export default function Page() {
                     />
                   ))}
                 </div>
-                
+
                 <div className="submission">
                   {isSubmitting ? (
                     <SubmissionEditor
@@ -103,7 +134,7 @@ export default function Page() {
                       this is a solution...
                     </div>
                   )}
-                  
+
                   <Comments
                     isCommenting={isCommenting}
                     setIsCommenting={setIsCommenting}
@@ -113,11 +144,11 @@ export default function Page() {
                 </div>
               </div>
             )}
-            
+
             {activeTab === "3" && <Hints />}
           </div>
         </div>
-        
+
         {activeTab === "1" && (
           <div className="tabs__footer">
             <button className="btn btn--next">Previous</button>

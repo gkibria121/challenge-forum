@@ -1,6 +1,6 @@
 import React from "react";
 
-const Table = ({ headers, data, renderRow }) => {
+const Table = ({ headers, data, renderRow ,onClick}) => {
   return (
     <table className="table">
       <thead className="table__thead">
@@ -12,9 +12,9 @@ const Table = ({ headers, data, renderRow }) => {
           ))}
         </tr>
       </thead>
-      <tbody className="table__tbody">
+      <tbody className="table__tbody" onClick={onClick}>
         {data.map((item) => (
-          <tr key={item.id} className="table__row">
+          <tr key={item.id} data-challenge-id={`${item.id}`} className="table__row">
             {renderRow(item)}
           </tr>
         ))}

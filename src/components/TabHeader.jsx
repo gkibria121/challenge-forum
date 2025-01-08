@@ -1,6 +1,13 @@
 import React from "react";
 
-const TabHeader = ({ activeTab, onTabClick, tabs }) => {
+const TabHeader = ({
+  children,
+  activeTab,
+  onTabClick,
+  tabs, 
+
+  actions
+}) => {
   return (
     <div className="tabs__header">
       {tabs.map(({ id, label }) => (
@@ -12,6 +19,7 @@ const TabHeader = ({ activeTab, onTabClick, tabs }) => {
           {label}
         </button>
       ))}
+      {children}
     </div>
   );
 };
