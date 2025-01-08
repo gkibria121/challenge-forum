@@ -1,134 +1,105 @@
+"use client"
 import React from "react";
+import Table from "../../src/components/Table";
+import Pagination from "../../src/components/Pagination";
+import ActionButtons from "./ActionButtons";
+import Tag from "./Tag"; 
+const ChallengesPage = () => {
+  const challenges = [
+    {
+      id: 1,
+      title: "Palindrome Checker",
+      tags: ["coding"]
+    },
+    {
+      id: 2,
+      title: "FizzBuzz",
+      tags: ["principles"]
+    },
+    {
+      id: 3,
+      title: "Reverse a String",
+      tags: ["coding", "principles", "Design pattern"]
+    },
+    {
+      id: 4,
+      title: "Tower of Hanoi Algorithm",
+      tags: ["singleton"]
+    },
+    {
+      id: 5,
+      title: "Publisher Subscriber pattern",
+      tags: ["experimental"]
+    },
+    {
+      id: 6,
+      title: "Create a virtual DOM using JavaScript",
+      tags: ["data modeling"]
+    },
+    {
+      id: 7,
+      title: "Singleton Method Design Pattern",
+      tags: ["DOM"]
+    },
+    {
+      id: 8,
+      title: "Design a URL Shortener",
+      tags: ["AJAX"]
+    },
+    {
+      id: 9,
+      title: "Create a todo app maintaining SOLID",
+      tags: ["IFI"]
+    },
+    {
+      id: 10,
+      title: "Square Root",
+      tags: ["principles"]
+    }
+  ];
 
-function page() {
-    
-return <main className="main">
-    <div className="container">
-
-      <h4 className="">All challenges</h4>
-      <a className="btn btn--add" href="/dashboard/challenges/add">Add</a>
-      <table className="table">
-        <thead className="table__thead">
-            <tr>
-              <th className="table__th">No.</th>
-              <th colSpan="3" className="table__th">Title</th>
-              <th className="table__th table__th--tag">Tag</th>  
-              <th className="table__th table__th--actions">Actions</th>
-            </tr>
-           
-           
-        </thead>
-        <tbody className="table__tbody"  >
-          <tr className="table__row">
-            <td className="table__column">1</td>
-            <td className="table__column" colSpan="3">Palindrome Checker</td>
-            <td className="table__column table__column--tags tags" ><span className="tag">coding</span></td>
-            <td className="table__column" >
-                 <button className="btn btn--edit">edit</button>
-                 <button className="btn btn--delete">delete</button>
-            </td>
-          </tr>
-          <tr className="table__row">
-            <td className="table__column">2</td>
-            <td className="table__column" colSpan="3">FizzBuzz</td>
-            <td className="table__column table__column--tags tags"><span className="tag">principles</span></td>
-            <td className="table__column" >
-                <button className="btn btn--edit">edit</button>
-                <button className="btn btn--delete">delete</button>
-           </td>
-          </tr>
-          <tr className="table__row"> 
-            <td className="table__column">3</td>
-            <td className="table__column" colSpan="3">Reverse a String</td>
-            <td className="table__column table__column--tags tags">
-              <span className="tag">coding</span>
-              <span className="tag">principles</span>
-              <span className="tag">Design pattern</span> 
-            </td>
-            <td className="table__column" >
-                <button className="btn btn--edit">edit</button>
-                <button className="btn btn--delete">delete</button>
-           </td>
-          </tr>
-          <tr className="table__row">
-            <td className="table__column">4</td>
-            <td className="table__column" colSpan="3">Tower of Hanoi Algorithm</td>
-            <td className="table__column table__column--tags tags"><span className="tag">singleton</span></td>
-            <td className="table__column" >
-                <button className="btn btn--edit">edit</button>
-                <button className="btn btn--delete">delete</button>
-           </td>
-          </tr>
-          <tr className="table__row"> 
-            <td className="table__column">5</td>
-            <td className="table__column" colSpan="3">Publisher Subscriber pattern</td>
-            <td className="table__column table__column--tags tags"><span className="tag">experimental</span></td>
-            <td className="table__column" >
-                <button className="btn btn--edit">edit</button>
-                <button className="btn btn--delete">delete</button>
-           </td>
-          </tr>
-          <tr className="table__row"> 
-            <td className="table__column">6</td>
-            <td className="table__column" colSpan="3">Create a virtual DOM using JavaScript</td>
-            <td className="table__column table__column--tags tags"><span className="tag">data modeling</span></td>
-            <td className="table__column" >
-                <button className="btn btn--edit">edit</button>
-                <button className="btn btn--delete">delete</button>
-           </td>
-          </tr>
-          <tr className="table__row"> 
-            <td className="table__column">7</td>
-            <td className="table__column" colSpan="3">Singleton Method Design Pattern</td>
-            <td className="table__column table__column--tags tags"><span className="tag">DOM</span></td>
-            <td className="table__column" >
-                <button className="btn btn--edit">edit</button>
-                <button className="btn btn--delete">delete</button>
-           </td>
-          </tr>
-          <tr className="table__row">
-            <td className="table__column">8</td>
-            <td className="table__column" colSpan="3">Design a URL Shortener</td>
-            <td className="table__column table__column--tags tags"><span className="tag">AJAX</span></td>
-            <td className="table__column" >
-                <button className="btn btn--edit">edit</button>
-                <button className="btn btn--delete">delete</button>
-           </td>
-          </tr>
-          <tr className="table__row">
-            <td className="table__column">9</td>
-            <td className="table__column" colSpan="3">Create a todo app maintaining SOLID</td>
-            <td className="table__column table__column--tags tags"><span className="tag">IFI</span></td>
-            <td className="table__column" >
-                <button className="btn btn--edit">edit</button>
-                <button className="btn btn--delete">delete</button>
-           </td>
-          </tr>
-          <tr className="table__row">
-            <td className="table__column">10</td>
-            <td className="table__column" colSpan="3">Square Root</td>
-            <td className="table__column table__column--tags tags"><span className="tag">principles</span></td>
-            <td className="table__column" >
-                <button className="btn btn--edit">edit</button>
-                <button className="btn btn--delete">delete</button>
-           </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div className="pagination">
-        <span className="page page--disabled">&lt;</span>
-        <span className="page">1</span>
-        <span className="page page--active">2</span>
-        <span className="page">...</span>
-        <span className="page">9</span>
-        <span className="page">10</span>
-        <span className="page page--disabled">&gt;</span>
+  return (
+    <main className="main">
+      <div className="container">
+        <div className="flex justify-between items-center mb-4">
+          <h4>All challenges</h4>
+          <a className="btn btn--add" href="/dashboard/challenges/add">
+            Add
+          </a>
+        </div>
+        <Table
+          headers={[
+            { label: "No.", key: "id", colSpan: 1 },
+            { label: "Title", key: "title", colSpan: 3 },
+            { label: "Tag", key: "tags", colSpan: 1 },
+            { label: "Actions", key: "actions", colSpan: 1 },
+          ]}
+          data={challenges}
+          renderRow={(challenge) => (
+            <>
+              <td className="table__column">{challenge.id}</td>
+              <td className="table__column" colSpan="3">
+                {challenge.title}
+              </td>
+              <td className="table__column table__column--tags tags">
+                {challenge.tags.map((tag) => (
+                  <Tag key={tag} label={tag} />
+                ))}
+              </td>
+              <td className="table__column">
+                <ActionButtons />
+              </td>
+            </>
+          )}
+        />
+        <Pagination
+          currentPage={2}
+          totalPages={10}
+          onPageChange={(page) => console.log("Go to page:", page)}
+        />
       </div>
+    </main>
+  );
+};
 
-    </div>
-   
-</main> ;
-}
-
-export default page;
+export default ChallengesPage;

@@ -1,138 +1,52 @@
-"use client" 
+"use client";
+
+import React from "react";
 import { useRouter } from "next/navigation";
-import React from "react"; 
+import ChallengesTable from "./ChallengesTable"; // Import ChallengesTable 
+import Pagination from "./../../src/components/Pagination"
 function page() {
   const router = useRouter();
-  const handleOnclick =(event)=>{
-    event.preventDefault();
-     const challengeLinkEl = event.target.closest('.table__row');
-     if(!challengeLinkEl) return;
-     const challengeId = challengeLinkEl.dataset.challengeId;
 
-     if(!challengeId){
-      throw new Error("Challenge id not found!")
-     }
+  const challenges = [
+    { id: "1", title: "Palindrome Checker", tag: "principles" },
+    { id: "2", title: "FizzBuzz", tag: "principles" },
+    { id: "3", title: "Reverse a String", tag: "principles" },
+    { id: "4", title: "Tower of Hanoi Algorithm", tag: "principles" },
+    { id: "5", title: "Publisher Subscriber pattern", tag: "principles" },
+    { id: "6", title: "Create a virtual DOM using JavaScript", tag: "principles" },
+    { id: "7", title: "Singleton Method Design Pattern", tag: "principles" },
+    { id: "8", title: "Design a URL Shortener", tag: "principles" },
+    { id: "9", title: "Create a todo app maintaining SOLID", tag: "principles" },
+    { id: "10", title: "Square Root", tag: "principles" },
+  ];
 
-    router.push(`/challenges/${challengeId}`)
-  }
+  const handleRowClick = (event) => {
+    const challengeLinkEl = event.target.closest(".table__row");
+    if (!challengeLinkEl) return;
+    const challengeId = challengeLinkEl.dataset.challengeId;
+
+    if (!challengeId) {
+      throw new Error("Challenge id not found!");
+    }
+
+    router.push(`/challenges/${challengeId}`);
+  };
+
+  const handlePageClick = (page) => {
+    console.log(`Navigating to page ${page}`);
+  };
+
   return (
-    <> 
+    <>
       <main className="main">
         <div className="container">
           <h4 className="">All challenges</h4>
-
-          <table className="table">
-            <thead className="table__thead">
-            <tr>
-              <th className="table__th">No.</th>
-              <th colSpan="3" className="table__th">Title</th>
-              <th className="table__th table__th--tag">Tag</th>   
-            </tr>
-            </thead>
-            <tbody
-              className="table__tbody"onClick={handleOnclick} >
-              <tr className="table__row" data-challenge-id="1">
-                <td className="table__column">1</td>
-                <td className="table__column" colSpan="3">
-                  Palindrome Checker
-                </td>
-                <td className="table__column tags">
-                  <span className="tag">principles</span>
-                </td>
-              </tr>
-             <tr className="table__row" data-challenge-id="1">
-                <td className="table__column">2</td>
-                <td className="table__column" colSpan="3">
-                  FizzBuzz
-                </td>
-                <td className="table__column tags">
-                  <span className="tag">principles</span>
-                </td>
-              </tr>
-             <tr className="table__row" data-challenge-id="1">
-                <td className="table__column">3</td>
-                <td className="table__column" colSpan="3">
-                  Reverse a String
-                </td>
-                <td className="table__column tags">
-                  <span className="tag">principles</span>
-                </td>
-              </tr>
-             <tr className="table__row" data-challenge-id="1">
-                <td className="table__column">4</td>
-                <td className="table__column" colSpan="3">
-                  Tower of Hanoi Algorithm
-                </td>
-                <td className="table__column tags">
-                  <span className="tag">principles</span>
-                </td>
-              </tr>
-             <tr className="table__row" data-challenge-id="1">
-                <td className="table__column">5</td>
-                <td className="table__column" colSpan="3">
-                  Publisher Subscriber pattern
-                </td>
-                <td className="table__column tags">
-                  <span className="tag">principles</span>
-                </td>
-              </tr>
-             <tr className="table__row" data-challenge-id="1">
-                <td className="table__column">6</td>
-                <td className="table__column" colSpan="3">
-                  Create a virtual DOM using JavaScript
-                </td>
-                <td className="table__column tags">
-                  <span className="tag">principles</span>
-                </td>
-              </tr>
-             <tr className="table__row" data-challenge-id="1">
-                <td className="table__column">7</td>
-                <td className="table__column" colSpan="3">
-                  Singleton Method Design Pattern
-                </td>
-                <td className="table__column tags">
-                  <span className="tag">principles</span>
-                </td>
-              </tr>
-             <tr className="table__row" data-challenge-id="1">
-                <td className="table__column">8</td>
-                <td className="table__column" colSpan="3">
-                  Design a URL Shortener
-                </td>
-                <td className="table__column tags">
-                  <span className="tag">principles</span>
-                </td>
-              </tr>
-             <tr className="table__row" data-challenge-id="1">
-                <td className="table__column">9</td>
-                <td className="table__column" colSpan="3">
-                  Create a todo app maintaining SOLID
-                </td>
-                <td className="table__column tags">
-                  <span className="tag">principles</span>
-                </td>
-              </tr>
-             <tr className="table__row" data-challenge-id="1">
-                <td className="table__column">10</td>
-                <td className="table__column" colSpan="3">
-                  Square Root
-                </td>
-                <td className="table__column tags">
-                  <span className="tag">principles</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div className="pagination">
-            <span className="page page--disabled">&lt;</span>
-            <span className="page">1</span>
-            <span className="page page--active">2</span>
-            <span className="page">...</span>
-            <span className="page">9</span>
-            <span className="page">10</span>
-            <span className="page page--disabled">&gt;</span>
-          </div>
+          <ChallengesTable challenges={challenges} onRowClick={handleRowClick} />
+          <Pagination
+            currentPage={2}
+            totalPages={10}
+            onPageClick={handlePageClick}
+          />
         </div>
       </main>
     </>
