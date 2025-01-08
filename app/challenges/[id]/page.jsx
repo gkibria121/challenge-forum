@@ -6,7 +6,53 @@ function page() {
   const [isCommenting, setIsCommenting] = useState(false);
   const [activeSubmission, setActiveSubmission] = useState("");
   const [activeTab, setActiveTab] = useState("2");
+  const [rating, setRating] = useState(10);
   const { id } = useParams();
+  const ratings = [2, 4, 6, 8, 10];
+
+  const handleRatingChange = (event) => {
+    const star = event.target.closest(".ratings__rating");
+    if (!star) return;
+
+    // Calculate whether the click is on the left half
+    const isLeft = isClickOnLeftHalf(star, event);
+    const selectedRating = isLeft
+      ? +star.dataset.rating - 1
+      : +star.dataset.rating;
+
+    // Update the ratings visually
+    updateRatingClasses(selectedRating);
+
+    // Set the state for the selected rating
+    setRating(selectedRating);
+  };
+
+  const updateRatingClasses = (selectedRating) => {
+    const ratingsContainer = document.querySelector(".ratings");
+    const ratingElements = Array.from(ratingsContainer.children);
+
+    ratingElements.forEach((ratingEl) => {
+      const ratingValue = +ratingEl.dataset.rating;
+      let newClass;
+
+      if (selectedRating >= ratingValue) {
+        newClass = "ratings__rating ratings__rating--fill";
+      } else if (selectedRating === ratingValue - 1) {
+        newClass = "ratings__rating ratings__rating--half-fill";
+      } else {
+        newClass = "ratings__rating ratings__rating--empty";
+      }
+
+      ratingEl.className = newClass;
+    });
+  };
+
+  const isClickOnLeftHalf = (element, event) => {
+    const rect = element.getBoundingClientRect();
+    const midpoint = rect.left + rect.width / 2;
+    return event.clientX < midpoint;
+  };
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const handleTabLinkClick = (event) => {
@@ -71,7 +117,7 @@ function page() {
                 Hints
               </button>
               <button
-                className={`btn btn--add ${isSubmitting?"hidden":''}`}
+                className={`btn btn--add ${isSubmitting ? "hidden" : ""}`}
                 onClick={() => setIsSubmitting(true)}
               >
                 Add
@@ -140,48 +186,62 @@ function page() {
                       </div>
                     </div>
                   </div>
-                  
-                  <div className="submission"  >
-                  {isSubmitting ? <div className="submission__content">
-                      <select
-                        name="language"
-                        id="language"
-                        className="selection"
-                      >
-                        <option className="selection__option" value="python">
-                          Python
-                        </option>
-                        <option className="selection__option" value="c#">
-                          C#
-                        </option>
-                        <option className="selection__option" value="java">
-                          Java
-                        </option>
-                        <option
-                          className="selection__option"
-                          value="javascript"
+
+                  <div className="submission">
+                    {isSubmitting ? (
+                      <div className="submission__content">
+                        <select
+                          name="language"
+                          id="language"
+                          className="selection"
                         >
-                          JavaScript
-                        </option>
-                        <option className="selection__option" value="php">
-                          PHP
-                        </option>
-                      </select>
-                      <textarea
-                        name="submission"
-                        id="submission"
-                        className="submission__input"
-                        defaultValue={"this..."}
-                      ></textarea>
-                      <div className="submission__actions">
-                        <button className="btn btn--add" onClick={()=>setIsSubmitting(false)}>Save</button>
-                        <button className="btn btn--back" onClick={()=>setIsSubmitting(false)}> Cancel</button>
+                          <option className="selection__option" value="python">
+                            Python
+                          </option>
+                          <option className="selection__option" value="c#">
+                            C#
+                          </option>
+                          <option className="selection__option" value="java">
+                            Java
+                          </option>
+                          <option
+                            className="selection__option"
+                            value="javascript"
+                          >
+                            JavaScript
+                          </option>
+                          <option className="selection__option" value="php">
+                            PHP
+                          </option>
+                        </select>
+                        <textarea
+                          name="submission"
+                          id="submission"
+                          className="submission__input"
+                          defaultValue={"this..."}
+                        ></textarea>
+                        <div className="submission__actions">
+                          <button
+                            className="btn btn--add"
+                            onClick={() => setIsSubmitting(false)}
+                          >
+                            Save
+                          </button>
+                          <button
+                            className="btn btn--back"
+                            onClick={() => setIsSubmitting(false)}
+                          >
+                            {" "}
+                            Cancel
+                          </button>
+                        </div>
                       </div>
-                    </div>: <div className="submission__content">this is a solution...</div>
-                    
-                    
-                    }
-                    
+                    ) : (
+                      <div className="submission__content">
+                        this is a solution...
+                      </div>
+                    )}
+
                     <div
                       className={`comments comments--short ${
                         isCommenting ? "hidden" : ""
@@ -204,6 +264,19 @@ function page() {
                       <p className="comments__title">Comments(10)</p>
                       <div className="comments__add">
                         <div className="user__info">admin</div>
+                        <div
+                          className="ratings"
+                          onMouseMove={handleRatingChange}
+                        >
+                          {ratings.map((ratingValue) => (
+                            <span
+                              key={ratingValue}
+                              className="ratings__rating ratings__rating--fill"
+                              data-rating={ratingValue}
+                            ></span>
+                          ))}
+                        </div>
+
                         <div className="comments__input-container">
                           <textarea
                             name="comment"
