@@ -8,7 +8,21 @@ import Link from "next/link";
 import { useChallenges } from "../../src/contexts/ChallengesContext";
 
 const ChallengesPage = () => {
-  const { challenges } = useChallenges();
+  const { challenges, updateChallenge, setChallenges } = useChallenges();
+
+  const handleDelete = (id) => {
+    if (confirm("Are you sure you want to delete this challenge?")) {
+      setChallenges((prev) => prev.filter((challenge) => challenge.id !== id));
+    }
+  };
+
+  const handleEdit = (challenge) => {
+    const newTitle = prompt("Enter new title:", challenge.title);
+    if (newTitle) {
+      const updatedChallenge = { ...challenge, title: newTitle };
+      updateChallenge(updatedChallenge);
+    }
+  };
 
   return (
     <main className="main">
@@ -23,10 +37,9 @@ const ChallengesPage = () => {
           headers={[
             { label: "No.", key: "id", colSpan: 1 },
             { label: "Title", key: "title", colSpan: 3 },
-            { label: "Tag", key: "tags", colSpan: 1 ,class : "table__th--tag"},
-            { label: "Actions", key: "actions", colSpan: 1 ,class : "table__th--actions"},
+            { label: "Tag", key: "tags", colSpan: 1, class: "table__th--tag" },
+            { label: "Actions", key: "actions", colSpan: 1, class: "table__th--actions" },
           ]}
-          actions={<div>action buttons</div>}
           data={challenges}
           renderRow={(challenge) => (
             <>
@@ -40,13 +53,16 @@ const ChallengesPage = () => {
                 ))}
               </td>
               <td className="table__column">
-                <ActionButtons />
+                <ActionButtons
+                  onEdit={() => handleEdit(challenge)}
+                  onDelete={() => handleDelete(challenge.id)}
+                />
               </td>
             </>
           )}
         />
         <Pagination
-          currentPage={2}
+          currentPage={1}
           totalPages={10}
           onPageChange={(page) => console.log("Go to page:", page)}
         />

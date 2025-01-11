@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import React, { createContext, useContext, useState } from "react";
 
 // Create the context
@@ -10,6 +11,7 @@ export const ChallengesProvider = ({ children }) => {
   const [description, setDescription] = useState("");
   const [hints, setHints] = useState({ title: "", description: "" })
   const [tags, setTags] = useState("");
+  const router = useRouter()
   const handleSave = () => {
     if (!title || !description || !tags) {
       alert("All fields are required.");
@@ -25,11 +27,13 @@ export const ChallengesProvider = ({ children }) => {
     };
 
     setChallenges([...challenges, newChallenge]); // Update context with new challenge
-    alert("Challenge saved!");
+     
     setTitle("");
     setDescription("");
     setTags("");
     setHints("");
+    router.push("/dashboard")
+
   };
   const [challenges, setChallenges] = useState([
     {
@@ -83,9 +87,14 @@ export const ChallengesProvider = ({ children }) => {
     { id: 9, title: "Create a todo app maintaining SOLID", tags: ["IFI"] },
     { id: 10, title: "Square Root", tags: ["principles"] },
   ]);
-  const updateChallenge =(challenge)=>{
-    setChallenges(prev=> prev.map(el=> el.id == challenge.id? challenge : el))
-  }
+  const updateChallenge = (updatedChallenge) => {
+    setChallenges((prev) =>
+      prev.map((challenge) =>
+        challenge.id === updatedChallenge.id ? updatedChallenge : challenge
+      )
+    );
+  };
+  
   return (
     <ChallengesContext.Provider
       value={{

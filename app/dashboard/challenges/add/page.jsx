@@ -23,7 +23,7 @@ const Page = () => {
             ]}
           />
           <TabBody>
-            <Form id="1" />
+            <Form id="1"  />
             <HintEditor id="2" />
           </TabBody>
           <TabActions  onSave={handleSave}/>
