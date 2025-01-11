@@ -30,7 +30,7 @@ export default function Challenge({ challenge }) {
     return event.clientX < midpoint;
   };
   const saveComment = (comment) => {
-    console.log(comment)
+    
     setActiveSubmission((prev) => ({
       ...prev,
       comments: [...(prev.comments ?? []), comment],
