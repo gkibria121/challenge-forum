@@ -5,59 +5,10 @@ import Pagination from "../../src/components/Pagination";
 import ActionButtons from "./ActionButtons";
 import Tag from "./Tag"; 
 import Link from "next/link";
+import { useChallenges } from "../../src/contexts/ChallengesContext";
+
 const ChallengesPage = () => {
-  const challenges = [
-    {
-      id: 1,
-      title: "Palindrome Checker",
-      tags: ["coding"]
-    },
-    {
-      id: 2,
-      title: "FizzBuzz",
-      tags: ["principles"]
-    },
-    {
-      id: 3,
-      title: "Reverse a String",
-      tags: ["coding", "principles", "Design pattern"]
-    },
-    {
-      id: 4,
-      title: "Tower of Hanoi Algorithm",
-      tags: ["singleton"]
-    },
-    {
-      id: 5,
-      title: "Publisher Subscriber pattern",
-      tags: ["experimental"]
-    },
-    {
-      id: 6,
-      title: "Create a virtual DOM using JavaScript",
-      tags: ["data modeling"]
-    },
-    {
-      id: 7,
-      title: "Singleton Method Design Pattern",
-      tags: ["DOM"]
-    },
-    {
-      id: 8,
-      title: "Design a URL Shortener",
-      tags: ["AJAX"]
-    },
-    {
-      id: 9,
-      title: "Create a todo app maintaining SOLID",
-      tags: ["IFI"]
-    },
-    {
-      id: 10,
-      title: "Square Root",
-      tags: ["principles"]
-    }
-  ];
+  const { challenges } = useChallenges();
 
   return (
     <main className="main">
@@ -72,8 +23,8 @@ const ChallengesPage = () => {
           headers={[
             { label: "No.", key: "id", colSpan: 1 },
             { label: "Title", key: "title", colSpan: 3 },
-            { label: "Tag", key: "tags", colSpan: 1 ,class : 'table__th--tag' },
-            { label: "Actions", key: "actions", colSpan: 1,class : 'table__th--actions' },
+            { label: "Tag", key: "tags", colSpan: 1 ,class : "table__th--tag"},
+            { label: "Actions", key: "actions", colSpan: 1 ,class : "table__th--actions"},
           ]}
           actions={<div>action buttons</div>}
           data={challenges}
@@ -88,7 +39,7 @@ const ChallengesPage = () => {
                   <Tag key={tag} label={tag} />
                 ))}
               </td>
-              <td className="table__column table__column--center" >
+              <td className="table__column">
                 <ActionButtons />
               </td>
             </>

@@ -1,67 +1,15 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation"; 
-import Pagination from "./../../src/components/Pagination"
+import { useRouter } from "next/navigation";
+import Pagination from "./../../src/components/Pagination";
 import Table from "../../src/components/Table";
 import Tag from "../dashboard/Tag";
-import ActionButtons from "../dashboard/ActionButtons";
+import { useChallenges } from "../../src/contexts/ChallengesContext";
 
-function page() {
+function PageContent() {
   const router = useRouter();
-
-  const challenges = [
-    {
-      id: 1,
-      title: "Palindrome Checker",
-      tags: ["coding"]
-    },
-    {
-      id: 2,
-      title: "FizzBuzz",
-      tags: ["principles"]
-    },
-    {
-      id: 3,
-      title: "Reverse a String",
-      tags: ["coding", "principles", "Design pattern"]
-    },
-    {
-      id: 4,
-      title: "Tower of Hanoi Algorithm",
-      tags: ["singleton"]
-    },
-    {
-      id: 5,
-      title: "Publisher Subscriber pattern",
-      tags: ["experimental"]
-    },
-    {
-      id: 6,
-      title: "Create a virtual DOM using JavaScript",
-      tags: ["data modeling"]
-    },
-    {
-      id: 7,
-      title: "Singleton Method Design Pattern",
-      tags: ["DOM"]
-    },
-    {
-      id: 8,
-      title: "Design a URL Shortener",
-      tags: ["AJAX"]
-    },
-    {
-      id: 9,
-      title: "Create a todo app maintaining SOLID",
-      tags: ["IFI"]
-    },
-    {
-      id: 10,
-      title: "Square Root",
-      tags: ["principles"]
-    }
-  ];
+  const { challenges } = useChallenges();
 
   const handleRowClick = (event) => {
     const challengeLinkEl = event.target.closest(".table__row");
@@ -85,27 +33,27 @@ function page() {
         <div className="container">
           <h4 className="">All challenges</h4>
           <Table
-          onClick={handleRowClick}
-          headers={[
-            { label: "No.", key: "id", colSpan: 1 },
-            { label: "Title", key: "title", colSpan: 1 },
-            { label: "Tag", key: "tags", colSpan: 1 , class : 'table__th--tag'}, 
-          ]}
-          data={challenges}
-          renderRow={(challenge) => (
-            <>
-              <td className="table__column">{challenge.id}</td>
-              <td className="table__column" colSpan="1">
-                {challenge.title}
-              </td>
-              <td className="table__column table__column--tags tags">
-                {challenge.tags.map((tag) => (
-                  <Tag key={tag} label={tag} />
-                ))}
-              </td> 
-            </>
-          )}
-        />
+            onClick={handleRowClick}
+            headers={[
+              { label: "No.", key: "id", colSpan: 1 },
+              { label: "Title", key: "title", colSpan: 1 },
+              { label: "Tag", key: "tags", colSpan: 1, class: "table__th--tag" },
+            ]}
+            data={challenges}
+            renderRow={(challenge) => (
+              <>
+                <td className="table__column">{challenge.id}</td>
+                <td className="table__column" colSpan="1">
+                  {challenge.title}
+                </td>
+                <td className="table__column table__column--tags tags">
+                  {challenge.tags.map((tag) => (
+                    <Tag key={tag} label={tag} />
+                  ))}
+                </td>
+              </>
+            )}
+          />
           <Pagination
             currentPage={2}
             totalPages={10}
@@ -116,5 +64,5 @@ function page() {
     </>
   );
 }
-
-export default page;
+ 
+export default PageContent;

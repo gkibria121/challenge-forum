@@ -1,6 +1,7 @@
 import React from "react"
 import "/src/sass/main.scss"
 import Header from "../src/components/Header"
+import { ChallengesProvider } from "../src/contexts/ChallengesContext";
 export default function RootLayout({
     children,
   }: {
@@ -16,7 +17,9 @@ export default function RootLayout({
           </head>
           <body>
             <Header />
+            <ChallengesProvider>            
             {children}
+            </ChallengesProvider>
           </body>
         </html>
         
