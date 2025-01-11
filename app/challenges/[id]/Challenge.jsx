@@ -24,8 +24,13 @@ export default function Challenge({ challenge }) {
   const handleTabLinkClick = (tabId) => {
     setActiveTab(tabId);
   };
-
+  const isClickOnLeftHalf = (element, event) => {
+    const rect = element.getBoundingClientRect();
+    const midpoint = rect.left + rect.width / 2;
+    return event.clientX < midpoint;
+  };
   const saveComment = (comment) => {
+    console.log(comment)
     setActiveSubmission((prev) => ({
       ...prev,
       comments: [...(prev.comments ?? []), comment],
@@ -56,8 +61,38 @@ export default function Challenge({ challenge }) {
       ...challenge,
       submissions: updatedSubmissions,
     });
-  };
+  }; 
+  const updateRatingClasses = (selectedRating) => {
+    const ratingsContainer = document.querySelector(".ratings");
+    const ratingElements = Array.from(ratingsContainer.children);
 
+    ratingElements.forEach((ratingEl) => {
+      const ratingValue = +ratingEl.dataset.rating;
+      let newClass;
+
+      if (selectedRating >= ratingValue) {
+        newClass = "ratings__rating ratings__rating--fill";
+      } else if (selectedRating === ratingValue - 1) {
+        newClass = "ratings__rating ratings__rating--half-fill";
+      } else {
+        newClass = "ratings__rating ratings__rating--empty";
+      }
+
+      ratingEl.className = newClass;
+    });
+  };
+ 
+
+  const handleRatingChange = (event) => {
+    const star = event.target.closest(".ratings__rating");
+    if (!star) return;
+    const isLeft = isClickOnLeftHalf(star, event);
+    const selectedRating = isLeft
+      ? +star.dataset.rating - 1
+      : +star.dataset.rating;
+    updateRatingClasses(selectedRating);
+    setRating(selectedRating);
+  };
   return (
     <main className="main">
       <div className="cf-container">
@@ -119,15 +154,8 @@ export default function Challenge({ challenge }) {
                     comments={activeSubmission.comments ?? []}
                     saveComment={saveComment}
                     ratings={ratings}
-                    handleRatingChange={(event) => {
-                      const star = event.target.closest(".ratings__rating");
-                      if (!star) return;
-                      const isLeft = isClickOnLeftHalf(star, event);
-                      const selectedRating = isLeft
-                        ? +star.dataset.rating - 1
-                        : +star.dataset.rating;
-                      setRating(selectedRating);
-                    }}
+                    rating={rating}
+                    handleRatingChange={handleRatingChange}
                   />
                 </div>
               </div>

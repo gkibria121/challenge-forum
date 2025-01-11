@@ -2,7 +2,7 @@ import { useState } from "react";
 import CommentsList from "./CommentsList";
 import RatingStars from "./RatingStars";
 
-const Comments = ({ ratings, handleRatingChange,comments,saveComment}) => {
+const Comments = ({ ratings, handleRatingChange,comments,saveComment,rating}) => {
   const [isCommenting, setIsCommenting] = useState(false); 
 
   const [newComment, setNewComment] = useState("");
@@ -12,7 +12,7 @@ const Comments = ({ ratings, handleRatingChange,comments,saveComment}) => {
       const comment = {
         user: { name: "admin" },
         comment: newComment,
-        rating: ratings
+        rating: rating
       };
       
       saveComment(comment);
