@@ -13,7 +13,7 @@ const HintEditor = ({ isActive }) => {
   };
 
   return (
-    <div className={`tab ${isActive ? "tab--active bg-gray-100 p-4 rounded" : ""}`}>
+    <div className={`tab ${isActive ? "tab--active   p-4 rounded" : ""}`}>
       <textarea
         className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Hint Text"
@@ -24,6 +24,7 @@ const HintEditor = ({ isActive }) => {
         className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Hint Description"
         value={hints.description}
+        rows={15}
         onChange={handleDescriptionChange}
       ></textarea>
     </div>
