@@ -21,7 +21,7 @@ export const ChallengesProvider = ({ children }) => {
       title,
       description,
       tags: tags.split(",").map((tag) => tag.trim()),
-      hints
+      hints,
     };
 
     setChallenges([...challenges, newChallenge]); // Update context with new challenge
@@ -29,10 +29,41 @@ export const ChallengesProvider = ({ children }) => {
     setTitle("");
     setDescription("");
     setTags("");
-    setHints("")
+    setHints("");
   };
   const [challenges, setChallenges] = useState([
-    { id: 1, title: "Palindrome Checker", tags: ["coding"] },
+    {
+      id: 1,
+      title: "Palindrome Checker",
+      tags: ["coding"],
+      hints: "what is palindrome",
+      submissions: [
+        {
+          id: "1",
+          username: "gkibria",
+          description: "Easy solve with python.",
+          code: "print('hello world!')",
+          language: "python",
+          comments: [],
+        },
+        {
+          id: "2",
+          username: "mehedi",
+          description: "Implemented with java",
+          code: "System.console.printLine('hello, worl'!)",
+          language: "python",
+          comments: [],
+        },
+        {
+          id: "3",
+          username: "talha",
+          description: "Implemented with javascript",
+          code: "console.log('hello world!')",
+          language: "python",
+          comments: [],
+        },
+      ],
+    },
     { id: 2, title: "FizzBuzz", tags: ["principles"] },
     {
       id: 3,
@@ -51,7 +82,9 @@ export const ChallengesProvider = ({ children }) => {
     { id: 9, title: "Create a todo app maintaining SOLID", tags: ["IFI"] },
     { id: 10, title: "Square Root", tags: ["principles"] },
   ]);
-
+  const updateChallenge =(challenge)=>{
+    setChallenges(prev=> prev.map(el=> el.id == challenge.id? challenge : el))
+  }
   return (
     <ChallengesContext.Provider
       value={{
@@ -66,6 +99,7 @@ export const ChallengesProvider = ({ children }) => {
         handleSave,
         hints,
         setHints,
+        updateChallenge
       }}
     >
       {children}
