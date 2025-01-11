@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import CreateEditChallenge from "../../CreateEditChallenge";
 import { useParams } from "next/navigation";
-import { useChallenges } from "../../../../../src/contexts/ChallengesContext";
+import { useChallenges } from "@/contexts/ChallengesContext";
 function page() {
   const {id} = useParams()
   const {challenges} = useChallenges()

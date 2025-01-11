@@ -2,10 +2,10 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import Pagination from "./../../src/components/Pagination";
-import Table from "../../src/components/Table";
+import Pagination from "@/components/Pagination";
+import Table from "@//components/Table";
 import Tag from "../dashboard/Tag";
-import { useChallenges } from "../../src/contexts/ChallengesContext";
+import { useChallenges } from "@//contexts/ChallengesContext";
 
 function PageContent() {
   const router = useRouter();

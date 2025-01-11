@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 import Tabs from "./Tabs";
-import TabHeader from "../../../src/components/TabHeader";
-import TabBody from "../../../src/components/TabBody";
+import TabHeader from "@/components/TabHeader";
+import TabBody from "@/components/TabBody";
 import Form from "./Form";
 import HintEditor from "./HintEditor";
-import TabActions from "../../../src/components/TabActions";
-import { useChallenges } from "../../../src/contexts/ChallengesContext";
+import TabActions from "@/components/TabActions";
+import { useChallenges } from "@/contexts/ChallengesContext";
 
 const CreateEditChallenge = ({ mode = "create", challenge }) => {
   const { handleSave } = useChallenges();

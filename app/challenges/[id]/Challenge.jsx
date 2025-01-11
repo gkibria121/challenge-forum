@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { useChallenges } from "../../../src/contexts/ChallengesContext";
+import { useChallenges } from "@/contexts/ChallengesContext";
 import SubmissionCard from "./SubmissionCard";
 import Comments from "./Comments";
 import Description from "./Description";
 import Hints from "./Hints";
 import SubmissionEditor from "./SubmissionEditor";
-import TabHeader from "./../../../src/components/TabHeader";
+import TabHeader from "@/components/TabHeader";
 import { useRouter } from "next/navigation";
 
 export default function Challenge({ challenge }) {

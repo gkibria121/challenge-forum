@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useChallenges } from "../../../src/contexts/ChallengesContext";
+import { useChallenges } from "@/contexts/ChallengesContext";
 
 const HintEditor = ({ isActive, mode = "create", challenge }) => {
   const { hints, setHints } = useChallenges();

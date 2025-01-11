@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useChallenges } from "../../../src/contexts/ChallengesContext";
+import { useChallenges } from "@/contexts/ChallengesContext";
 
 const Form = ({ isActive, mode = "create", challenge }) => {
   const { setTitle, setDescription, setTags, title, description, tags } = useChallenges();

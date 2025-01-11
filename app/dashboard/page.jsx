@@ -1,11 +1,11 @@
 "use client"
 import React from "react";
-import Table from "../../src/components/Table";
-import Pagination from "../../src/components/Pagination";
+import Table from "@/components/Table";
+import Pagination from "@/components/Pagination";
 import ActionButtons from "./ActionButtons";
 import Tag from "./Tag"; 
 import Link from "next/link";
-import { useChallenges } from "../../src/contexts/ChallengesContext";
+import { useChallenges } from "@/contexts/ChallengesContext";
 import { useRouter } from "next/navigation";
 
 const ChallengesPage = () => {
