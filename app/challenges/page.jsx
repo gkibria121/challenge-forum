@@ -89,7 +89,7 @@ function page() {
           headers={[
             { label: "No.", key: "id", colSpan: 1 },
             { label: "Title", key: "title", colSpan: 1 },
-            { label: "Tag", key: "tags", colSpan: 1 }, 
+            { label: "Tag", key: "tags", colSpan: 1 , class : 'table__th--tag'}, 
           ]}
           data={challenges}
           renderRow={(challenge) => (

@@ -72,8 +72,8 @@ const ChallengesPage = () => {
           headers={[
             { label: "No.", key: "id", colSpan: 1 },
             { label: "Title", key: "title", colSpan: 3 },
-            { label: "Tag", key: "tags", colSpan: 1 },
-            { label: "Actions", key: "actions", colSpan: 1 },
+            { label: "Tag", key: "tags", colSpan: 1 ,class : 'table__th--tag' },
+            { label: "Actions", key: "actions", colSpan: 1,class : 'table__th--actions' },
           ]}
           actions={<div>action buttons</div>}
           data={challenges}
@@ -88,7 +88,7 @@ const ChallengesPage = () => {
                   <Tag key={tag} label={tag} />
                 ))}
               </td>
-              <td className="table__column">
+              <td className="table__column table__column--center" >
                 <ActionButtons />
               </td>
             </>
