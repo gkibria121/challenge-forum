@@ -6,10 +6,11 @@ import ActionButtons from "./ActionButtons";
 import Tag from "./Tag"; 
 import Link from "next/link";
 import { useChallenges } from "../../src/contexts/ChallengesContext";
+import { useRouter } from "next/navigation";
 
 const ChallengesPage = () => {
   const { challenges, updateChallenge, setChallenges } = useChallenges();
-
+  const router = useRouter();
   const handleDelete = (id) => {
     if (confirm("Are you sure you want to delete this challenge?")) {
       setChallenges((prev) => prev.filter((challenge) => challenge.id !== id));
@@ -17,11 +18,9 @@ const ChallengesPage = () => {
   };
 
   const handleEdit = (challenge) => {
-    const newTitle = prompt("Enter new title:", challenge.title);
-    if (newTitle) {
-      const updatedChallenge = { ...challenge, title: newTitle };
-      updateChallenge(updatedChallenge);
-    }
+    
+
+     router.push(`/dashboard/challenges/${challenge.id}/edit`)
   };
 
   return (

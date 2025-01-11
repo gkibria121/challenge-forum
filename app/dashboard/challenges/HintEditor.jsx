@@ -1,8 +1,14 @@
-import React from "react";
-import { useChallenges } from "../../../../src/contexts/ChallengesContext";
+import React, { useEffect } from "react";
+import { useChallenges } from "../../../src/contexts/ChallengesContext";
 
-const HintEditor = ({ isActive }) => {
+const HintEditor = ({ isActive, mode = "create", challenge }) => {
   const { hints, setHints } = useChallenges();
+
+  useEffect(() => {
+    if (mode === "edit" && challenge) {
+      setHints(challenge.hints || { title: "", description: "" });
+    }
+  }, [mode, challenge, setHints]);
 
   const handleTextChange = (e) => {
     setHints((prev) => ({ ...prev, title: e.target.value }));
@@ -13,10 +19,10 @@ const HintEditor = ({ isActive }) => {
   };
 
   return (
-    <div className={`tab ${isActive ? "tab--active   p-4 rounded" : ""}`}>
+    <div className={`tab ${isActive ? "tab--active p-4 rounded" : ""}`}>
       <textarea
         className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Hint Text"
+        placeholder="Hint Title"
         value={hints.title}
         onChange={handleTextChange}
       ></textarea>

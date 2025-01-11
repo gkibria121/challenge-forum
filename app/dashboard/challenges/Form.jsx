@@ -1,12 +1,16 @@
-"use client"
-import React, { useState } from "react";
-import { useChallenges } from "../../../../src/contexts/ChallengesContext"; // Adjust the path to your context
+import React, { useEffect } from "react";
+import { useChallenges } from "../../../src/contexts/ChallengesContext";
 
-const Form = ({ isActive }) => {
-  const {setTitle,setDescription,setTags, title,description,tags } = useChallenges(); // Use context for managing challenges
+const Form = ({ isActive, mode = "create", challenge }) => {
+  const { setTitle, setDescription, setTags, title, description, tags } = useChallenges();
 
-
-
+  useEffect(() => {
+    if (mode === "edit" && challenge) {
+      setTitle(challenge.title || "");
+      setDescription(challenge.description || "");
+      setTags(challenge.tags ? challenge.tags.join(", ") : "");
+    }
+  }, [mode, challenge, setTitle, setDescription, setTags]);
 
   return (
     <div className={`tab ${isActive ? "tab--active" : ""}`}>
@@ -43,7 +47,7 @@ const Form = ({ isActive }) => {
             value={tags}
             onChange={(e) => setTags(e.target.value)}
           />
-        </div> 
+        </div>
       </form>
     </div>
   );

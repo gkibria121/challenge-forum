@@ -12,35 +12,39 @@ export const ChallengesProvider = ({ children }) => {
   const [hints, setHints] = useState({ title: "", description: "" })
   const [tags, setTags] = useState("");
   const router = useRouter()
-  const handleSave = () => {
+  const handleSave = (mode,challengeId) => {
     if (!title || !description || !tags) {
       alert("All fields are required.");
       return;
     }
-
+  
     const newChallenge = {
-      id: challenges.length + 1, // Simple ID generation; adjust as needed
+      id: challengeId|| challenges.length + 1, // Use existing ID for edit
       title,
       description,
       tags: tags.split(",").map((tag) => tag.trim()),
       hints,
     };
-
-    setChallenges([...challenges, newChallenge]); // Update context with new challenge
-     
+  
+    if (mode === "edit") {
+      updateChallenge(newChallenge);
+    } else {
+      setChallenges([...challenges, newChallenge]);
+    }
+  
     setTitle("");
     setDescription("");
     setTags("");
     setHints("");
-    router.push("/dashboard")
-
+    router.push("/dashboard");
   };
+  
   const [challenges, setChallenges] = useState([
     {
       id: 1,
       title: "Palindrome Checker",
       tags: ["coding"],
-      hints: "what is palindrome",
+      description :"random description", 
       submissions: [
         {
           id: "1",
@@ -67,7 +71,7 @@ export const ChallengesProvider = ({ children }) => {
           comments: [],
         },
       ],
-      hints: { text: "What is palindrome", description: "A palindrome reads the same backward as forward." },
+      hints: { title: "What is palindrome", description: "A palindrome reads the same backward as forward." },
     },
     { id: 2, title: "FizzBuzz", tags: ["principles"] },
     {
