@@ -12,7 +12,7 @@ function page() {
   },[challenges])
   if(currentChallenge)
 
-  return  <Challenge challenge={currentChallenge}/>
+    return  <Challenge challenge={currentChallenge}/>
   return "Challenge not found"
 }
 

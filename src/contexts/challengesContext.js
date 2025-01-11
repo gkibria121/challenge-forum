@@ -8,7 +8,7 @@ export const ChallengesContext = createContext();
 export const ChallengesProvider = ({ children }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [hints, setHints] = useState("");
+  const [hints, setHints] = useState({ title: "", description: "" })
   const [tags, setTags] = useState("");
   const handleSave = () => {
     if (!title || !description || !tags) {
@@ -63,6 +63,7 @@ export const ChallengesProvider = ({ children }) => {
           comments: [],
         },
       ],
+      hints: { text: "What is palindrome", description: "A palindrome reads the same backward as forward." },
     },
     { id: 2, title: "FizzBuzz", tags: ["principles"] },
     {

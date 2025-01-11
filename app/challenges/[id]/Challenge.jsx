@@ -1,7 +1,7 @@
 "use client";
 
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useChallenges } from "../../../src/contexts/ChallengesContext";
 import SubmissionCard from "./SubmissionCard";
 import Comments from "./Comments";
 import Description from "./Description";
@@ -9,76 +9,53 @@ import Hints from "./Hints";
 import SubmissionEditor from "./SubmissionEditor";
 import TabHeader from "./../../../src/components/TabHeader";
 import { useRouter } from "next/navigation";
-// Main Page Component
-export default function Challenge({challenge}) {
- 
+
+export default function Challenge({ challenge }) {
+  const { updateChallenge } = useChallenges(); // Access updateChallenge from context
   const [activeSubmission, setActiveSubmission] = useState({});
   const [activeTab, setActiveTab] = useState("2");
   const [rating, setRating] = useState(10);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  console.log(challenge?.submissions)
-  const [submissions, setSubmissions] = useState(challenge?.submissions??[]);  
+
+  const [submissions, setSubmissions] = useState(challenge?.submissions ?? []);
   const ratings = [2, 4, 6, 8, 10];
   const router = useRouter();
+
   const handleTabLinkClick = (tabId) => {
     setActiveTab(tabId);
   };
-  const isClickOnLeftHalf = (element, event) => {
-    const rect = element.getBoundingClientRect();
-    const midpoint = rect.left + rect.width / 2;
-    return event.clientX < midpoint;
-  };
-  const updateRatingClasses = (selectedRating) => {
-    const ratingsContainer = document.querySelector(".ratings");
-    const ratingElements = Array.from(ratingsContainer.children);
 
-    ratingElements.forEach((ratingEl) => {
-      const ratingValue = +ratingEl.dataset.rating;
-      let newClass;
+  const saveComment = (comment) => {
+    setActiveSubmission((prev) => ({
+      ...prev,
+      comments: [...(prev.comments ?? []), comment],
+    }));
 
-      if (selectedRating >= ratingValue) {
-        newClass = "ratings__rating ratings__rating--fill";
-      } else if (selectedRating === ratingValue - 1) {
-        newClass = "ratings__rating ratings__rating--half-fill";
-      } else {
-        newClass = "ratings__rating ratings__rating--empty";
-      }
+    const updatedSubmissions = submissions.map((submission) =>
+      submission.id !== activeSubmission.id
+        ? submission
+        : { ...submission, comments: [...(submission.comments ?? []), comment] }
+    );
 
-      ratingEl.className = newClass;
+    setSubmissions(updatedSubmissions);
+
+    // Persist changes to the challenge
+    updateChallenge({
+      ...challenge,
+      submissions: updatedSubmissions,
     });
   };
 
-  const goTo = (link) => {
-    console.log(link);
+  const handleSubmissionSave = (submission) => {
+    const updatedSubmissions = [...submissions, submission];
+    setSubmissions(updatedSubmissions);
+    setIsSubmitting(false);
 
-    return () => router.push(link);
-  };
-
-  const saveComment = (comment)=>{
-    console.log(comment)
-    setActiveSubmission(prev => ({...prev,comments : [...prev.comments,comment]}))
-    setSubmissions(prev=> ( 
-      prev.slice().map(el=>{  
-        if(el.id !==activeSubmission.id){
-          return el
-        }
-        return {...el, comments : [...el.comments,comment] }
-      })
-      ))
-
-
-    
-  }
-
-  const handleRatingChange = (event) => {
-    const star = event.target.closest(".ratings__rating");
-    if (!star) return;
-    const isLeft = isClickOnLeftHalf(star, event);
-    const selectedRating = isLeft
-      ? +star.dataset.rating - 1
-      : +star.dataset.rating;
-    updateRatingClasses(selectedRating);
-    setRating(selectedRating);
+    // Persist changes to the challenge
+    updateChallenge({
+      ...challenge,
+      submissions: updatedSubmissions,
+    });
   };
 
   return (
@@ -90,7 +67,7 @@ export default function Challenge({challenge}) {
           isSubmitting={isSubmitting}
           setIsSubmitting={setIsSubmitting}
           setActivTab={setActiveTab}
-          goTo={goTo}
+          goTo={(link) => () => router.push(link)}
           tabs={[
             { id: "1", label: "Description" },
             { id: "2", label: "Submissions" },
@@ -103,14 +80,16 @@ export default function Challenge({challenge}) {
           >
             Add
           </button>
-          <button onClick={goTo("/challenges")} className="btn btn--back">
+          <button
+            onClick={() => router.push("/challenges")}
+            className="btn btn--back"
+          >
             {String.fromCharCode(8592)} Back
           </button>
         </TabHeader>
         <div className="tabs">
           <div className="tabs__body">
             {activeTab === "1" && <Description challenge={challenge} />}
-
             {activeTab === "2" && (
               <div className="submissions">
                 <div className="submissions__list">
@@ -123,40 +102,39 @@ export default function Challenge({challenge}) {
                       onClick={setActiveSubmission}
                     />
                   ))}
-                  {submissions.length?"":"No submissions!"}
+                  {!submissions.length && "No submissions!"}
                 </div>
-
                 <div className="submission">
                   {isSubmitting ? (
                     <SubmissionEditor
                       onCancel={() => setIsSubmitting(false)}
-                      onSave={(submission) => {
-                        setSubmissions((prev) => [...prev, submission]);
-                        setIsSubmitting(false);
-                      }}
+                      onSave={handleSubmissionSave}
                     />
                   ) : (
                     <div className="submission__content">
-                      {
-                        activeSubmission?.code
-                      }
+                      {activeSubmission?.code}
                     </div>
                   )}
-
                   <Comments
-                    comments={activeSubmission.comments??[]}
-                    saveComment={ saveComment }
+                    comments={activeSubmission.comments ?? []}
+                    saveComment={saveComment}
                     ratings={ratings}
-                    handleRatingChange={handleRatingChange}
+                    handleRatingChange={(event) => {
+                      const star = event.target.closest(".ratings__rating");
+                      if (!star) return;
+                      const isLeft = isClickOnLeftHalf(star, event);
+                      const selectedRating = isLeft
+                        ? +star.dataset.rating - 1
+                        : +star.dataset.rating;
+                      setRating(selectedRating);
+                    }}
                   />
                 </div>
               </div>
             )}
-
-            {activeTab === "3" && <Hints challenge={challenge}/>}
+            {activeTab === "3" && <Hints challenge={challenge} />}
           </div>
         </div>
-
         {activeTab === "1" && (
           <div className="tabs__footer">
             <button className="btn btn--next">Previous</button>
