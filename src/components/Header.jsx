@@ -12,7 +12,7 @@ function Header() {
           <Link href="/dashboard" className={`nav__link ${pathname.startsWith('/dashboard')?"nav__link--active":"" }`}>
             Dashboard
           </Link>
-          <Link href="/challenges" className={`nav__link ml-1 ${pathname.startsWith('/challenges')?"nav__link--active":""}`}>
+          <Link href="/challenges" className={`nav__link ml-9 ${pathname.startsWith('/challenges')?"nav__link--active":""}`}>
             Challenges
           </Link>
         </li>

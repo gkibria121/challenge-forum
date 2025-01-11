@@ -11,12 +11,36 @@ import TabHeader from "./../../../src/components/TabHeader";
 import { useRouter } from "next/navigation";
 // Main Page Component
 export default function Page() {
-  
-  const [activeSubmission, setActiveSubmission] = useState("");
+  const [activeSubmission, setActiveSubmission] = useState({});
   const [activeTab, setActiveTab] = useState("2");
   const [rating, setRating] = useState(10);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { id } = useParams();
+  const [submissions, setSubmissions] = useState([
+    {
+      id: "1",
+      username: "gkibria",
+      description: "Easy solve with python.",
+      code: "print('hello world!')",
+      language: "python",
+      comments: [],
+    },
+    {
+      id: "2",
+      username: "mehedi",
+      description: "Implemented with java",
+      code: "System.console.printLine('hello, worl'!)",
+      language: "python",
+      comments: [],
+    },
+    {
+      id: "3",
+      username: "talha",
+      description: "Implemented with javascript",
+      code: "console.log('hello world!')",
+      language: "python",
+      comments: [],
+    },
+  ]); 
   const ratings = [2, 4, 6, 8, 10];
   const router = useRouter();
   const handleTabLinkClick = (tabId) => {
@@ -53,6 +77,22 @@ export default function Page() {
     return () => router.push(link);
   };
 
+  const saveComment = (comment)=>{
+    console.log(comment)
+    setActiveSubmission(prev => ({...prev,comments : [...prev.comments,comment]}))
+    setSubmissions(prev=> ( 
+      prev.slice().map(el=>{  
+        if(el.id !==activeSubmission.id){
+          return el
+        }
+        return {...el, comments : [...el.comments,comment] }
+      })
+      ))
+
+
+    
+  }
+
   const handleRatingChange = (event) => {
     const star = event.target.closest(".ratings__rating");
     if (!star) return;
@@ -66,7 +106,7 @@ export default function Page() {
 
   return (
     <main className="main">
-      <div className="container">
+      <div className="cf-container">
         <TabHeader
           activeTab={activeTab}
           onTabClick={handleTabLinkClick}
@@ -97,49 +137,40 @@ export default function Page() {
             {activeTab === "2" && (
               <div className="submissions">
                 <div className="submissions__list">
-                  {[
-                    {
-                      id: "1",
-                      username: "gkibria",
-                      description: "Easy solve with python.",
-                    },
-                    {
-                      id: "2",
-                      username: "mehedi",
-                      description: "Implemented with java",
-                    },
-                    {
-                      id: "3",
-                      username: "talha",
-                      description: "Implemented with javascript",
-                    },
-                  ].map((submission) => (
+                  {submissions.map((submission) => (
                     <SubmissionCard
                       key={submission.id}
                       {...submission}
-                      isActive={activeSubmission === submission.id}
+                      submission={submission}
+                      isActive={activeSubmission.id === submission.id}
                       onClick={setActiveSubmission}
                     />
                   ))}
                 </div>
 
-                <div className="submission" >
+                <div className="submission">
                   {isSubmitting ? (
                     <SubmissionEditor
                       onCancel={() => setIsSubmitting(false)}
-                      onSave={() => setIsSubmitting(false)}
+                      onSave={(submission) => {
+                        setSubmissions((prev) => [...prev, submission]);
+                        setIsSubmitting(false);
+                      }}
                     />
                   ) : (
                     <div className="submission__content">
-                      this is a solution...
+                      {
+                        activeSubmission?.code
+                      }
                     </div>
                   )}
 
-                  <Comments 
+                  <Comments
+                    comments={activeSubmission.comments??[]}
+                    saveComment={ saveComment }
                     ratings={ratings}
                     handleRatingChange={handleRatingChange}
                   />
-                  
                 </div>
               </div>
             )}

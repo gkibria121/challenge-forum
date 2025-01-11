@@ -1,12 +1,12 @@
 import Link from "next/link";
 import React from "react";
 
-const TabActions = () => {
+const TabActions = ({onSave,onCancel}) => {
   return (
     <div className="tab__actions">
-      <Link className="btn btn--add" href={"/dashboard"}>
+      <button className="btn btn--add" onClick={onSave}>
         Save
-      </Link>
+      </button>
       <Link className="btn btn--back" href={"/dashboard"}>
         Cancel
       </Link>

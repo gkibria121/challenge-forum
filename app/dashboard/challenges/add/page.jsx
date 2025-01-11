@@ -6,11 +6,15 @@ import TabBody from "../../../../src/components/TabBody";
 import Form from "./Form";
 import HintEditor from "./HintEditor";
 import TabActions from "../../../../src/components/TabActions";
+import { useChallenges } from "../../../../src/contexts/ChallengesContext";
 
 const Page = () => {
+
+  const { handleSave } = useChallenges();
+ 
   return (
     <main className="main">
-      <div className="container">
+      <div className="cf-container">
         <Tabs>
           <TabHeader
             tabs={[
@@ -22,7 +26,7 @@ const Page = () => {
             <Form id="1" />
             <HintEditor id="2" />
           </TabBody>
-          <TabActions />
+          <TabActions  onSave={handleSave}/>
         </Tabs>
       </div>
     </main>

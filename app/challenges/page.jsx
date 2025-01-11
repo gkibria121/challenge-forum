@@ -30,7 +30,7 @@ function PageContent() {
   return (
     <>
       <main className="main">
-        <div className="container">
+        <div className="cf-container">
           <h4 className="">All challenges</h4>
           <Table
             onClick={handleRowClick}

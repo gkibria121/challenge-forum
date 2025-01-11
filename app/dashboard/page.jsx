@@ -12,7 +12,7 @@ const ChallengesPage = () => {
 
   return (
     <main className="main">
-      <div className="container">
+      <div className="cf-container">
         <div className="flex justify-between items-center mb-4">
           <h4>All challenges</h4>
           <Link className="btn btn--add" href="/dashboard/challenges/add">

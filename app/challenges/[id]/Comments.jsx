@@ -2,16 +2,9 @@ import { useState } from "react";
 import CommentsList from "./CommentsList";
 import RatingStars from "./RatingStars";
 
-const Comments = ({ ratings, handleRatingChange }) => {
-  const [isCommenting, setIsCommenting] = useState(false);
-   
-  const [comments, setComments] = useState([
-    { 
-      user: { name: "admin" }, 
-      comment: "Solution is acceptable. but it can be improved.", 
-      rating: 10 
-    }
-  ]);
+const Comments = ({ ratings, handleRatingChange,comments,saveComment}) => {
+  const [isCommenting, setIsCommenting] = useState(false); 
+
   const [newComment, setNewComment] = useState("");
 
   const handleSaveComment = () => {
@@ -22,15 +15,13 @@ const Comments = ({ ratings, handleRatingChange }) => {
         rating: ratings
       };
       
-      setComments(prevComments => [...prevComments, comment]);
-      setNewComment("");
-      setIsCommenting(false);
+      saveComment(comment);
+      setNewComment(""); 
     }
   };
 
   const handleCancel = () => {
-    setNewComment("");
-    setIsCommenting(false);
+    setNewComment(""); 
   };
 
   return (
@@ -41,7 +32,7 @@ const Comments = ({ ratings, handleRatingChange }) => {
           className="btn btn--add"
           onClick={() => setIsCommenting(true)}
         >
-          Add
+          Show
         </button>
         <div className="comments__short">
           <p>{comments[comments.length - 1]?.comment || "No comments yet"}</p>
@@ -50,6 +41,7 @@ const Comments = ({ ratings, handleRatingChange }) => {
       
       <div className={`comments ${isCommenting ? "" : "hidden"}`}>
         <p className="comments__title">Comments({comments.length})</p>
+        
         <div className="comments__add">
           <div className="user__info">admin</div>
           <RatingStars ratings={ratings} onRatingChange={handleRatingChange} />
