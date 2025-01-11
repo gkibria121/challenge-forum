@@ -11,7 +11,7 @@ import TabHeader from "./../../../src/components/TabHeader";
 import { useRouter } from "next/navigation";
 // Main Page Component
 export default function Page() {
-  const [isCommenting, setIsCommenting] = useState(false);
+  
   const [activeSubmission, setActiveSubmission] = useState("");
   const [activeTab, setActiveTab] = useState("2");
   const [rating, setRating] = useState(10);
@@ -123,7 +123,7 @@ export default function Page() {
                   ))}
                 </div>
 
-                <div className="submission">
+                <div className="submission" >
                   {isSubmitting ? (
                     <SubmissionEditor
                       onCancel={() => setIsSubmitting(false)}
@@ -135,12 +135,11 @@ export default function Page() {
                     </div>
                   )}
 
-                  <Comments
-                    isCommenting={isCommenting}
-                    setIsCommenting={setIsCommenting}
+                  <Comments 
                     ratings={ratings}
                     handleRatingChange={handleRatingChange}
                   />
+                  
                 </div>
               </div>
             )}
