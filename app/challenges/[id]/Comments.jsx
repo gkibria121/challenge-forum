@@ -1,28 +1,55 @@
-// Comments.jsx
+import { useState } from "react";
 import CommentsList from "./CommentsList";
-import RatingStars from "./RatingStars"
-const Comments = ({ 
-    isCommenting, 
-    setIsCommenting, 
-    ratings, 
-    handleRatingChange 
-  }) => (
+import RatingStars from "./RatingStars";
+
+const Comments = ({ ratings, handleRatingChange }) => {
+  const [isCommenting, setIsCommenting] = useState(false);
+   
+  const [comments, setComments] = useState([
+    { 
+      user: { name: "admin" }, 
+      comment: "Solution is acceptable. but it can be improved.", 
+      rating: 10 
+    }
+  ]);
+  const [newComment, setNewComment] = useState("");
+
+  const handleSaveComment = () => {
+    if (newComment.trim()) {
+      const comment = {
+        user: { name: "admin" },
+        comment: newComment,
+        rating: ratings
+      };
+      
+      setComments(prevComments => [...prevComments, comment]);
+      setNewComment("");
+      setIsCommenting(false);
+    }
+  };
+
+  const handleCancel = () => {
+    setNewComment("");
+    setIsCommenting(false);
+  };
+
+  return (
     <>
       <div className={`comments comments--short ${isCommenting ? "hidden" : ""}`}>
-        <p className="comments__title">Comments(10)</p>
+        <p className="comments__title">Comments({comments.length})</p>
         <button
           className="btn btn--add"
-          onClick={() => setIsCommenting(prev => !prev)}
+          onClick={() => setIsCommenting(true)}
         >
           Add
         </button>
         <div className="comments__short">
-          <p>Solution is acceptable. but it can be improved.</p>
+          <p>{comments[comments.length - 1]?.comment || "No comments yet"}</p>
         </div>
       </div>
       
       <div className={`comments ${isCommenting ? "" : "hidden"}`}>
-        <p className="comments__title">Comments(10)</p>
+        <p className="comments__title">Comments({comments.length})</p>
         <div className="comments__add">
           <div className="user__info">admin</div>
           <RatingStars ratings={ratings} onRatingChange={handleRatingChange} />
@@ -31,26 +58,30 @@ const Comments = ({
               name="comment"
               id="comment"
               className="comments__input"
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              placeholder="Write your comment here..."
             />
           </div>
           <div className="comments__actions">
             <button
               className="btn btn--back"
-              onClick={() => setIsCommenting(prev => !prev)}
+              onClick={handleCancel}
             >
               cancel
             </button>
             <button
               className="btn btn--add"
-              onClick={() => setIsCommenting(prev => !prev)}
+              onClick={handleSaveComment}
             >
               save
             </button>
           </div>
         </div>
-        <CommentsList />
+        <CommentsList comments={comments} />
       </div>
     </>
   );
-  
-  export  default Comments;
+};
+
+export default Comments;
