@@ -3,9 +3,9 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import Pagination from "@/components/Pagination";
-import Table from "@//components/Table";
+import Table from "@/components/Table";
 import Tag from "../dashboard/Tag";
-import { useChallenges } from "@//contexts/ChallengesContext";
+import { useChallenges } from "@/contexts/ChallengesContext";
 
 function PageContent() {
   const router = useRouter();
