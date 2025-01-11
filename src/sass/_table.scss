@@ -16,6 +16,7 @@
       text-align: center;
       width: 20rem;
     }
+     
   }
 
   // &__tbody{
@@ -38,5 +39,10 @@
   }
   &__column--tags {
     width: 20rem;
+  }
+  &__column--center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

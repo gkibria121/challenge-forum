@@ -6,7 +6,7 @@ const Table = ({ headers, data, renderRow ,onClick}) => {
       <thead className="table__thead">
         <tr>
           {headers.map((header) => (
-            <th key={header.key} colSpan={header.colSpan || 1} className="table__th">
+            <th key={header.key} colSpan={header.colSpan || 1} className={`table__th ${header.class}`}>
               {header.label}
             </th>
           ))}
