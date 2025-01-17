@@ -120,9 +120,70 @@ const challengeSlice = createSlice({
     deleteChallenge(state, action) {
       state.data = state.data.filter((challenge) => challenge.id !== action.payload);
     },
+    addChallenge: {
+      prepare(title, description, tags, hints) {
+        return {
+          payload: {
+            title,
+            description,
+            tags,
+            hints,
+          },
+        };
+      },
+
+      reducer(state, action) {
+        state.data.push({
+          id: state.data.at(-1)?.id + 1,
+          title: action.payload.title,
+          description: action.payload.description,
+          tags: action.payload.tags.split(",").filter((e) => e !== ""),
+          hints: action.payload.hints,
+          submissions: [],
+        });
+      },
+    },
+
+    updateChallenge: {
+      prepare(challengeId, title, description, tags, hints) {
+        return {
+          payload: {
+            challengeId,
+            title,
+            description,
+            tags,
+            hints,
+          },
+        };
+      },
+
+      reducer(state, action) {
+        state.data = state.data.map((challenge) => {
+          if (challenge.id !== action.payload.challengeId) return challenge;
+          challenge.description = action.payload.description;
+          challenge.title = action.payload.title;
+          challenge.tags = action.payload.tags.split(",").filter((e) => e !== "");
+          challenge.hints = action.payload.hints;
+          return challenge;
+        });
+      },
+    },
+    setCurrentChallenge: {
+      reducer(state, action) {
+        state.currentChallenge = action.payload;
+      },
+    },
   },
 });
 
-export const { loaded, addSubmission, addComment, deleteChallenge } = challengeSlice.actions;
+export const {
+  loaded,
+  addSubmission,
+  addComment,
+  deleteChallenge,
+  addChallenge,
+  setCurrentChallenge,
+  updateChallenge,
+} = challengeSlice.actions;
 
 export default challengeSlice.reducer;

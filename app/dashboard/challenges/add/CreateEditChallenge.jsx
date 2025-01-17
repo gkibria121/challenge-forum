@@ -1,16 +1,17 @@
 "use client";
 import React from "react";
-import Tabs from "./Tabs";
+import Tabs from "../Tabs";
 import TabHeader from "@/components/TabHeader";
 import TabBody from "@/components/TabBody";
-import Form from "./Form";
+import Form from "../Form";
 import HintEditor from "./HintEditor";
 import TabActions from "@/components/TabActions";
-import { useChallenges } from "@/contexts/ChallengesContext";
+import { useChallengeCreationContext } from "@/contexts/ChallengeCreationContext.js";
+import { useRouter } from "next/navigation";
 
 const CreateEditChallenge = ({ mode = "create", challenge }) => {
-  const { handleSave } = useChallenges();
-
+  const { handleSave } = useChallengeCreationContext();
+  const router = useRouter();
   return (
     <main className="main">
       <div className="cf-container">
@@ -22,10 +23,15 @@ const CreateEditChallenge = ({ mode = "create", challenge }) => {
             ]}
           />
           <TabBody>
-            <Form id="1" mode={mode} challenge={challenge} />
-            <HintEditor id="2" mode={mode} challenge={challenge} />
+            <Form id="1" mode={mode} />
+            <HintEditor id="2" mode={mode} />
           </TabBody>
-          <TabActions onSave={()=>handleSave(mode,challenge?.id)} />
+          <TabActions
+            onSave={() => {
+              router.push("/dashboard");
+              handleSave(mode, challenge?.id);
+            }}
+          />
         </Tabs>
       </div>
     </main>
@@ -33,4 +39,3 @@ const CreateEditChallenge = ({ mode = "create", challenge }) => {
 };
 
 export default CreateEditChallenge;
- 

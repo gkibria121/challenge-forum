@@ -2,7 +2,6 @@
 import React from "react";
 import "/src/sass/main.scss";
 import Header from "@/components/Header";
-import { ChallengesProvider } from "@/contexts/ChallengesContext";
 import store from "@/store";
 import { Provider } from "react-redux";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -18,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Provider store={store}>
           <Header />
-          <ChallengesProvider>{children}</ChallengesProvider>
+          {children}
         </Provider>
       </body>
     </html>

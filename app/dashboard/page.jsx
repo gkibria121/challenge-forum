@@ -5,7 +5,6 @@ import Pagination from "@/components/Pagination";
 import ActionButtons from "./ActionButtons";
 import Tag from "./Tag";
 import Link from "next/link";
-import { useChallenges } from "@/contexts/ChallengesContext";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteChallenge } from "@/features/challenges";

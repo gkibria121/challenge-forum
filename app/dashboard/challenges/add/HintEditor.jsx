@@ -1,14 +1,8 @@
-import React, { useEffect } from "react";
-import { useChallenges } from "@/contexts/ChallengesContext";
+import { useChallengeCreationContext } from "@/contexts/ChallengeCreationContext.js";
+import React, { useEffect, useState } from "react";
 
-const HintEditor = ({ isActive, mode = "create", challenge }) => {
-  const { hints, setHints } = useChallenges();
-
-  useEffect(() => {
-    if (mode === "edit" && challenge) {
-      setHints(challenge.hints || { title: "", description: "" });
-    }
-  }, [mode, challenge, setHints]);
+const HintEditor = ({ isActive }) => {
+  const { hints, setHints } = useChallengeCreationContext();
 
   const handleTextChange = (e) => {
     setHints((prev) => ({ ...prev, title: e.target.value }));

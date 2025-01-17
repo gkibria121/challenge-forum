@@ -1,16 +1,9 @@
+import { useChallengeCreationContext } from "@/contexts/ChallengeCreationContext.js";
 import React, { useEffect } from "react";
-import { useChallenges } from "@/contexts/ChallengesContext";
 
-const Form = ({ isActive, mode = "create", challenge }) => {
-  const { setTitle, setDescription, setTags, title, description, tags } = useChallenges();
-
-  useEffect(() => {
-    if (mode === "edit" && challenge) {
-      setTitle(challenge.title || "");
-      setDescription(challenge.description || "");
-      setTags(challenge.tags ? challenge.tags.join(", ") : "");
-    }
-  }, [mode, challenge, setTitle, setDescription, setTags]);
+const Form = ({ isActive, mode = "create" }) => {
+  const { setTitle, setDescription, setTags, title, description, tags } =
+    useChallengeCreationContext();
 
   return (
     <div className={`tab ${isActive ? "tab--active" : ""}`}>

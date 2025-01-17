@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import Tag from "../dashboard/Tag";
-import { useChallenges } from "@/contexts/ChallengesContext";
 import { useSelector } from "react-redux";
 
 function PageContent() {
