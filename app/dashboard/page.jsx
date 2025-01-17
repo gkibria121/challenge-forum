@@ -7,15 +7,17 @@ import Tag from "./Tag";
 import Link from "next/link";
 import { useChallenges } from "@/contexts/ChallengesContext";
 import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteChallenge } from "@/features/challenges";
 
 const ChallengesPage = () => {
-  const { updateChallenge, setChallenges } = useChallenges();
+  const dispatch = useDispatch();
+
   const challenges = useSelector((store) => store.challenges.data);
   const router = useRouter();
   const handleDelete = (id) => {
     if (confirm("Are you sure you want to delete this challenge?")) {
-      setChallenges((prev) => prev.filter((challenge) => challenge.id !== id));
+      dispatch(deleteChallenge(id));
     }
   };
 

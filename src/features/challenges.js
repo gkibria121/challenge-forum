@@ -117,9 +117,12 @@ const challengeSlice = createSlice({
         if (submission) submission.comments.push(action.payload.comment);
       },
     },
+    deleteChallenge(state, action) {
+      state.data = state.data.filter((challenge) => challenge.id !== action.payload);
+    },
   },
 });
 
-export const { loaded, addSubmission, addComment } = challengeSlice.actions;
+export const { loaded, addSubmission, addComment, deleteChallenge } = challengeSlice.actions;
 
 export default challengeSlice.reducer;
