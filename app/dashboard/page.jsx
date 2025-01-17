@@ -1,15 +1,17 @@
-"use client"
+"use client";
 import React from "react";
 import Table from "@/components/Table";
 import Pagination from "@/components/Pagination";
 import ActionButtons from "./ActionButtons";
-import Tag from "./Tag"; 
+import Tag from "./Tag";
 import Link from "next/link";
 import { useChallenges } from "@/contexts/ChallengesContext";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const ChallengesPage = () => {
-  const { challenges, updateChallenge, setChallenges } = useChallenges();
+  const { updateChallenge, setChallenges } = useChallenges();
+  const challenges = useSelector((store) => store.challenges.data);
   const router = useRouter();
   const handleDelete = (id) => {
     if (confirm("Are you sure you want to delete this challenge?")) {
@@ -18,9 +20,7 @@ const ChallengesPage = () => {
   };
 
   const handleEdit = (challenge) => {
-    
-
-     router.push(`/dashboard/challenges/${challenge.id}/edit`)
+    router.push(`/dashboard/challenges/${challenge.id}/edit`);
   };
 
   return (

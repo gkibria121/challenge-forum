@@ -1,19 +1,16 @@
-"use client"
+"use client";
 import React, { useState } from "react";
-import Challenge from "./Challenge"
+import Challenge from "./Challenge";
 import { useParams } from "next/navigation";
-import { useChallenges } from "@/contexts/ChallengesContext";
+import { useSelector } from "react-redux";
 function page() {
-  const {id} = useParams()
-  const {challenges} = useChallenges()
-  const [currentChallenge,setCurrentChallenge] = useState(null);
-  useState(()=>{
-    setCurrentChallenge(challenges.find(challenge=> challenge.id ==id))
-  },[challenges])
-  if(currentChallenge)
+  const { id } = useParams();
 
-    return  <Challenge challenge={currentChallenge}/>
-  return "Challenge not found"
+  const currentChallenge = useSelector((store) =>
+    store.challenges.data.find((challenge) => challenge.id == id)
+  );
+  if (currentChallenge) return <Challenge challenge={currentChallenge} />;
+  return "Challenge not found";
 }
 
 export default page;

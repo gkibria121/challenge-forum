@@ -6,10 +6,11 @@ import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import Tag from "../dashboard/Tag";
 import { useChallenges } from "@/contexts/ChallengesContext";
+import { useSelector } from "react-redux";
 
 function PageContent() {
   const router = useRouter();
-  const { challenges } = useChallenges();
+  const challenges = useSelector((store) => store.challenges.data);
 
   const handleRowClick = (event) => {
     const challengeLinkEl = event.target.closest(".table__row");
@@ -54,15 +55,11 @@ function PageContent() {
               </>
             )}
           />
-          <Pagination
-            currentPage={2}
-            totalPages={10}
-            onPageClick={handlePageClick}
-          />
+          <Pagination currentPage={2} totalPages={10} onPageClick={handlePageClick} />
         </div>
       </main>
     </>
   );
 }
- 
+
 export default PageContent;

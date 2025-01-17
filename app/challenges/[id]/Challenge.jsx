@@ -1,98 +1,45 @@
 "use client";
 
 import { useState } from "react";
-import { useChallenges } from "@/contexts/ChallengesContext";
 import SubmissionCard from "./SubmissionCard";
 import Comments from "./Comments";
 import Description from "./Description";
 import Hints from "./Hints";
 import SubmissionEditor from "./SubmissionEditor";
 import TabHeader from "@/components/TabHeader";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { addComment, addSubmission } from "@/features/challenges";
 
 export default function Challenge({ challenge }) {
-  const { updateChallenge } = useChallenges(); // Access updateChallenge from context
-  const [activeSubmission, setActiveSubmission] = useState({});
+  const [activeSubmissionId, setActiveSubmissionId] = useState(null);
   const [activeTab, setActiveTab] = useState("2");
-  const [rating, setRating] = useState(10);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const activeSubmission = challenge?.submissions.find((submission) => {
+    return submission.id === activeSubmissionId;
+  });
 
-  const [submissions, setSubmissions] = useState(challenge?.submissions ?? []);
-  const ratings = [2, 4, 6, 8, 10];
+  const submissions = challenge.submissions;
+
   const router = useRouter();
 
   const handleTabLinkClick = (tabId) => {
     setActiveTab(tabId);
   };
-  const isClickOnLeftHalf = (element, event) => {
-    const rect = element.getBoundingClientRect();
-    const midpoint = rect.left + rect.width / 2;
-    return event.clientX < midpoint;
-  };
+
   const saveComment = (comment) => {
-    
-    setActiveSubmission((prev) => ({
-      ...prev,
-      comments: [...(prev.comments ?? []), comment],
-    }));
-
-    const updatedSubmissions = submissions.map((submission) =>
-      submission.id !== activeSubmission.id
-        ? submission
-        : { ...submission, comments: [...(submission.comments ?? []), comment] }
-    );
-
-    setSubmissions(updatedSubmissions);
-
-    // Persist changes to the challenge
-    updateChallenge({
-      ...challenge,
-      submissions: updatedSubmissions,
-    });
+    const challengeId = +id;
+    const submissionId = activeSubmission.id;
+    dispatch(addComment(challengeId, submissionId, comment));
   };
 
   const handleSubmissionSave = (submission) => {
-    const updatedSubmissions = [...submissions, submission];
-    setSubmissions(updatedSubmissions);
     setIsSubmitting(false);
-
-    // Persist changes to the challenge
-    updateChallenge({
-      ...challenge,
-      submissions: updatedSubmissions,
-    });
-  }; 
-  const updateRatingClasses = (selectedRating) => {
-    const ratingsContainer = document.querySelector(".ratings");
-    const ratingElements = Array.from(ratingsContainer.children);
-
-    ratingElements.forEach((ratingEl) => {
-      const ratingValue = +ratingEl.dataset.rating;
-      let newClass;
-
-      if (selectedRating >= ratingValue) {
-        newClass = "ratings__rating ratings__rating--fill";
-      } else if (selectedRating === ratingValue - 1) {
-        newClass = "ratings__rating ratings__rating--half-fill";
-      } else {
-        newClass = "ratings__rating ratings__rating--empty";
-      }
-
-      ratingEl.className = newClass;
-    });
+    dispatch(addSubmission(+id, submission));
   };
- 
 
-  const handleRatingChange = (event) => {
-    const star = event.target.closest(".ratings__rating");
-    if (!star) return;
-    const isLeft = isClickOnLeftHalf(star, event);
-    const selectedRating = isLeft
-      ? +star.dataset.rating - 1
-      : +star.dataset.rating;
-    updateRatingClasses(selectedRating);
-    setRating(selectedRating);
-  };
   return (
     <main className="main">
       <div className="cf-container">
@@ -115,10 +62,7 @@ export default function Challenge({ challenge }) {
           >
             Add
           </button>
-          <button
-            onClick={() => router.push("/challenges")}
-            className="btn btn--back"
-          >
+          <button onClick={() => router.push("/challenges")} className="btn btn--back">
             {String.fromCharCode(8592)} Back
           </button>
         </TabHeader>
@@ -131,10 +75,9 @@ export default function Challenge({ challenge }) {
                   {submissions.map((submission) => (
                     <SubmissionCard
                       key={submission.id}
-                      {...submission}
                       submission={submission}
-                      isActive={activeSubmission.id === submission.id}
-                      onClick={setActiveSubmission}
+                      isActive={activeSubmission?.id === submission.id}
+                      onActiveSubmission={setActiveSubmissionId}
                     />
                   ))}
                   {!submissions.length && "No submissions!"}
@@ -146,17 +89,9 @@ export default function Challenge({ challenge }) {
                       onSave={handleSubmissionSave}
                     />
                   ) : (
-                    <div className="submission__content">
-                      {activeSubmission?.code}
-                    </div>
+                    <div className="submission__content">{activeSubmission?.code}</div>
                   )}
-                  <Comments
-                    comments={activeSubmission.comments ?? []}
-                    saveComment={saveComment}
-                    ratings={ratings}
-                    rating={rating}
-                    handleRatingChange={handleRatingChange}
-                  />
+                  <Comments comments={activeSubmission?.comments ?? []} saveComment={saveComment} />
                 </div>
               </div>
             )}

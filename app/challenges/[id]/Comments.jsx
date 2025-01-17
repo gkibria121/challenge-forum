@@ -2,8 +2,8 @@ import { useState } from "react";
 import CommentsList from "./CommentsList";
 import RatingStars from "./RatingStars";
 
-const Comments = ({ ratings, handleRatingChange,comments,saveComment,rating}) => {
-  const [isCommenting, setIsCommenting] = useState(false); 
+const Comments = ({ comments, saveComment }) => {
+  const [isCommenting, setIsCommenting] = useState(false);
 
   const [newComment, setNewComment] = useState("");
 
@@ -12,39 +12,36 @@ const Comments = ({ ratings, handleRatingChange,comments,saveComment,rating}) =>
       const comment = {
         user: { name: "admin" },
         comment: newComment,
-        rating: rating
+        rating: 0,
       };
-      
+
       saveComment(comment);
-      setNewComment(""); 
+      setNewComment("");
     }
   };
 
   const handleCancel = () => {
-    setNewComment(""); 
+    setNewComment("");
   };
 
   return (
     <>
       <div className={`comments comments--short ${isCommenting ? "hidden" : ""}`}>
         <p className="comments__title">Comments({comments.length})</p>
-        <button
-          className="btn btn--add"
-          onClick={() => setIsCommenting(true)}
-        >
+        <button className="btn btn--add" onClick={() => setIsCommenting(true)}>
           Show
         </button>
         <div className="comments__short">
           <p>{comments[comments.length - 1]?.comment || "No comments yet"}</p>
         </div>
       </div>
-      
+
       <div className={`comments ${isCommenting ? "" : "hidden"}`}>
         <p className="comments__title">Comments({comments.length})</p>
-        
+
         <div className="comments__add">
           <div className="user__info">admin</div>
-          <RatingStars ratings={ratings} onRatingChange={handleRatingChange} />
+          <RatingStars />
           <div className="comments__input-container">
             <textarea
               name="comment"
@@ -56,16 +53,10 @@ const Comments = ({ ratings, handleRatingChange,comments,saveComment,rating}) =>
             />
           </div>
           <div className="comments__actions">
-            <button
-              className="btn btn--back"
-              onClick={handleCancel}
-            >
+            <button className="btn btn--back" onClick={handleCancel}>
               cancel
             </button>
-            <button
-              className="btn btn--add"
-              onClick={handleSaveComment}
-            >
+            <button className="btn btn--add" onClick={handleSaveComment}>
               save
             </button>
           </div>
