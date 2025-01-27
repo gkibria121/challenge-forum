@@ -1,3 +1,5 @@
+import { resolve } from "path";
+
 export const getChallenge = async (challengeId) => {
   return {
     id: 1,

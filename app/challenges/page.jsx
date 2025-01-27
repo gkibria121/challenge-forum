@@ -30,7 +30,7 @@ function PageContent() {
   return (
     <>
       <main className="flex h-[calc(100vh-10rem)] items-start justify-center">
-        <div className="bg-primary relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl p-12 shadow-md">
+        <div className="bg-primary relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl rounded-md border p-12">
           <h4 className="">All challenges</h4>
           <Table
             onClick={handleRowClick}

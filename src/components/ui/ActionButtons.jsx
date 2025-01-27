@@ -1,20 +1,15 @@
 import React from "react";
+import Button from "./Button";
 
 const ActionButtons = ({ onEdit, onDelete }) => {
   return (
     <>
-      <button
-        className="font-inherit font-inherit ml-4 cursor-pointer rounded-2xl rounded-md border-none p-4 px-4 py-1.5 text-white no-underline outline-none"
-        onClick={onEdit}
-      >
+      <Button type="green" onClick={onEdit}>
         edit
-      </button>
-      <button
-        className="font-inherit font-inherit ml-4 cursor-pointer rounded-2xl rounded-md border-none p-4 px-4 py-1.5 text-white no-underline outline-none"
-        onClick={onDelete}
-      >
+      </Button>
+      <Button type="danger" onClick={onDelete}>
         delete
-      </button>
+      </Button>
     </>
   );
 };

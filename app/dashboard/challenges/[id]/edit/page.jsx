@@ -1,28 +1,11 @@
-import React, { useEffect, useState } from "react";
 import CreateEditChallenge from "@/components/challenge/CreateEditChallenge";
-import { useParams } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
-import { setCurrentChallenge } from "@/features/challenges";
-import { useChallengeCreationContext } from "@/contexts/ChallengeCreationContext.js";
-function page() {
-  const { id } = useParams();
-  const { setTitle, setDescription, setTags, setHints } = useChallengeCreationContext();
+import { getChallenge } from "@/services/challenge";
+async function page({ params }) {
+  const { id } = await params;
 
-  const currentChallenge = useSelector((store) =>
-    store.challenges.data.find((challenge) => challenge.id === +id)
-  );
+  const currentChallenge = await getChallenge(id);
 
-  useEffect(() => {
-    if (currentChallenge) {
-      setTitle(currentChallenge.title);
-      setDescription(currentChallenge.description);
-      setTags(currentChallenge.tags.join(","));
-      setHints(currentChallenge.hints);
-    }
-  }, [currentChallenge]);
-
-  if (currentChallenge) return <CreateEditChallenge mode="edit" challenge={currentChallenge} />;
-  return "Challenge not found";
+  return <CreateEditChallenge mode="edit" challenge={currentChallenge} />;
 }
 
 export default page;

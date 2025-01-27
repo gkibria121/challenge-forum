@@ -1,8 +1,10 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
+import { Suspense } from "react";
 
-function ChallengeLayout({ children, params }) {
+function ChallengeLayout({ children }) {
+  const { challengeId } = useParams();
   const pathName = usePathname();
 
   return (
@@ -16,16 +18,17 @@ function ChallengeLayout({ children, params }) {
           ].map((tab) => (
             <Link
               key={tab.id}
-              href={tab.href}
-              className={`tab__link ${
-                pathName.endsWith(`/${tab.href}`) ? "tab__link--active" : ""
+              href={`/challenges/${challengeId}/${tab.href}`}
+              className={`ml-4 cursor-pointer bg-white p-0 pb-2 ${
+                pathName.endsWith(`/${tab.href}`)
+                  ? "relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-black"
+                  : ""
               }`}
             >
               {tab.label}
             </Link>
           ))}
         </div>
-
         {children}
       </div>
     </main>

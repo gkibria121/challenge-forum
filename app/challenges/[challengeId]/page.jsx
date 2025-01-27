@@ -1,11 +1,11 @@
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import React from "react";
-import Challenge from "@/components/challenge/Challenge";
-import { getChallenge } from "@/services/challenge";
+
 async function page({ params }) {
   const { challengeId } = await params;
 
-  const currentChallenge = await getChallenge(challengeId);
-  return <Challenge challenge={currentChallenge} />;
+  redirect(`/challenges/${challengeId}/description`); // Navigate to the new post page
 }
 
 export default page;

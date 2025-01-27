@@ -1,9 +1,55 @@
 "use client";
-import { useState } from "react";
+import { useOptimistic, useState } from "react";
 import CommentsList from "./CommentsList";
 import RatingStars from "./RatingStars";
+import Button from "@/components/ui/Button";
+const comments = [
+  {
+    user: { name: "John Doe" },
+    comment: "This is a great post! I really enjoyed reading it.",
+  },
+  {
+    user: { name: "Jane Smith" },
+    comment: "I found this information really helpful. Thanks for sharing!",
+  },
+  {
+    user: { name: "Alice Brown" },
+    comment: "Great insights, I will definitely try these tips out!",
+  },
+  {
+    user: { name: "Bob Johnson" },
+    comment: "I disagree with some points, but overall good article.",
+  },
+  {
+    user: { name: "Charlie Lee" },
+    comment: "Amazing write-up! I can't wait to see more like this.",
+  },
+  {
+    user: { name: "Sophia Williams" },
+    comment:
+      "I had some trouble understanding the last section, could you clarify?",
+  },
+  {
+    user: { name: "Michael Davis" },
+    comment:
+      "This post is a game-changer! Very informative and well-organized.",
+  },
+  {
+    user: { name: "Olivia Martinez" },
+    comment: "Thanks for the tips! I’ll try them out this weekend.",
+  },
+  {
+    user: { name: "David Wilson" },
+    comment:
+      "Nice job! Keep up the good work, looking forward to more content.",
+  },
+  {
+    user: { name: "Emma Taylor" },
+    comment: "Not sure about the conclusion, but the rest was insightful.",
+  },
+];
 
-const Comments = ({ comments, saveComment }) => {
+const Comments = ({}) => {
   const [isCommenting, setIsCommenting] = useState(false);
   const [newComment, setNewComment] = useState("");
 
@@ -34,12 +80,9 @@ const Comments = ({ comments, saveComment }) => {
         <p className="mb-4 text-xl font-semibold">
           Comments ({comments.length})
         </p>
-        <button
-          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-          onClick={() => setIsCommenting(true)}
-        >
+        <Button onClick={() => setIsCommenting(true)} type="large">
           Show
-        </button>
+        </Button>
         <div className="mt-4 rounded bg-gray-100 p-4">
           <p>{comments[comments.length - 1]?.comment || "No comments yet"}</p>
         </div>
@@ -66,18 +109,12 @@ const Comments = ({ comments, saveComment }) => {
             />
           </div>
           <div className="mt-4 flex gap-4">
-            <button
-              className="rounded bg-gray-300 px-4 py-2 text-gray-800 hover:bg-gray-400"
-              onClick={handleCancel}
-            >
+            <Button type="danger" onClick={handleCancel}>
               Cancel
-            </button>
-            <button
-              className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-              onClick={handleSaveComment}
-            >
+            </Button>
+            <Button type="success" onClick={handleSaveComment}>
               Save
-            </button>
+            </Button>
           </div>
         </div>
         <CommentsList comments={comments} />

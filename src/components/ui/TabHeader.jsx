@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 const TabContext = createContext();
 
-const Tabs = ({ children, onTabChange }) => {
+const Tabs = ({ children, onTabChange = () => {} }) => {
   const TabListReactEl = React.Children.toArray(children).find(
     (child) => child.type.name === TabList.name,
   );
@@ -42,8 +42,10 @@ function Tab({ children, id }) {
   return (
     <button
       key={id}
-      className={`tab__link ${isActive ? "tab__link--active" : ""}`}
-      onClick={() => setActiveTab(id)}
+      className={`ml-4 cursor-pointer bg-white p-0 pb-2 ${isActive ? "relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-black" : ""}`}
+      onClick={() => {
+        setActiveTab(id);
+      }}
     >
       {children}
     </button>
@@ -56,6 +58,7 @@ const TabActions = ({ children }) => {
 
 function TabPanel({ children, id }) {
   const { activeTab } = useTabContext();
+  console.log(activeTab, id);
   if (activeTab !== id) return;
   return <div className="h-full w-full">{children}</div>;
 }

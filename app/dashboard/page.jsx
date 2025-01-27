@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteChallenge } from "@/features/challenges";
+import Button from "@/components/ui/Button";
 
 const ChallengesPage = () => {
   const dispatch = useDispatch();
@@ -29,12 +30,10 @@ const ChallengesPage = () => {
       <div className="bg-primary relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl p-12 shadow-md">
         <div className="mb-4 flex items-center justify-between">
           <h4>All challenges</h4>
-          <Link
-            className="font-inherit font-inherit ml-4 cursor-pointer rounded-2xl rounded-md border-none p-4 px-4 py-1.5 text-white no-underline outline-none"
-            href="/dashboard/challenges/add"
-          >
+
+          <Button type="success" href="/dashboard/challenges/add" isLink={true}>
             Add
-          </Link>
+          </Button>
         </div>
         <Table
           headers={[
