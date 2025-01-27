@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
-import Table from "@/components/Table";
-import Pagination from "@/components/Pagination";
-import ActionButtons from "./ActionButtons";
-import Tag from "./Tag";
-import Link from "next/link";
+import Pagination from "@/components/ui/Pagination";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteChallenge } from "@/features/challenges";
+import Button from "@/components/ui/Button";
+import ChallengeTable from "@/components/challenge/ChallengeTable";
+import Table from "@/components/ui/Table";
+import Main from "@/components/ui/Main";
 
 const ChallengesPage = () => {
   const dispatch = useDispatch();
@@ -25,49 +25,51 @@ const ChallengesPage = () => {
   };
 
   return (
-    <main className="main">
-      <div className="cf-container">
-        <div className="flex justify-between items-center mb-4">
+    <Main>
+      <div className="relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl bg-white p-12 shadow-md">
+        <div className="mb-4 flex items-center justify-between">
           <h4>All challenges</h4>
-          <Link className="btn btn--add" href="/dashboard/challenges/add">
+
+          <Button
+            variant="success"
+            href="/dashboard/challenges/add"
+            isLink={true}
+          >
             Add
-          </Link>
+          </Button>
         </div>
-        <Table
-          headers={[
-            { label: "No.", key: "id", colSpan: 1 },
-            { label: "Title", key: "title", colSpan: 3 },
-            { label: "Tag", key: "tags", colSpan: 1, class: "table__th--tag" },
-            { label: "Actions", key: "actions", colSpan: 1, class: "table__th--actions" },
-          ]}
-          data={challenges}
-          renderRow={(challenge) => (
-            <>
-              <td className="table__column">{challenge.id}</td>
-              <td className="table__column" colSpan="3">
-                {challenge.title}
-              </td>
-              <td className="table__column table__column--tags tags">
-                {challenge.tags.map((tag) => (
-                  <Tag key={tag} label={tag} />
-                ))}
-              </td>
-              <td className="table__column">
-                <ActionButtons
-                  onEdit={() => handleEdit(challenge)}
-                  onDelete={() => handleDelete(challenge.id)}
-                />
-              </td>
-            </>
-          )}
-        />
+        <ChallengeTable challenges={challenges} onChallengeCLick={() => {}}>
+          <ChallengeTable.Heading>
+            <Table.Heading className="text-center">Actions</Table.Heading>
+          </ChallengeTable.Heading>
+          <ChallengeTable.Body>
+            <ChallengeTable.ColExtra>
+              <Button
+                variant="dark"
+                onClick={(challengeId) => {
+                  router.push(`/dashboard/challenges/${challengeId}/edit`);
+                }}
+              >
+                Edit
+              </Button>
+              <Button
+                variant="danger"
+                onClick={(challengeId) => {
+                  alert("challenge deleted! " + challengeId);
+                }}
+              >
+                Delete
+              </Button>
+            </ChallengeTable.ColExtra>
+          </ChallengeTable.Body>
+        </ChallengeTable>
         <Pagination
           currentPage={1}
           totalPages={10}
-          onPageChange={(page) => console.log("Go to page:", page)}
+          onPageChange={(Page) => console.log("Go to Page:", Page)}
         />
       </div>
-    </main>
+    </Main>
   );
 };
 

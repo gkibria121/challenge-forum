@@ -1,8 +1,6 @@
-"use client";
-
 import { configureStore } from "@reduxjs/toolkit";
 
-import ChallengesReducer from "./features/challenges";
+import ChallengesReducer from "@/features/challenges";
 
 const store = configureStore({
   reducer: {

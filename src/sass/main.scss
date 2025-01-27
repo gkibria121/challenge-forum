@@ -1,21 +1,13 @@
 @use "_variables";
-@use "_base";
-@use "_header";
-@use "_footer";
-@use "_form";
 @use "_utils";
 @use "_nav";
 @use "_errors";
-@use "_container";
 @use "_table";
-@use "_pagination";
 @use "_tags";
-@use "_tabs";
 @use "_btn";
-@use "_comments";
-@use "_submissions";
-@use "_card";
 @use "_user";
-@use "_options";
-@use "_ratings";
 @use "_global";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import "/src/sass/main.scss";
-import Header from "@/components/Header";
+import Header from "@/components/ui/Header";
 import store from "@/store";
 import { Provider } from "react-redux";
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -1,16 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 :root {
   --color-primary: #ffff;
-  --color-secondary: #F4F4F4 ;
-  --color-secondary-2:#6358dc ;
+  --color-secondary: #f4f4f4;
+  --color-secondary-2: #6358dc;
   --color-danger: red;
-  --color-danger-2: #C10000;
-  --box-shadow-1: 0px 0px 4px rgba(0,0,0,.1);
+  --color-danger-2: #c10000;
+  --box-shadow-1: 0px 0px 4px rgba(0, 0, 0, 0.1);
   --color-black: black;
   --color-active: blue;
   --color-secondary-3: rgb(202, 202, 202);
-  --color-secondary-4: #9197B3;
-  --color--success:#50C878 ;
+  --color-secondary-4: #9197b3;
+  --color--success: #50c878;
   --border-black: 1px solid black;
 }
 
@@ -246,7 +246,8 @@ body {
   align-items: center;
   list-style: none;
 }
-.nav__link, .nav__link:active {
+.nav__link,
+.nav__link:active {
   text-decoration: none;
   color: black;
   font-size: 1.7rem;
@@ -316,7 +317,7 @@ body {
   justify-self: center;
   gap: 1rem;
 }
-.pagination .page {
+.pagination .Page {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -329,10 +330,10 @@ body {
   font-size: 1.4rem;
   cursor: pointer;
 }
-.pagination .page--active {
+.pagination .Page--active {
   border-color: var(--color-secondary-2);
 }
-.pagination .page--disabled {
+.pagination .Page--disabled {
   border-color: var(--color-secondary-3);
   background-color: var(--color-secondary-3);
   color: white;
@@ -350,14 +351,14 @@ body {
   width: 100%;
   height: 100%;
 }
-.tabs__header {
+.relative {
   position: relative;
 }
-.tabs__body {
+.w-full h-full {
   width: 100%;
   height: 100%;
 }
-.tabs__footer {
+.absolute bottom-0 left-0 w-full p-16 flex justify-between {
   display: flex;
   justify-content: space-between;
 }
@@ -406,17 +407,80 @@ body {
   outline: none; /* Combined focus styles */
   text-decoration: none;
 }
-.btn--login {
+.border-none
+  font-inherit
+  rounded-md
+  p-4
+  cursor-pointer
+  outline-none
+  no-underline
+  w-full
+  text-primary
+  bg-indigo-600 {
   width: 100%;
   color: var(--color-primary);
   background-color: #6358dc;
 }
-.btn--back, .btn--add, .btn--next, .btn--prev, .btn--edit, .btn--delete {
+.btn--back,
+.border-none
+  font-inherit
+  rounded-2xl
+  px-4
+  py-1.5
+  ml-4
+  text-white
+  cursor-pointer
+  outline-none,
+.border-none
+  font-inherit
+  rounded-2xl
+  px-4
+  py-1.5
+  ml-4
+  text-white
+  cursor-pointer
+  outline-none,
+.border-none
+  font-inherit
+  rounded-2xl
+  px-4
+  py-1.5
+  ml-4
+  text-white
+  cursor-pointer
+  outline-none,
+.border-none
+  font-inherit
+  rounded-2xl
+  px-4
+  py-1.5
+  ml-4
+  text-white
+  cursor-pointer
+  outline-none,
+.border-none
+  font-inherit
+  rounded-2xl
+  px-4
+  py-1.5
+  ml-4
+  text-white
+  cursor-pointer
+  outline-none {
   padding: 0.3rem 1rem; /* Default padding */
   border-radius: 1rem; /* Default border-radius */
   color: white;
 }
-.btn--back, .btn--add {
+.btn--back,
+.border-none
+  font-inherit
+  rounded-2xl
+  px-4
+  py-1.5
+  ml-4
+  text-white
+  cursor-pointer
+  outline-none {
   padding: 5px 1.2rem; /* Specific padding for back/add */
   border-radius: 20px;
   margin-left: 1rem;
@@ -425,22 +489,82 @@ body {
 .btn--back {
   background-color: var(--color-danger-2);
 }
-.btn--add {
-  background-color: var(--color--success); /* Assuming a primary color for add */
+.border-none
+  font-inherit
+  rounded-2xl
+  px-4
+  py-1.5
+  ml-4
+  text-white
+  cursor-pointer
+  outline-none {
+  background-color: var(
+    --color--success
+  ); /* Assuming a primary color for add */
 }
-.btn--next, .btn--prev {
+.border-none
+  font-inherit
+  rounded-2xl
+  px-4
+  py-1.5
+  ml-4
+  text-white
+  cursor-pointer
+  outline-none,
+.border-none
+  font-inherit
+  rounded-2xl
+  px-4
+  py-1.5
+  ml-4
+  text-white
+  cursor-pointer
+  outline-none {
   padding: 0.2rem 1rem;
   background-color: var(--color-secondary-4);
 }
-.btn--edit, .btn--delete {
+.border-none
+  font-inherit
+  rounded-2xl
+  px-4
+  py-1.5
+  ml-4
+  text-white
+  cursor-pointer
+  outline-none,
+.border-none
+  font-inherit
+  rounded-2xl
+  px-4
+  py-1.5
+  ml-4
+  text-white
+  cursor-pointer
+  outline-none {
   padding: 0.8rem 1.5rem;
   color: white;
   font-size: 1.3rem;
 }
-.btn--edit {
+.border-none
+  font-inherit
+  rounded-2xl
+  px-4
+  py-1.5
+  ml-4
+  text-white
+  cursor-pointer
+  outline-none {
   background-color: var(--color-secondary-2);
 }
-.btn--delete {
+.border-none
+  font-inherit
+  rounded-2xl
+  px-4
+  py-1.5
+  ml-4
+  text-white
+  cursor-pointer
+  outline-none {
   background-color: var(--color-danger-2);
 }
 
@@ -467,7 +591,8 @@ body {
 .comments__input:focus {
   outline: none;
 }
-.comments__add, .comments__content {
+.comments__add,
+.comments__content {
   width: 100%;
   padding: 2rem 2rem 4rem;
 }
