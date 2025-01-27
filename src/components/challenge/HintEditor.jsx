@@ -1,34 +1,19 @@
-import { useChallengeCreationContext } from "@/contexts/ChallengeCreationContext.js";
-import React, { useEffect, useState } from "react";
+import FormGroup from "@/components/ui/FormGroup";
+import Label from "@/components/ui/Label";
+import Input from "@/components/ui/Input";
+import TextArea from "@/components/ui/TextArea";
 
-const HintEditor = ({ isActive }) => {
-  const { hints, setHints } = useChallengeCreationContext();
-
-  const handleTextChange = (e) => {
-    setHints((prev) => ({ ...prev, title: e.target.value }));
-  };
-
-  const handleDescriptionChange = (e) => {
-    setHints((prev) => ({ ...prev, description: e.target.value }));
-  };
-
+const HintEditor = ({ hints }) => {
   return (
-    <div
-      className={`hidden h-full w-full p-4 ${isActive ? "block rounded p-4" : ""}`}
-    >
-      <textarea
-        className="mb-4 w-full rounded border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Hint Title"
-        value={hints.title}
-        onChange={handleTextChange}
-      ></textarea>
-      <textarea
-        className="w-full rounded border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Hint Description"
-        value={hints.description}
-        rows={15}
-        onChange={handleDescriptionChange}
-      ></textarea>
+    <div className={`mt-8 space-y-6 rounded-lg`}>
+      <FormGroup>
+        <Label htmlFor="title">Title</Label>
+        <Input type="text" id="title" placeholder="Hints title" />
+      </FormGroup>
+      <FormGroup>
+        <Label htmlFor="description">Description</Label>
+        <TextArea id="description" placeholder="Hints"></TextArea>
+      </FormGroup>
     </div>
   );
 };
