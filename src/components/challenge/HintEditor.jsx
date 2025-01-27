@@ -3,7 +3,7 @@ import Label from "@/components/ui/Label";
 import Input from "@/components/ui/Input";
 import TextArea from "@/components/ui/TextArea";
 
-const HintEditor = ({ hints }) => {
+const HintEditor = ({ hints, isEditing }) => {
   return (
     <div className={`mt-8 space-y-6 rounded-lg`}>
       <FormGroup>

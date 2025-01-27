@@ -3,7 +3,7 @@ import Label from "@/components/ui/Label";
 import Input from "@/components/ui/Input";
 import TextArea from "@/components/ui/TextArea";
 import FormGroup from "@/components/ui/FormGroup";
-const AddChallengeForm = ({}) => {
+const AddChallengeForm = ({ isEditing }) => {
   return (
     <div className="mt-8 space-y-6 rounded-lg">
       {/* Title Input */}

@@ -41,6 +41,7 @@ function Tab({ children, id }) {
   const isActive = activeTab === id;
   return (
     <button
+      type="button"
       key={id}
       className={`ml-4 cursor-pointer bg-white p-0 pb-2 ${isActive ? "relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-black" : ""}`}
       onClick={() => {
