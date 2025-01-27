@@ -59,9 +59,12 @@ const TabActions = ({ children }) => {
 
 function TabPanel({ children, id }) {
   const { activeTab } = useTabContext();
-  console.log(activeTab, id);
-  if (activeTab !== id) return;
-  return <div className="h-full w-full">{children}</div>;
+
+  return (
+    <div className={`h-full w-full ${activeTab !== id ? "hidden" : ""}`}>
+      {children}
+    </div>
+  );
 }
 
 Tabs.Tab = Tab;

@@ -6,8 +6,8 @@ import Tabs from "@/components/ui/TabHeader";
 import Button from "../ui/Button";
 import { useRouter } from "next/navigation";
 
-const CreateChallenge = ({ mode = "create", challenge }) => {
-  if (mode === "create") challenge = {};
+const CreateChallenge = ({ mode = "create", challenge = {} }) => {
+  const isEditing = mode !== "create";
   const router = useRouter();
   return (
     <main className="flex h-[calc(100vh-10rem)] items-start justify-center">
@@ -25,10 +25,10 @@ const CreateChallenge = ({ mode = "create", challenge }) => {
           </Tabs.TabList>
 
           <Tabs.TabPanel>
-            <AddChallengeForm isEditing={mode !== "create"} />
+            <AddChallengeForm challenge={challenge} isEditing={isEditing} />
           </Tabs.TabPanel>
           <Tabs.TabPanel>
-            <HintEditor hints={challenge.hints} isEditing={mode !== "create"} />
+            <HintEditor hints={challenge.hints} isEditing={isEditing} />
           </Tabs.TabPanel>
         </Tabs>
 

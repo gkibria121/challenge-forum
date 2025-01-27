@@ -3,13 +3,18 @@ import Label from "@/components/ui/Label";
 import Input from "@/components/ui/Input";
 import TextArea from "@/components/ui/TextArea";
 import FormGroup from "@/components/ui/FormGroup";
-const AddChallengeForm = ({ isEditing }) => {
+const AddChallengeForm = ({ challenge, isEditing = false }) => {
   return (
     <div className="mt-8 space-y-6 rounded-lg">
       {/* Title Input */}
       <FormGroup>
         <Label htmlFor="title">Title</Label>
-        <Input type="text" id="title" placeholder="Challenge title" />
+        <Input
+          type="text"
+          id="title"
+          placeholder="Challenge title"
+          defaultValue={isEditing ? challenge.title : ""}
+        />
       </FormGroup>
 
       {/* Description Input */}
@@ -18,6 +23,7 @@ const AddChallengeForm = ({ isEditing }) => {
         <TextArea
           id="description"
           placeholder="Challenge descriptions"
+          defaultValue={isEditing ? challenge.description : ""}
         ></TextArea>
       </FormGroup>
 
@@ -29,6 +35,7 @@ const AddChallengeForm = ({ isEditing }) => {
           name="tags"
           id="tags"
           placeholder="Coding, Principles, etc"
+          defaultValue={isEditing ? challenge.tags.join(",") : ""}
         />
       </FormGroup>
     </div>
