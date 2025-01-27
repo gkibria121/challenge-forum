@@ -20,7 +20,7 @@ function PageContent() {
         <div className="bg-primary relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl rounded-md border px-12 pb-12">
           <ChallengeTable
             challenges={challenges}
-            onRowClick={(challengeId) =>
+            onChallengeClick={(challengeId) =>
               router.push(`/challenges/${challengeId}`)
             }
           ></ChallengeTable>

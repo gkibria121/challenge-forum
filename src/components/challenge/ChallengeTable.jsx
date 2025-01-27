@@ -5,11 +5,11 @@ import Tag from "@/components/ui/Tag";
 const TableContext = React.createContext();
 
 function ChallengeTable(props) {
-  const { children, challenges, onChallengeCLick = () => {} } = props;
+  const { children, challenges, onChallengeClick = () => {} } = props;
 
   const contextValue = {
     challenges,
-    onRowClick: onChallengeCLick,
+    onRowClick: onChallengeClick,
   };
 
   return (

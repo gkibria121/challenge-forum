@@ -3,7 +3,7 @@ import { getChallenge } from "@/services/challenge";
 import React from "react";
 
 async function Page({ params }) {
-  const { challengeId } = React.use(params);
+  const { challengeId } = await params;
   const challenge = await getChallenge(challengeId);
   return <Hints challenge={challenge} />;
 }
