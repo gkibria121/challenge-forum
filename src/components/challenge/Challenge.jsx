@@ -6,14 +6,14 @@ import Comments from "./Comments";
 import Description from "./Description";
 import Hints from "./Hints";
 import SubmissionEditor from "./SubmissionEditor";
-import TabHeader from "@/components/ui/TabHeader";
+import Tabs from "@/components/ui/TabHeader";
 import { useParams, useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { addComment, addSubmission } from "@/features/challenges";
 
 export default function Challenge({ challenge }) {
   const [activeSubmissionId, setActiveSubmissionId] = useState(null);
-  const [activeTab, setActiveTab] = useState("2");
+  const [activeTab, setActiveTab] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -24,10 +24,6 @@ export default function Challenge({ challenge }) {
   const submissions = challenge.submissions;
 
   const router = useRouter();
-
-  const handleTabLinkClick = (tabId) => {
-    setActiveTab(tabId);
-  };
 
   const saveComment = (comment) => {
     const challengeId = +id;
@@ -43,62 +39,68 @@ export default function Challenge({ challenge }) {
   return (
     <main className="main">
       <div className="cf-container">
-        <TabHeader
-          activeTab={activeTab}
-          onTabClick={handleTabLinkClick}
-          isSubmitting={isSubmitting}
-          setIsSubmitting={setIsSubmitting}
-          setActivTab={setActiveTab}
-          goTo={(link) => () => router.push(link)}
-          tabs={[
-            { id: "1", label: "Description" },
-            { id: "2", label: "Submissions" },
-            { id: "3", label: "Hints" },
-          ]}
+        <Tabs
+          onTabChange={(curr) => {
+            setActiveTab(curr);
+          }}
         >
-          <button
-            className={`btn btn--add ${isSubmitting ? "hidden" : ""}`}
-            onClick={() => setIsSubmitting(true)}
-          >
-            Add
-          </button>
-          <button onClick={() => router.push("/challenges")} className="btn btn--back">
-            {String.fromCharCode(8592)} Back
-          </button>
-        </TabHeader>
-        <div className="tabs">
-          <div className="tabs__body">
-            {activeTab === "1" && <Description challenge={challenge} />}
-            {activeTab === "2" && (
-              <div className="submissions">
-                <div className="submissions__list">
-                  {submissions.map((submission) => (
-                    <SubmissionCard
-                      key={submission.id}
-                      submission={submission}
-                      isActive={activeSubmission?.id === submission.id}
-                      onActiveSubmission={setActiveSubmissionId}
-                    />
-                  ))}
-                  {!submissions.length && "No submissions!"}
-                </div>
-                <div className="submission">
-                  {isSubmitting ? (
-                    <SubmissionEditor
-                      onCancel={() => setIsSubmitting(false)}
-                      onSave={handleSubmissionSave}
-                    />
-                  ) : (
-                    <div className="submission__content">{activeSubmission?.code}</div>
-                  )}
-                  <Comments comments={activeSubmission?.comments ?? []} saveComment={saveComment} />
-                </div>
+          <Tabs.TabList>
+            {[
+              { id: 1, label: "Description" },
+              { id: 23, label: "Submissions" },
+              { id: 33, label: "Hints" },
+            ].map((tab) => (
+              <Tabs.Tab key={tab.id} id={tab.id}>
+                {tab.label}
+              </Tabs.Tab>
+            ))}
+          </Tabs.TabList>
+
+          <Tabs.TabActions>
+            <button
+              className={`btn btn--add ${isSubmitting ? "hidden" : ""}`}
+              onClick={() => setIsSubmitting(true)}
+            >
+              Add
+            </button>
+            <button onClick={() => router.push("/challenges")} className="btn btn--back">
+              {String.fromCharCode(8592)} Back
+            </button>
+          </Tabs.TabActions>
+          <Tabs.TabPanel>
+            <Description challenge={challenge} />
+          </Tabs.TabPanel>
+          <Tabs.TabPanel>
+            <div className="submissions">
+              <div className="submissions__list">
+                {submissions.map((submission) => (
+                  <SubmissionCard
+                    key={submission.id}
+                    submission={submission}
+                    isActive={activeSubmission?.id === submission.id}
+                    onActiveSubmission={setActiveSubmissionId}
+                  />
+                ))}
+                {!submissions.length && "No submissions!"}
               </div>
-            )}
-            {activeTab === "3" && <Hints challenge={challenge} />}
-          </div>
-        </div>
-        {activeTab === "1" && (
+              <div className="submission">
+                {isSubmitting ? (
+                  <SubmissionEditor
+                    onCancel={() => setIsSubmitting(false)}
+                    onSave={handleSubmissionSave}
+                  />
+                ) : (
+                  <div className="submission__content">{activeSubmission?.code}</div>
+                )}
+                <Comments comments={activeSubmission?.comments ?? []} saveComment={saveComment} />
+              </div>
+            </div>
+          </Tabs.TabPanel>
+          <Tabs.TabPanel>
+            <Hints challenge={challenge} />
+          </Tabs.TabPanel>
+        </Tabs>
+        {activeTab === 1 && (
           <div className="tabs__footer">
             <button className="btn btn--next">Previous</button>
             <button className="btn btn--prev">Next</button>

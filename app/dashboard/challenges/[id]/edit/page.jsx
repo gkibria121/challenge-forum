@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import CreateEditChallenge from "@/components/challenge/CreateEditChallenge";
 import { useParams } from "next/navigation";
