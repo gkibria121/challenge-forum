@@ -3,6 +3,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import Pagination from "@/components/ui/Pagination";
+import Main from "@/components/ui/Main";
 import ChallengeTable from "@/components/challenge/ChallengeTable";
 import { useSelector } from "react-redux";
 
@@ -16,7 +17,7 @@ function PageContent() {
 
   return (
     <>
-      <main className="flex h-[calc(100vh-10rem)] items-start justify-center">
+      <Main>
         <div className="bg-primary relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl rounded-md border px-12 pb-12">
           <ChallengeTable
             challenges={challenges}
@@ -31,7 +32,7 @@ function PageContent() {
             onPageClick={handlePageClick}
           />
         </div>
-      </main>
+      </Main>
     </>
   );
 }

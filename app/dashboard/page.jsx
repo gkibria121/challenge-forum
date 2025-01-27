@@ -7,6 +7,7 @@ import { deleteChallenge } from "@/features/challenges";
 import Button from "@/components/ui/Button";
 import ChallengeTable from "@/components/challenge/ChallengeTable";
 import Table from "@/components/ui/Table";
+import Main from "@/components/ui/Main";
 
 const ChallengesPage = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const ChallengesPage = () => {
   };
 
   return (
-    <main className="flex h-[calc(100vh-10rem)] items-start justify-center">
+    <Main>
       <div className="bg-primary relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl p-12 shadow-md">
         <div className="mb-4 flex items-center justify-between">
           <h4>All challenges</h4>
@@ -64,7 +65,7 @@ const ChallengesPage = () => {
           onPageChange={(Page) => console.log("Go to Page:", Page)}
         />
       </div>
-    </main>
+    </Main>
   );
 };
 

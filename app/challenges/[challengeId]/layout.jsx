@@ -1,4 +1,5 @@
 "use client";
+import Main from "@/components/ui/Main";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 
@@ -7,7 +8,7 @@ function ChallengeLayout({ children }) {
   const pathName = usePathname();
 
   return (
-    <main className="flex h-[calc(100vh-10rem)] items-start justify-center">
+    <Main>
       <div className="bg-primary relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl p-12 shadow-md">
         <div className="relative">
           {[
@@ -30,7 +31,7 @@ function ChallengeLayout({ children }) {
         </div>
         {children}
       </div>
-    </main>
+    </Main>
   );
 }
 

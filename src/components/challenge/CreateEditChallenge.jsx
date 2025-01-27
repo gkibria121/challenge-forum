@@ -5,12 +5,13 @@ import HintEditor from "@/components/challenge/HintEditor";
 import Tabs from "@/components/ui/TabHeader";
 import Button from "../ui/Button";
 import { useRouter } from "next/navigation";
+import Main from "../ui/Main";
 
 const CreateChallenge = ({ mode = "create", challenge = {} }) => {
   const isEditing = mode !== "create";
   const router = useRouter();
   return (
-    <main className="flex h-[calc(100vh-10rem)] items-start justify-center">
+    <Main>
       <form className="bg-primary relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl p-12 shadow-md">
         <Tabs>
           <Tabs.TabList>
@@ -47,7 +48,7 @@ const CreateChallenge = ({ mode = "create", challenge = {} }) => {
           </Button>
         </div>
       </form>
-    </main>
+    </Main>
   );
 };
 
