@@ -2,7 +2,7 @@ import Submissions from "@/components/submission/Submissions";
 import { getChallenge } from "@/services/challenge";
 import React from "react";
 
-async function page({ params }) {
+async function Page({ params }) {
   const { challengeId } = await params;
   const challenge = await getChallenge(challengeId);
   const submissions = challenge.submissions;
@@ -10,4 +10,4 @@ async function page({ params }) {
   return <Submissions submissions={submissions} />;
 }
 
-export default page;
+export default Page;

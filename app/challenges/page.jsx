@@ -10,8 +10,8 @@ function PageContent() {
   const router = useRouter();
   const challenges = useSelector((store) => store.challenges.data);
 
-  const handlePageClick = (page) => {
-    console.log(`Navigating to page ${page}`);
+  const handlePageClick = (Page) => {
+    console.log(`Navigating to Page ${Page}`);
   };
 
   return (

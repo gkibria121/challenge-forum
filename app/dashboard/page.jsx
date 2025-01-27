@@ -61,7 +61,7 @@ const ChallengesPage = () => {
         <Pagination
           currentPage={1}
           totalPages={10}
-          onPageChange={(page) => console.log("Go to page:", page)}
+          onPageChange={(Page) => console.log("Go to Page:", Page)}
         />
       </div>
     </main>

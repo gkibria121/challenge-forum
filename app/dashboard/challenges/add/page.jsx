@@ -1,7 +1,7 @@
 import React from "react";
 import CreateEditChallenge from "@/components/challenge/CreateEditChallenge.jsx";
-function page() {
+function Page() {
   return <CreateEditChallenge mode="create" />;
 }
 
-export default page;
+export default Page;

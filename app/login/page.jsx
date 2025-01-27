@@ -2,7 +2,7 @@
 
 import React from "react";
 
-function page() {
+function Page() {
   return (
     <>
       <main className="flex h-[calc(100vh-10rem)] items-start justify-center">
@@ -105,4 +105,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

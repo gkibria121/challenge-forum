@@ -3,7 +3,7 @@
 import React from "react";
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const Pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
     <div className="mt-4 flex justify-center gap-4">
@@ -18,17 +18,17 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       >
         &lt;
       </button>
-      {pages.map((page) => (
+      {Pages.map((Page) => (
         <button
-          key={page}
+          key={Page}
           className={`cursor-pointer rounded border-2 px-4 py-2 text-sm ${
-            page === currentPage
+            Page === currentPage
               ? "border-blue-500 bg-blue-100"
               : "border-gray-400 hover:bg-gray-200"
           }`}
-          onClick={() => onPageChange(page)}
+          onClick={() => onPageChange(Page)}
         >
-          {page}
+          {Page}
         </button>
       ))}
       <button

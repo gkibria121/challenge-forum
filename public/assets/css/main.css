@@ -317,7 +317,7 @@ body {
   justify-self: center;
   gap: 1rem;
 }
-.pagination .page {
+.pagination .Page {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -330,10 +330,10 @@ body {
   font-size: 1.4rem;
   cursor: pointer;
 }
-.pagination .page--active {
+.pagination .Page--active {
   border-color: var(--color-secondary-2);
 }
-.pagination .page--disabled {
+.pagination .Page--disabled {
   border-color: var(--color-secondary-3);
   background-color: var(--color-secondary-3);
   color: white;
