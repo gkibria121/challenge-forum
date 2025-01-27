@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import CommentsList from "./CommentsList";
 import RatingStars from "./RatingStars";

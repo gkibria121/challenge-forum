@@ -67,38 +67,9 @@ export default function Challenge({ challenge }) {
               {String.fromCharCode(8592)} Back
             </button>
           </Tabs.TabActions>
-          <Tabs.TabPanel>
-            <Description challenge={challenge} />
-          </Tabs.TabPanel>
-          <Tabs.TabPanel>
-            <div className="submissions">
-              <div className="submissions__list">
-                {submissions.map((submission) => (
-                  <SubmissionCard
-                    key={submission.id}
-                    submission={submission}
-                    isActive={activeSubmission?.id === submission.id}
-                    onActiveSubmission={setActiveSubmissionId}
-                  />
-                ))}
-                {!submissions.length && "No submissions!"}
-              </div>
-              <div className="submission">
-                {isSubmitting ? (
-                  <SubmissionEditor
-                    onCancel={() => setIsSubmitting(false)}
-                    onSave={handleSubmissionSave}
-                  />
-                ) : (
-                  <div className="submission__content">{activeSubmission?.code}</div>
-                )}
-                <Comments comments={activeSubmission?.comments ?? []} saveComment={saveComment} />
-              </div>
-            </div>
-          </Tabs.TabPanel>
-          <Tabs.TabPanel>
-            <Hints challenge={challenge} />
-          </Tabs.TabPanel>
+          <Tabs.TabPanel></Tabs.TabPanel>
+          <Tabs.TabPanel></Tabs.TabPanel>
+          <Tabs.TabPanel></Tabs.TabPanel>
         </Tabs>
         {activeTab === 1 && (
           <div className="tabs__footer">
