@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Challenge from "./Challenge";
+import Challenge from "@/components/challenge/Challenge";
 import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 function page() {

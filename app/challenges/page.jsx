@@ -2,9 +2,9 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import Pagination from "@/components/Pagination";
-import Table from "@/components/Table";
-import Tag from "../dashboard/Tag";
+import Pagination from "@/components/ui/Pagination";
+import Table from "@/components/ui/Table";
+import Tag from "@/components/ui/Tag";
 import { useSelector } from "react-redux";
 
 function PageContent() {

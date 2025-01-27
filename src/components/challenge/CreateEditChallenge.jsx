@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import Tabs from "../Tabs";
-import TabHeader from "@/components/TabHeader";
-import TabBody from "@/components/TabBody";
-import Form from "../Form";
+import Tabs from "@/components/ui/Tabs";
+import TabHeader from "@/components/ui/TabHeader";
+import TabBody from "@/components/ui/TabBody";
+import Form from "@/components/ui/Form";
 import HintEditor from "./HintEditor";
-import TabActions from "@/components/TabActions";
+import TabActions from "@/components/ui/TabActions";
 import { useChallengeCreationContext } from "@/contexts/ChallengeCreationContext.js";
 import { useRouter } from "next/navigation";
 

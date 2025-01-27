@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import Table from "@/components/Table";
-import Pagination from "@/components/Pagination";
-import ActionButtons from "./ActionButtons";
-import Tag from "./Tag";
+import Table from "@/components/ui/Table";
+import Pagination from "@/components/ui/Pagination";
+import ActionButtons from "@/components/ui/ActionButtons";
+import Tag from "@/components/ui/Tag";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";

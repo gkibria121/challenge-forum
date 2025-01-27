@@ -1,5 +1,5 @@
 import React from "react";
-import CreateEditChallenge from "./CreateEditChallenge";
+import CreateEditChallenge from "@/components/challenge/CreateEditChallenge.jsx";
 function page() {
   return <CreateEditChallenge mode="create" />;
 }

@@ -6,9 +6,9 @@ import Comments from "./Comments";
 import Description from "./Description";
 import Hints from "./Hints";
 import SubmissionEditor from "./SubmissionEditor";
-import TabHeader from "@/components/TabHeader";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
+import TabHeader from "@/components/ui/TabHeader";
+import { useParams, useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 import { addComment, addSubmission } from "@/features/challenges";
 
 export default function Challenge({ challenge }) {

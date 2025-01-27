@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import CreateEditChallenge from "../../add/CreateEditChallenge";
+import CreateEditChallenge from "@/components/challenge/CreateEditChallenge";
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentChallenge } from "@/features/challenges";
