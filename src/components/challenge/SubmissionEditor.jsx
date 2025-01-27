@@ -55,8 +55,7 @@ const SubmissionEditor = ({ onCancel, onSave }) => {
 
     setIsSubmitting(true);
     try {
-      // Here you would typically make an API call
-      // For now, we'll simulate an API call with a timeout
+      // Simulate an API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       onSave(formData);
@@ -69,12 +68,12 @@ const SubmissionEditor = ({ onCancel, onSave }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="submission__content">
+      <div className="rounded-lg p-4 shadow-md">
         <div className="mb-4">
           <select
             name="language"
             id="language"
-            className="selection w-full p-2 border rounded-md bg-white"
+            className="w-full rounded-md border bg-white p-2"
             value={formData.language}
             onChange={handleChange}
           >
@@ -90,40 +89,48 @@ const SubmissionEditor = ({ onCancel, onSave }) => {
           <textarea
             name="description"
             placeholder="Brief description of your solution..."
-            className={`w-full p-2 border rounded-md ${errors.description ? "border-red-500" : ""}`}
+            className={`w-full rounded-md border p-2 ${errors.description ? "border-red-500" : ""}`}
             value={formData.description}
             onChange={handleChange}
             rows={2}
           />
-          {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description}</p>}
+          {errors.description && (
+            <p className="mt-1 text-sm text-red-500">{errors.description}</p>
+          )}
         </div>
 
         <div className="mb-4">
           <textarea
             name="code"
             placeholder="Write your code here..."
-            className={`submission__input w-full p-2 border rounded-md font-mono ${
-              errors.code ? "border-red-500" : ""
-            }`}
+            className={`w-full rounded-md border p-2 font-mono ${errors.code ? "border-red-500" : ""}`}
             value={formData.code}
             onChange={handleChange}
             rows={10}
           />
-          {errors.code && <p className="text-red-500 text-sm mt-1">{errors.code}</p>}
+          {errors.code && (
+            <p className="mt-1 text-sm text-red-500">{errors.code}</p>
+          )}
         </div>
 
-        {errors.submit && <div className="text-red-500 mb-4">{errors.submit}</div>}
+        {errors.submit && (
+          <div className="mb-4 text-red-500">{errors.submit}</div>
+        )}
 
-        <div className="submission__actions flex justify-end space-x-2">
+        <div className="flex justify-end space-x-2">
           <button
             type="button"
-            className="btn btn--back px-4 py-2"
+            className="rounded border bg-gray-200 px-4 py-2 hover:bg-gray-300"
             onClick={onCancel}
             disabled={isSubmitting}
           >
             Cancel
           </button>
-          <button type="submit" className="btn btn--add px-4 py-2" disabled={isSubmitting}>
+          <button
+            type="submit"
+            className="rounded border bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+            disabled={isSubmitting}
+          >
             {isSubmitting ? "Saving..." : "Save"}
           </button>
         </div>

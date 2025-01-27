@@ -13,15 +13,17 @@ const HintEditor = ({ isActive }) => {
   };
 
   return (
-    <div className={`tab ${isActive ? "tab--active p-4 rounded" : ""}`}>
+    <div
+      className={`hidden h-full w-full p-4 ${isActive ? "block rounded p-4" : ""}`}
+    >
       <textarea
-        className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="mb-4 w-full rounded border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Hint Title"
         value={hints.title}
         onChange={handleTextChange}
       ></textarea>
       <textarea
-        className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full rounded border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Hint Description"
         value={hints.description}
         rows={15}

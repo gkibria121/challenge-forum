@@ -13,8 +13,8 @@ const CreateEditChallenge = ({ mode = "create", challenge }) => {
   const { handleSave } = useChallengeCreationContext();
   const router = useRouter();
   return (
-    <main className="main">
-      <div className="cf-container">
+    <main className="flex h-[calc(100vh-10rem)] items-start justify-center">
+      <div className="bg-primary relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl p-12 shadow-md">
         <Tabs>
           <TabHeader
             tabs={[

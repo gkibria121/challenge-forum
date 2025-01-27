@@ -4,9 +4,12 @@ const CommentsList = ({ comments }) => (
       .slice()
       .reverse()
       .map((comment, index) => (
-        <div key={index} className="comments__content">
-          <div className="user__info">{comment.user.name}</div>
-          <div className="comments__description">
+        <div
+          key={index}
+          className="border-b border-gray-300 py-4 last:border-0"
+        >
+          <div className="font-semibold text-gray-800">{comment.user.name}</div>
+          <div className="mt-2 text-gray-600">
             <p>{comment.comment}</p>
           </div>
         </div>

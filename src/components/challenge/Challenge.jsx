@@ -37,8 +37,8 @@ export default function Challenge({ challenge }) {
   };
 
   return (
-    <main className="main">
-      <div className="cf-container">
+    <main className="flex h-[calc(100vh-10rem)] items-start justify-center">
+      <div className="bg-primary relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl p-12 shadow-md">
         <Tabs
           onTabChange={(curr) => {
             setActiveTab(curr);
@@ -58,12 +58,15 @@ export default function Challenge({ challenge }) {
 
           <Tabs.TabActions>
             <button
-              className={`btn btn--add ${isSubmitting ? "hidden" : ""}`}
+              className={`font-inherit font-inherit ml-4 cursor-pointer rounded-2xl rounded-md border-none p-4 px-4 py-1.5 text-white no-underline outline-none ${isSubmitting ? "hidden" : ""}`}
               onClick={() => setIsSubmitting(true)}
             >
               Add
             </button>
-            <button onClick={() => router.push("/challenges")} className="btn btn--back">
+            <button
+              onClick={() => router.push("/challenges")}
+              className="font-inherit font-inherit ml-4 cursor-pointer rounded-2xl rounded-md border-none p-4 px-4 py-1.5 text-white no-underline outline-none"
+            >
               {String.fromCharCode(8592)} Back
             </button>
           </Tabs.TabActions>
@@ -72,9 +75,13 @@ export default function Challenge({ challenge }) {
           <Tabs.TabPanel></Tabs.TabPanel>
         </Tabs>
         {activeTab === 1 && (
-          <div className="tabs__footer">
-            <button className="btn btn--next">Previous</button>
-            <button className="btn btn--prev">Next</button>
+          <div className="absolute bottom-0 left-0 flex w-full justify-between p-16">
+            <button className="font-inherit font-inherit ml-4 cursor-pointer rounded-2xl rounded-md border-none p-4 px-4 py-1.5 text-white no-underline outline-none">
+              Previous
+            </button>
+            <button className="font-inherit font-inherit ml-4 cursor-pointer rounded-2xl rounded-md border-none p-4 px-4 py-1.5 text-white no-underline outline-none">
+              Next
+            </button>
           </div>
         )}
       </div>

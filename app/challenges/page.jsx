@@ -29,15 +29,20 @@ function PageContent() {
 
   return (
     <>
-      <main className="main">
-        <div className="cf-container">
+      <main className="flex h-[calc(100vh-10rem)] items-start justify-center">
+        <div className="bg-primary relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl p-12 shadow-md">
           <h4 className="">All challenges</h4>
           <Table
             onClick={handleRowClick}
             headers={[
               { label: "No.", key: "id", colSpan: 1 },
               { label: "Title", key: "title", colSpan: 1 },
-              { label: "Tag", key: "tags", colSpan: 1, class: "table__th--tag" },
+              {
+                label: "Tag",
+                key: "tags",
+                colSpan: 1,
+                class: "table__th--tag",
+              },
             ]}
             data={challenges}
             renderRow={(challenge) => (
@@ -54,7 +59,11 @@ function PageContent() {
               </>
             )}
           />
-          <Pagination currentPage={2} totalPages={10} onPageClick={handlePageClick} />
+          <Pagination
+            currentPage={2}
+            totalPages={10}
+            onPageClick={handlePageClick}
+          />
         </div>
       </main>
     </>

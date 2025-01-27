@@ -25,11 +25,14 @@ const ChallengesPage = () => {
   };
 
   return (
-    <main className="main">
-      <div className="cf-container">
-        <div className="flex justify-between items-center mb-4">
+    <main className="flex h-[calc(100vh-10rem)] items-start justify-center">
+      <div className="bg-primary relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl p-12 shadow-md">
+        <div className="mb-4 flex items-center justify-between">
           <h4>All challenges</h4>
-          <Link className="btn btn--add" href="/dashboard/challenges/add">
+          <Link
+            className="font-inherit font-inherit ml-4 cursor-pointer rounded-2xl rounded-md border-none p-4 px-4 py-1.5 text-white no-underline outline-none"
+            href="/dashboard/challenges/add"
+          >
             Add
           </Link>
         </div>
@@ -38,7 +41,12 @@ const ChallengesPage = () => {
             { label: "No.", key: "id", colSpan: 1 },
             { label: "Title", key: "title", colSpan: 3 },
             { label: "Tag", key: "tags", colSpan: 1, class: "table__th--tag" },
-            { label: "Actions", key: "actions", colSpan: 1, class: "table__th--actions" },
+            {
+              label: "Actions",
+              key: "actions",
+              colSpan: 1,
+              class: "table__th--actions",
+            },
           ]}
           data={challenges}
           renderRow={(challenge) => (

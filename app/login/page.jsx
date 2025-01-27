@@ -1,61 +1,108 @@
+"use client";
+
 import React from "react";
 
 function page() {
-  return <> 
-    <main className="main">
-      <form className="form">
-        <h4 className="title">
-          welcome to <br />
-          <span className="title--highlighted">challenge forum</span>
-          
-        </h4>
+  return (
+    <>
+      <main className="flex h-[calc(100vh-10rem)] items-start justify-center">
+        <form className="w-full max-w-lg rounded-lg bg-blue-100 p-8 shadow-lg">
+          <h4 className="mb-6 text-center text-2xl font-bold">
+            Welcome to <br />
+            <span className="text-blue-500">Challenge Forum</span>
+          </h4>
 
-        <div className="social mt-2">
-          <img src="assets/images/google-logo.png" alt="Google logo" className="icon icon--google"/>
-          <span>Login with Google</span>
-        </div>
-        <div className="social mt-1">
-            <img src="assets/images/facebook-logo.png" alt="Facebook logo" className="icon icon--facebook"/>
-          <span>Login with facebook</span>
-        </div>
-        <div className="form__divider mt-1">
-            
-            <div className="form__divider-content">OR</div>
-        </div>
+          {/* Social Login */}
+          <div className="mb-4 flex cursor-pointer items-center justify-center gap-4 rounded-lg border p-3 shadow-md hover:bg-gray-100">
+            <img
+              src="assets/images/google-logo.png"
+              alt="Google logo"
+              className="h-6 w-6"
+            />
+            <span className="text-sm font-medium">Login with Google</span>
+          </div>
+          <div className="mb-4 flex cursor-pointer items-center justify-center gap-4 rounded-lg border p-3 shadow-md hover:bg-gray-100">
+            <img
+              src="assets/images/facebook-logo.png"
+              alt="Facebook logo"
+              className="h-6 w-6"
+            />
+            <span className="text-sm font-medium">Login with Facebook</span>
+          </div>
 
-        <div className="form__group form__group--icon-container">
-            <i className="fa-solid fa-envelope"></i>
-          <div className="input-container"> 
-            <input type="email" name="email" id="email" placeholder="Email" />
+          {/* Divider */}
+          <div className="relative my-6 flex items-center">
+            <span className="absolute inset-x-0 top-1/2 h-[1px] bg-gray-300"></span>
+            <span className="relative bg-white px-4 text-sm uppercase text-gray-500">
+              Or
+            </span>
           </div>
-        </div>
-        <div className="form__group form__group--icon-container">
-            
-            <i className="fa-solid fa-key"></i>
-          <div className="input-container"> 
-            <input type="password" name="password" min="8" id="password" placeholder="password" />
-            <i className="fa-solid fa-eye"></i> 
-            <i className="fa-solid fa-eye-slash"></i>
+
+          {/* Email Input */}
+          <div className="mb-4 flex items-center rounded-lg bg-gray-200 p-2">
+            <i className="fa-solid fa-envelope text-gray-500"></i>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
+              className="flex-1 bg-transparent p-2 text-sm outline-none"
+            />
           </div>
-        </div>
-         {/* <div className="errors">
-            <p className="error">Invalid credentials</p>
-        </div>   */}
-        <div className="remember-me  mt-3 text--samll">
-          <div>
-            <input type="checkbox" name="remember" id="remember" />
-            <label htmlFor="remember">Remember me</label>
+
+          {/* Password Input */}
+          <div className="mb-4 flex items-center rounded-lg bg-gray-200 p-2">
+            <i className="fa-solid fa-key text-gray-500"></i>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              className="flex-1 bg-transparent p-2 text-sm outline-none"
+            />
+            <i className="fa-solid fa-eye cursor-pointer text-gray-500"></i>
           </div>
-          <a href="/forgot-passowrd" className="nav__link link--active text--samll">Forgot Password?</a>
-        </div>
-        <button type="submit" className="btn btn--login mt-1">
+
+          {/* Remember Me and Forgot Password */}
+          <div className="mb-4 flex items-center justify-between text-sm">
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                name="remember"
+                id="remember"
+                className="h-4 w-4 rounded border-gray-300 text-blue-500"
+              />
+              <label htmlFor="remember" className="text-gray-600">
+                Remember me
+              </label>
+            </div>
+            <a
+              href="/forgot-password"
+              className="text-blue-500 hover:underline"
+            >
+              Forgot Password?
+            </a>
+          </div>
+
+          {/* Login Button */}
+          <button
+            type="submit"
+            className="w-full rounded-lg bg-blue-500 py-2 text-white transition hover:bg-blue-600"
+          >
             Login
-        </button>
-        <div className="register-link mt-1 text-center">
-            Don't have an account? <a href="/register" className="nav__link link--active text--samll">Register</a>
-        </div>
-      </form>
-    </main></>
+          </button>
+
+          {/* Register Link */}
+          <div className="mt-4 text-center text-sm">
+            Don't have an account?{" "}
+            <a href="/register" className="text-blue-500 hover:underline">
+              Register
+            </a>
+          </div>
+        </form>
+      </main>
+    </>
+  );
 }
 
 export default page;

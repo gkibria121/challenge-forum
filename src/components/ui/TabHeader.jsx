@@ -5,7 +5,7 @@ const TabContext = createContext();
 
 const Tabs = ({ children, onTabChange }) => {
   const TabListReactEl = React.Children.toArray(children).find(
-    (child) => child.type.name === TabList.name
+    (child) => child.type.name === TabList.name,
   );
   const tabKeys = TabListReactEl.props.children.map((child) => child.props?.id);
   const [activeTab, setActiveTab] = useState(tabKeys[0] ?? "");
@@ -17,7 +17,7 @@ const Tabs = ({ children, onTabChange }) => {
   let currentTabPanelToRender = 0;
   return (
     <TabContext.Provider value={{ activeTab, setActiveTab }}>
-      <div className="tabs">
+      <div className="h-full w-full">
         {React.Children.map(children, (child) => {
           if (child.type?.name !== TabPanel.name) {
             return child;
@@ -33,7 +33,7 @@ const Tabs = ({ children, onTabChange }) => {
 };
 
 const TabList = ({ children }) => {
-  return <div className="tabs__header">{children}</div>;
+  return <div className="relative">{children}</div>;
 };
 
 function Tab({ children, id }) {
@@ -57,7 +57,7 @@ const TabActions = ({ children }) => {
 function TabPanel({ children, id }) {
   const { activeTab } = useTabContext();
   if (activeTab !== id) return;
-  return <div className="tabs__body">{children}</div>;
+  return <div className="h-full w-full">{children}</div>;
 }
 
 Tabs.Tab = Tab;
