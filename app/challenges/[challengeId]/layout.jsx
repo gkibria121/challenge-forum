@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
-import { Suspense } from "react";
 
 function ChallengeLayout({ children }) {
   const { challengeId } = useParams();
