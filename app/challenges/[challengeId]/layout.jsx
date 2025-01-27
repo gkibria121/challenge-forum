@@ -1,5 +1,6 @@
 "use client";
 import Main from "@/components/ui/Main";
+import Container from "@/components/ui/Container";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 
@@ -9,7 +10,7 @@ function ChallengeLayout({ children }) {
 
   return (
     <Main>
-      <div className="bg-primary relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl p-12 shadow-md">
+      <Container>
         <div className="relative">
           {[
             { id: 1, label: "Description", href: "description" },
@@ -30,7 +31,7 @@ function ChallengeLayout({ children }) {
           ))}
         </div>
         {children}
-      </div>
+      </Container>
     </Main>
   );
 }

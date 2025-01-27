@@ -80,7 +80,7 @@ const Comments = ({}) => {
         <p className="mb-4 text-xl font-semibold">
           Comments ({comments.length})
         </p>
-        <Button onClick={() => setIsCommenting(true)} type="large">
+        <Button onClick={() => setIsCommenting(true)} variant="large">
           Show
         </Button>
         <div className="mt-4 rounded bg-gray-100 p-4">
@@ -109,10 +109,10 @@ const Comments = ({}) => {
             />
           </div>
           <div className="mt-4 flex gap-4">
-            <Button type="danger" onClick={handleCancel}>
+            <Button variant="danger" onClick={handleCancel}>
               Cancel
             </Button>
-            <Button type="success" onClick={handleSaveComment}>
+            <Button variant="success" onClick={handleSaveComment}>
               Save
             </Button>
           </div>

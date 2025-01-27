@@ -26,11 +26,15 @@ const ChallengesPage = () => {
 
   return (
     <Main>
-      <div className="bg-primary relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl p-12 shadow-md">
+      <div className="relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl bg-white p-12 shadow-md">
         <div className="mb-4 flex items-center justify-between">
           <h4>All challenges</h4>
 
-          <Button type="success" href="/dashboard/challenges/add" isLink={true}>
+          <Button
+            variant="success"
+            href="/dashboard/challenges/add"
+            isLink={true}
+          >
             Add
           </Button>
         </div>
@@ -41,7 +45,7 @@ const ChallengesPage = () => {
           <ChallengeTable.Body>
             <ChallengeTable.ColExtra>
               <Button
-                type="dark"
+                variant="dark"
                 onClick={(challengeId) => {
                   router.push(`/dashboard/challenges/${challengeId}/edit`);
                 }}
@@ -49,7 +53,7 @@ const ChallengesPage = () => {
                 Edit
               </Button>
               <Button
-                type="danger"
+                variant="danger"
                 onClick={(challengeId) => {
                   alert("challenge deleted! " + challengeId);
                 }}
