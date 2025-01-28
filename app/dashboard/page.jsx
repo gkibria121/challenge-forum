@@ -20,8 +20,8 @@ const ChallengesPage = () => {
     }
   };
 
-  const handleEdit = (challenge) => {
-    router.push(`/dashboard/challenges/${challenge.id}/edit`);
+  const handleEdit = (id) => {
+    router.push(`/dashboard/challenges/${id}/edit`);
   };
 
   return (

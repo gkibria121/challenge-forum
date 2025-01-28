@@ -5,3 +5,7 @@ function Page() {
 }
 
 export default Page;
+
+export const metadata = {
+  title: "Add challenge",
+};

@@ -11,3 +11,8 @@ async function Page({ params }) {
 }
 
 export default Page;
+export const generateMetadata = async () => {
+  return {
+    title: " Submissions",
+  };
+};
