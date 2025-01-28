@@ -3,7 +3,7 @@ import Main from "@/components/ui/Main";
 import Container from "@/components/ui/Container";
 import Pagination from "@/components/ui/Pagination";
 import ChallengeTable from "@/components/challenge/ChallengeTable";
-export default async function PageContent({ params, searchParams }) {
+export default async function PageContent({ searchParams }) {
   const calculatedSearchParams = await searchParams;
   console.log(calculatedSearchParams);
 
@@ -18,7 +18,7 @@ export default async function PageContent({ params, searchParams }) {
   return (
     <Main>
       <Container>
-        <ChallengeTable challenges={data} />
+        <ChallengeTable challenges={data} redirectToPage={true} />
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}

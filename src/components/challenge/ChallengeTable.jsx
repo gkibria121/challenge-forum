@@ -2,15 +2,20 @@
 import React from "react";
 import Table from "@/components/ui/Table";
 import Tag from "@/components/ui/Tag";
+import { useRouter } from "next/navigation";
 
 const TableContext = React.createContext();
 
 function ChallengeTable(props) {
-  const { children, challenges, onChallengeClick = () => {} } = props;
-
+  const { children, challenges, redirectToPage } = props;
+  const rotuer = useRouter();
   const contextValue = {
     challenges,
-    onRowClick: onChallengeClick,
+    onRowClick: redirectToPage
+      ? (id) => {
+          rotuer.push(`/challenges/${id}`);
+        }
+      : () => {},
   };
 
   return (

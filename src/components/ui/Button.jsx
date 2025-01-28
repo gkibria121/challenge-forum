@@ -27,6 +27,7 @@ function Button({
   isLink = false,
   buttonType = "button",
   className: additionalClassName = "",
+  disabled,
   ...props
 }) {
   if (isHidden) return null;
@@ -51,6 +52,7 @@ function Button({
     <button
       {...props}
       onClick={onClick}
+      disabled={disabled}
       className={className}
       type={buttonType}
     >

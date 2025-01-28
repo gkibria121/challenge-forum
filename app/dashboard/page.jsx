@@ -1,29 +1,19 @@
-"use client";
 import React from "react";
 import Pagination from "@/components/ui/Pagination";
-import { useRouter } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteChallenge } from "@/features/challenges";
 import Button from "@/components/ui/Button";
-import ChallengeTable from "@/components/challenge/ChallengeTable";
-import Table from "@/components/ui/Table";
 import Main from "@/components/ui/Main";
+import ChallengesDashboard from "@/components/dashboard/ChallengesDashboard";
+import { getChallenges } from "@/services/challenge";
+export default async function ChallengesPage({ params, searchParams }) {
+  const calculatedSearchParams = await searchParams;
 
-const ChallengesPage = () => {
-  const dispatch = useDispatch();
+  const page = parseInt(calculatedSearchParams.page) || 1;
+  const per_page = parseInt(calculatedSearchParams.per_page) || 10;
 
-  const challenges = useSelector((store) => store.challenges.data);
-  const router = useRouter();
-  const handleDelete = (id) => {
-    if (confirm("Are you sure you want to delete this challenge?")) {
-      dispatch(deleteChallenge(id));
-    }
-  };
-
-  const handleEdit = (id) => {
-    router.push(`/dashboard/challenges/${id}/edit`);
-  };
-
+  const { data, totalPages, currentPage } = await getChallenges({
+    page,
+    per_page,
+  });
   return (
     <Main>
       <div className="relative mx-auto mt-8 min-h-[90%] w-[90vw] max-w-[120rem] rounded-2xl bg-white p-12 shadow-md">
@@ -38,39 +28,10 @@ const ChallengesPage = () => {
             Add
           </Button>
         </div>
-        <ChallengeTable challenges={challenges} onChallengeCLick={() => {}}>
-          <ChallengeTable.Heading>
-            <Table.Heading className="text-center">Actions</Table.Heading>
-          </ChallengeTable.Heading>
-          <ChallengeTable.Body>
-            <ChallengeTable.ColExtra>
-              <Button
-                variant="dark"
-                onClick={(challengeId) => {
-                  router.push(`/dashboard/challenges/${challengeId}/edit`);
-                }}
-              >
-                Edit
-              </Button>
-              <Button
-                variant="danger"
-                onClick={(challengeId) => {
-                  alert("challenge deleted! " + challengeId);
-                }}
-              >
-                Delete
-              </Button>
-            </ChallengeTable.ColExtra>
-          </ChallengeTable.Body>
-        </ChallengeTable>
-        <Pagination
-          currentPage={1}
-          totalPages={10}
-          onPageChange={(Page) => console.log("Go to Page:", Page)}
-        />
+        <ChallengesDashboard challenges={data} />
+
+        <Pagination currentPage={currentPage} totalPages={totalPages} />
       </div>
     </Main>
   );
-};
-
-export default ChallengesPage;
+}

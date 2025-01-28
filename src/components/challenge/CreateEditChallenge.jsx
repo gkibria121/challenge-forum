@@ -35,9 +35,9 @@ const CreateChallenge = ({ mode = "create", challenge = {} }) => {
             </Tabs.TabPanel>
           </Tabs>
 
-          <div>
+          <div className="absolute bottom-10">
             <Button
-              type="danger"
+              variant="danger"
               buttonType="reset"
               onClick={() => {
                 router.push("/dashboard");
@@ -45,7 +45,7 @@ const CreateChallenge = ({ mode = "create", challenge = {} }) => {
             >
               cancel
             </Button>
-            <Button type="green" buttonType="submit">
+            <Button variant="green" buttonType="submit">
               save
             </Button>
           </div>

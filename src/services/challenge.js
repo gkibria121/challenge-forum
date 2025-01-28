@@ -9,7 +9,7 @@ export const getChallenge = async (challengeId) => {
 };
 
 export const getChallenges = async (params) => {
-  const { page = 1, per_page = 2 } = params;
+  const { page = 1, per_page = 10 } = params;
   console.log(page, per_page);
   const resp = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/challenges?_page=${page}&_per_page=${per_page}`,

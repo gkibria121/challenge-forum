@@ -2,7 +2,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 
-const Pagination = ({ currentPage, totalPages, perPage = 2 }) => {
+const Pagination = ({ currentPage, totalPages, perPage = 10 }) => {
   const router = useRouter();
   const pathName = usePathname();
   const searchParams = useSearchParams();
