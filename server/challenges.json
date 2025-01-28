@@ -45,47 +45,101 @@
     {
       "id": "2",
       "title": "FizzBuzz",
-      "tags": ["principles"]
+      "tags": ["principles"],
+      "description": "",
+      "submissions": [],
+      "hints": {
+        "title": "",
+        "description": ""
+      }
     },
     {
       "id": "3",
       "title": "Reverse a String",
-      "tags": ["coding", "principles", "Design pattern"]
+      "tags": ["coding", "principles", "Design pattern"],
+      "description": "",
+      "submissions": [],
+      "hints": {
+        "title": "",
+        "description": ""
+      }
     },
     {
       "id": "4",
       "title": "Tower of Hanoi Algorithm",
-      "tags": ["singleton"]
+      "tags": ["singleton"],
+      "description": "",
+      "submissions": [],
+      "hints": {
+        "title": "",
+        "description": ""
+      }
     },
     {
       "id": "5",
       "title": "Publisher Subscriber pattern",
-      "tags": ["experimental"]
+      "tags": ["experimental"],
+      "description": "",
+      "submissions": [],
+      "hints": {
+        "title": "",
+        "description": ""
+      }
     },
     {
       "id": "6",
       "title": "Create a virtual DOM using JavaScript",
-      "tags": ["data modeling"]
+      "tags": ["data modeling"],
+      "description": "",
+      "submissions": [],
+      "hints": {
+        "title": "",
+        "description": ""
+      }
     },
     {
       "id": "7",
       "title": "Singleton Method Design Pattern",
-      "tags": ["DOM"]
+      "tags": ["DOM"],
+      "description": "",
+      "submissions": [],
+      "hints": {
+        "title": "",
+        "description": ""
+      }
     },
     {
       "id": "8",
       "title": "Design a URL Shortener",
-      "tags": ["AJAX"]
+      "tags": ["AJAX"],
+      "description": "",
+      "submissions": [],
+      "hints": {
+        "title": "",
+        "description": ""
+      }
     },
     {
       "id": "9",
       "title": "Create a todo app maintaining SOLID",
-      "tags": ["IFI"]
+      "tags": ["IFI"],
+      "description": "",
+      "submissions": [],
+      "hints": {
+        "title": "",
+        "description": ""
+      }
     },
     {
       "id": "10",
       "title": "Square Root",
-      "tags": ["principles"]
+      "tags": ["principles"],
+      "description": "",
+      "submissions": [],
+      "hints": {
+        "title": "",
+        "description": ""
+      }
     }
   ]
 }
