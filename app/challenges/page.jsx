@@ -5,7 +5,6 @@ import Pagination from "@/components/ui/Pagination";
 import ChallengeTable from "@/components/challenge/ChallengeTable";
 export default async function PageContent({ searchParams }) {
   const calculatedSearchParams = await searchParams;
-  console.log(calculatedSearchParams);
 
   const page = parseInt(calculatedSearchParams.page) || 1;
   const per_page = parseInt(calculatedSearchParams.per_page) || 10;

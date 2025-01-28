@@ -7,14 +7,16 @@ import Button from "../ui/Button";
 import { useRouter } from "next/navigation";
 import Main from "../ui/Main";
 import Container from "../ui/Container";
-
+import { addChallengeAction } from "@/actions/challenges";
+import { updateChallengeAction } from "@/actions/challenges";
 const CreateChallenge = ({ mode = "create", challenge = {} }) => {
   const isEditing = mode !== "create";
+  const updateChallengeWithId = updateChallengeAction.bind(null, challenge?.id);
   const router = useRouter();
   return (
     <Main>
       <Container>
-        <form>
+        <form action={isEditing ? updateChallengeWithId : addChallengeAction}>
           <Tabs>
             <Tabs.TabList>
               {[

@@ -12,6 +12,8 @@ const AddChallengeForm = ({ challenge, isEditing = false }) => {
         <Input
           type="text"
           id="title"
+          name="title"
+          required
           placeholder="Challenge title"
           defaultValue={isEditing ? challenge.title : ""}
         />
@@ -22,6 +24,8 @@ const AddChallengeForm = ({ challenge, isEditing = false }) => {
         <Label htmlFor="description">Description</Label>
         <TextArea
           id="description"
+          name="description"
+          required
           placeholder="Challenge descriptions"
           defaultValue={isEditing ? challenge.description : ""}
         ></TextArea>
@@ -34,6 +38,7 @@ const AddChallengeForm = ({ challenge, isEditing = false }) => {
           type="text"
           name="tags"
           id="tags"
+          required
           placeholder="Coding, Principles, etc"
           defaultValue={isEditing ? challenge.tags.join(",") : ""}
         />

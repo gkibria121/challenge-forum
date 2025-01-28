@@ -8,11 +8,22 @@ const HintEditor = ({ hints, isEditing }) => {
     <div className={`mt-8 space-y-6 rounded-lg`}>
       <FormGroup>
         <Label htmlFor="title">Title</Label>
-        <Input type="text" id="title" placeholder="Hints title" />
+        <Input
+          type="text"
+          name="hintsTitle"
+          id="title"
+          defaultValue={isEditing ? hints.title : ""}
+          placeholder="Hints title"
+        />
       </FormGroup>
       <FormGroup>
         <Label htmlFor="description">Description</Label>
-        <TextArea id="description" placeholder="Hints"></TextArea>
+        <TextArea
+          id="description"
+          name="hintsDescription"
+          defaultValue={isEditing ? hints.description : ""}
+          placeholder="Hints"
+        ></TextArea>
       </FormGroup>
     </div>
   );

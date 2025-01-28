@@ -3,7 +3,6 @@ export const metadata = {
 };
 
 function Layout({ children }) {
-  console.log("dashboard");
   return <>{children}</>;
 }
 
