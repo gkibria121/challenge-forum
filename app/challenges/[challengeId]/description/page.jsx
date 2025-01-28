@@ -1,6 +1,11 @@
 import React from "react";
 import Description from "@/components/challenge/Description.jsx";
 import { getChallenge } from "@/services/challenge";
+export const generateMetadata = async () => {
+  return {
+    title: "Discription",
+  };
+};
 async function Page({ params }) {
   const { challengeId } = await params;
   const challenge = await getChallenge(challengeId);
