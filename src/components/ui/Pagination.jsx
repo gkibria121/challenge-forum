@@ -1,8 +1,35 @@
 "use client";
-
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+const Pagination = ({ currentPage, totalPages, perPage = 2 }) => {
+  const router = useRouter();
+  const pathName = usePathname();
+  const searchParams = useSearchParams();
+
+  const createQueryString = (paramsToUpdate) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    Object.entries(paramsToUpdate).forEach(([key, value]) => {
+      if (value) {
+        params.set(key, value.toString());
+      } else {
+        params.delete(key);
+      }
+    });
+
+    return params.toString() ? `?${params.toString()}` : "";
+  };
+
+  const onPageChange = (page) => {
+    const updatedQueryString = createQueryString({
+      page: page,
+      per_page: perPage,
+    });
+
+    router.push(`${pathName}${updatedQueryString}`);
+  };
+
   const getPageNumbers = () => {
     const pageNumbers = [];
     const showEllipsis = totalPages > 7;
@@ -11,14 +38,12 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
 
-    // Always show first page
     pageNumbers.push(1);
 
     if (currentPage > 3) {
       pageNumbers.push("...");
     }
 
-    // Show pages around current page
     for (
       let i = Math.max(2, currentPage - 1);
       i <= Math.min(totalPages - 1, currentPage + 1);
@@ -31,8 +56,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       pageNumbers.push("...");
     }
 
-    // Always show last page
-    pageNumbers.push(totalPages);
+    if (totalPages > 1) {
+      pageNumbers.push(totalPages);
+    }
 
     return pageNumbers;
   };

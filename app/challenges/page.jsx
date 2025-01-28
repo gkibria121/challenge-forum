@@ -1,41 +1,30 @@
-"use client";
-
-import React from "react";
-import { useRouter } from "next/navigation";
-import Pagination from "@/components/ui/Pagination";
-import Container from "@/components/ui/Container";
+import { getChallenges } from "@/services/challenge";
 import Main from "@/components/ui/Main";
+import Container from "@/components/ui/Container";
+import Pagination from "@/components/ui/Pagination";
 import ChallengeTable from "@/components/challenge/ChallengeTable";
-import { useSelector } from "react-redux";
+export default async function PageContent({ params, searchParams }) {
+  const calculatedSearchParams = await searchParams;
+  console.log(calculatedSearchParams);
 
-function PageContent() {
-  const router = useRouter();
-  const challenges = useSelector((store) => store.challenges.data);
+  const page = parseInt(calculatedSearchParams.page) || 1;
+  const per_page = parseInt(calculatedSearchParams.per_page) || 10;
 
-  const handlePageClick = (Page) => {
-    console.log(`Navigating to Page ${Page}`);
-  };
+  const { data, totalPages, currentPage } = await getChallenges({
+    page,
+    per_page,
+  });
 
   return (
-    <>
-      <Main>
-        <Container>
-          <ChallengeTable
-            challenges={challenges}
-            onChallengeClick={(challengeId) =>
-              router.push(`/challenges/${challengeId}`)
-            }
-          ></ChallengeTable>
-
-          <Pagination
-            currentPage={2}
-            totalPages={10}
-            onPageClick={handlePageClick}
-          />
-        </Container>
-      </Main>
-    </>
+    <Main>
+      <Container>
+        <ChallengeTable challenges={data} />
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          perPage={per_page}
+        />
+      </Container>
+    </Main>
   );
 }
-
-export default PageContent;

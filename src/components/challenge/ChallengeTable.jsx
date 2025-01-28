@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Table from "@/components/ui/Table";
 import Tag from "@/components/ui/Tag";

@@ -2,68 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  data: [
-    {
-      id: 1,
-      title: "Palindrome Checker",
-      tags: ["coding"],
-      description: "random description",
-      submissions: [
-        {
-          id: "1",
-          user: {
-            name: "gkibria",
-          },
-
-          description: "Easy solve with python.",
-          code: "print('hello world!')",
-          language: "python",
-          comments: [],
-        },
-        {
-          id: "2",
-          user: {
-            name: "mehedi",
-          },
-          description: "Implemented with java",
-          code: "System.console.printLine('hello, worl'!)",
-          language: "python",
-          comments: [],
-        },
-        {
-          id: "3",
-          user: {
-            name: "talha",
-          },
-          description: "Implemented with javascript",
-          code: "console.log('hello world!')",
-          language: "python",
-          comments: [],
-        },
-      ],
-      hints: {
-        title: "What is palindrome",
-        description: "A palindrome reads the same backward as forward.",
-      },
-    },
-    { id: 2, title: "FizzBuzz", tags: ["principles"] },
-    {
-      id: 3,
-      title: "Reverse a String",
-      tags: ["coding", "principles", "Design pattern"],
-    },
-    { id: 4, title: "Tower of Hanoi Algorithm", tags: ["singleton"] },
-    { id: 5, title: "Publisher Subscriber pattern", tags: ["experimental"] },
-    {
-      id: 6,
-      title: "Create a virtual DOM using JavaScript",
-      tags: ["data modeling"],
-    },
-    { id: 7, title: "Singleton Method Design Pattern", tags: ["DOM"] },
-    { id: 8, title: "Design a URL Shortener", tags: ["AJAX"] },
-    { id: 9, title: "Create a todo app maintaining SOLID", tags: ["IFI"] },
-    { id: 10, title: "Square Root", tags: ["principles"] },
-  ],
+  data: [],
 };
 
 const challengeSlice = createSlice({
@@ -84,7 +23,9 @@ const challengeSlice = createSlice({
       },
 
       reducer(state, action) {
-        const challenge = state.data.find((challenge) => challenge.id === action.payload.id);
+        const challenge = state.data.find(
+          (challenge) => challenge.id === action.payload.id,
+        );
         if (!challenge) return;
 
         if (!challenge.submissions) challenge.submissions = [];
@@ -105,20 +46,22 @@ const challengeSlice = createSlice({
 
       reducer(state, action) {
         const challenge = state.data.find(
-          (challenge) => challenge.id === action.payload.challengeId
+          (challenge) => challenge.id === action.payload.challengeId,
         );
         if (!challenge) return;
 
         if (!challenge.submissions) challenge.submissions = [];
 
         const submission = challenge.submissions.find(
-          (submission) => submission.id === action.payload.submissionId
+          (submission) => submission.id === action.payload.submissionId,
         );
         if (submission) submission.comments.push(action.payload.comment);
       },
     },
     deleteChallenge(state, action) {
-      state.data = state.data.filter((challenge) => challenge.id !== action.payload);
+      state.data = state.data.filter(
+        (challenge) => challenge.id !== action.payload,
+      );
     },
     addChallenge: {
       prepare(title, description, tags, hints) {
@@ -162,7 +105,9 @@ const challengeSlice = createSlice({
           if (challenge.id !== action.payload.challengeId) return challenge;
           challenge.description = action.payload.description;
           challenge.title = action.payload.title;
-          challenge.tags = action.payload.tags.split(",").filter((e) => e !== "");
+          challenge.tags = action.payload.tags
+            .split(",")
+            .filter((e) => e !== "");
           challenge.hints = action.payload.hints;
           return challenge;
         });
