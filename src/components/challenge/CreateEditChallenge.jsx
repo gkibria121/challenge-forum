@@ -36,7 +36,11 @@ const CreateChallenge = ({ mode = "create", challenge = {} }) => {
               <HintEditor hints={challenge.hints} isEditing={isEditing} />
             </Tabs.TabPanel>
           </Tabs>
-
+          <input
+            type="hidden"
+            name="submissions"
+            value={JSON.stringify(challenge?.submissions ?? [])}
+          />
           <div className="absolute bottom-10">
             <Button
               variant="danger"

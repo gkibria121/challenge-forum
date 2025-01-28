@@ -11,12 +11,13 @@ export const addChallengeAction = async (data) => {
       return tag.trim();
     }),
     description: dataObject.description,
-    submissions: [],
+    submissions: JSON.parse(dataObject.submissions),
     hints: {
       title: dataObject.hintsTitle,
       description: dataObject.hintsDescription,
     },
   };
+  console.log(newChallenge);
   const responseData = await addChallenge(newChallenge);
   revalidatePath("/dashboard");
   redirect("/dashboard");
@@ -30,11 +31,14 @@ export const updateChallengeAction = async (id, data) => {
       return tag.trim();
     }),
     description: dataObject.description,
+    submissions: JSON.parse(dataObject.submissions),
     hints: {
       title: dataObject.hintsTitle,
       description: dataObject.hintsDescription,
     },
   };
   const responseData = await updateChallenge(id, updatedChallenge);
-  revalidatePath(`/challenges/[challengeId]/`);
+  console.log(updatedChallenge);
+  revalidatePath(`/dashboard`);
+  redirect("/dashboard");
 };

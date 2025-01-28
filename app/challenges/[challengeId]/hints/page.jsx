@@ -9,7 +9,7 @@ export const generateMetadata = async () => {
 async function Page({ params }) {
   const { challengeId } = await params;
   const challenge = await getChallenge(challengeId);
-  return <Hints challenge={challenge} />;
+  return <Hints hints={challenge.hints} />;
 }
 
 export default Page;
