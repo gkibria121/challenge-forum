@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 
-const RatingStars = ({ defaultRating = 0, onRatingChange }) => {
-  const [rating, setRating] = useState(defaultRating);
+const RatingStars = ({
+  defaultRating = 0,
+  onRatingChange,
+}: {
+  defaultRating?: number;
+  onRatingChange?: Function;
+}) => {
+  const [rating, setRating] = useState<number>(defaultRating);
 
-  const isClickOnLeftHalf = (element, event) => {
+  const isClickOnLeftHalf = (
+    element: HTMLSpanElement,
+    event: React.MouseEvent<HTMLElement>,
+  ): boolean => {
     const rect = element.getBoundingClientRect();
     const midpoint = rect.left + rect.width / 2;
     return event.clientX < midpoint;
@@ -11,14 +20,15 @@ const RatingStars = ({ defaultRating = 0, onRatingChange }) => {
 
   const ratings = [2, 4, 6, 8, 10];
 
-  const handleRatingChange = (event) => {
-    const star = event.target.closest("[data-rating]");
+  const handleRatingChange = (event: React.MouseEvent<HTMLSpanElement>) => {
+    const target: HTMLElement = event.target as HTMLElement;
+    const star = target.closest("[data-rating]") as HTMLElement | null;
     if (!star) return;
 
     const isLeft = isClickOnLeftHalf(star, event);
     const selectedRating = isLeft
-      ? +star.dataset.rating - 1
-      : +star.dataset.rating;
+      ? +star.dataset.rating! - 1
+      : +star.dataset.rating!;
     setRating(selectedRating);
 
     if (onRatingChange) {
@@ -26,7 +36,7 @@ const RatingStars = ({ defaultRating = 0, onRatingChange }) => {
     }
   };
 
-  const getStarClass = (ratingValue) => {
+  const getStarClass = (ratingValue: number) => {
     const baseClasses = "block w-6 h-6 relative";
 
     if (rating >= ratingValue) {

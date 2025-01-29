@@ -2,8 +2,15 @@ import FormGroup from "@/components/ui/FormGroup";
 import Label from "@/components/ui/Label";
 import Input from "@/components/ui/Input";
 import TextArea from "@/components/ui/TextArea";
+import { Hints } from "@/types/challenges";
 
-const HintEditor = ({ hints, isEditing }) => {
+const HintEditor = ({
+  hints,
+  isEditing,
+}: {
+  hints: Hints | undefined;
+  isEditing: Boolean;
+}) => {
   return (
     <div className={`mt-8 space-y-6 rounded-lg`}>
       <FormGroup>
@@ -12,7 +19,7 @@ const HintEditor = ({ hints, isEditing }) => {
           type="text"
           name="hintsTitle"
           id="title"
-          defaultValue={isEditing ? hints.title : ""}
+          defaultValue={isEditing && hints ? hints.title : ""}
           placeholder="Hints title"
         />
       </FormGroup>
@@ -21,7 +28,7 @@ const HintEditor = ({ hints, isEditing }) => {
         <TextArea
           id="description"
           name="hintsDescription"
-          defaultValue={isEditing ? hints.description : ""}
+          defaultValue={isEditing && hints ? hints.description : ""}
           placeholder="Hints"
         ></TextArea>
       </FormGroup>

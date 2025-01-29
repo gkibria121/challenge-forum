@@ -1,14 +1,19 @@
-export const getChallenge = async (challengeId) => {
+import { Challenge, ChallengeWithoutID } from "@/types/challenges";
+
+export const getChallenge = async (challengeId: string) => {
   const resp = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/challenges/${challengeId}`,
   );
   if (!resp.ok) throw new Error("Challenge not found");
-  const data = await resp.json();
+  const data: Challenge = (await resp.json()) as Challenge;
 
   return data;
 };
 
-export const getChallenges = async (params) => {
+export const getChallenges = async (params: {
+  page?: number;
+  per_page?: number;
+}) => {
   const { page = 1, per_page = 10 } = params;
 
   const resp = await fetch(
@@ -16,16 +21,20 @@ export const getChallenges = async (params) => {
   );
 
   if (!resp.ok) throw new Error("Challenge not found");
-  const { data, pages, items } = await resp.json();
+  const { data, pages, items } = (await resp.json()) as {
+    data: Challenge[];
+    pages: number;
+    items: number;
+  };
 
   return {
     data,
     totalPages: pages,
     totalItems: items,
-    currentPage: parseInt(page),
+    currentPage: page,
   };
 };
-export const addChallenge = async (newChallenge) => {
+export const addChallenge = async (newChallenge: ChallengeWithoutID) => {
   const resp = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/challenges`, {
     method: "POST",
     headers: {
@@ -42,7 +51,10 @@ export const addChallenge = async (newChallenge) => {
   return data; // Return the response data
 };
 
-export const updateChallenge = async (id, updatedChallenge) => {
+export const updateChallenge = async (
+  id: string,
+  updatedChallenge: Challenge,
+) => {
   const resp = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/challenges/${id}`,
     {
@@ -62,7 +74,7 @@ export const updateChallenge = async (id, updatedChallenge) => {
   return data; // Return the response data
 };
 
-export const getSubmissions = async (challengeId) => {
+export const getSubmissions = async (challengeId: string) => {
   return [
     {
       id: 1,

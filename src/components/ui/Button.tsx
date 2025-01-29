@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-
+import { ButtonType } from "@/types/ui";
 const BUTTON_VARIANTS = {
   primary:
     "ml-1 bg-blue-600 hover:bg-blue-700 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
@@ -28,8 +28,9 @@ function Button({
   buttonType = "button",
   className: additionalClassName = "",
   disabled,
+  href = "",
   ...props
-}) {
+}: ButtonType) {
   if (isHidden) return null;
 
   const baseClassName =
@@ -42,7 +43,7 @@ function Button({
 
   if (isLink) {
     return (
-      <Link {...props} onClick={onClick} className={className}>
+      <Link {...props} href={href} className={className}>
         {children}
       </Link>
     );

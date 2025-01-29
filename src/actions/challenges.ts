@@ -1,13 +1,20 @@
 "use server";
-import { updateChallenge } from "@/services/challenge";
-import { addChallenge } from "@/services/challenge";
+import { addChallenge, updateChallenge } from "@/services/challenge";
+import {
+  Challenge,
+  ChallengeData,
+  ChallengeDataObject,
+  ChallengeWithoutID,
+} from "@/types/challenges";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-export const addChallengeAction = async (data) => {
-  const dataObject = Object.fromEntries(data);
-  const newChallenge = {
+export const addChallengeAction = async (data: ChallengeData) => {
+  const dataObject: ChallengeDataObject = Object.fromEntries(
+    data,
+  ) as ChallengeDataObject;
+  const newChallenge: ChallengeWithoutID = {
     title: dataObject.title,
-    tags: dataObject.tags.split(",").map((tag) => {
+    tags: dataObject.tags.split(",").map((tag: string) => {
       return tag.trim();
     }),
     description: dataObject.description,
@@ -17,15 +24,20 @@ export const addChallengeAction = async (data) => {
       description: dataObject.hintsDescription,
     },
   };
-  console.log(newChallenge);
   const responseData = await addChallenge(newChallenge);
   revalidatePath("/dashboard");
   redirect("/dashboard");
 };
 
-export const updateChallengeAction = async (id, data) => {
-  const dataObject = Object.fromEntries(data);
-  const updatedChallenge = {
+export const updateChallengeAction = async (
+  id: string,
+  data: ChallengeData,
+) => {
+  const dataObject: ChallengeDataObject = Object.fromEntries(
+    data,
+  ) as ChallengeDataObject;
+  const updatedChallenge: Challenge = {
+    id: id,
     title: dataObject.title,
     tags: dataObject.tags.split(",").map((tag) => {
       return tag.trim();

@@ -3,65 +3,85 @@ import { useOptimistic, useState } from "react";
 import CommentsList from "./CommentsList";
 import RatingStars from "./RatingStars";
 import Button from "@/components/ui/Button";
-const comments = [
+import { Comment } from "@/types/challenges";
+const comments: Comment[] = [
   {
-    user: { name: "John Doe" },
+    id: "1",
+    user: { id: "1", name: "John Doe" },
     comment: "This is a great post! I really enjoyed reading it.",
+    rating: 10,
   },
   {
-    user: { name: "Jane Smith" },
+    id: "1",
+    user: { id: "1", name: "John Doe" },
     comment: "I found this information really helpful. Thanks for sharing!",
+    rating: 10,
   },
   {
-    user: { name: "Alice Brown" },
+    id: "1",
+    user: { id: "1", name: "John Doe" },
     comment: "Great insights, I will definitely try these tips out!",
+    rating: 10,
   },
   {
-    user: { name: "Bob Johnson" },
+    id: "1",
+    user: { id: "1", name: "John Doe" },
     comment: "I disagree with some points, but overall good article.",
+    rating: 10,
   },
   {
-    user: { name: "Charlie Lee" },
+    id: "1",
+    user: { id: "1", name: "John Doe" },
     comment: "Amazing write-up! I can't wait to see more like this.",
+    rating: 10,
   },
   {
-    user: { name: "Sophia Williams" },
+    id: "1",
+    user: { id: "1", name: "John Doe" },
     comment:
       "I had some trouble understanding the last section, could you clarify?",
+    rating: 10,
   },
   {
-    user: { name: "Michael Davis" },
+    id: "1",
+    user: { id: "1", name: "John Doe" },
     comment:
       "This post is a game-changer! Very informative and well-organized.",
+    rating: 10,
   },
   {
-    user: { name: "Olivia Martinez" },
+    id: "1",
+    user: { id: "1", name: "John Doe" },
     comment: "Thanks for the tips! I’ll try them out this weekend.",
+    rating: 10,
   },
   {
-    user: { name: "David Wilson" },
+    id: "1",
+    user: { id: "1", name: "John Doe" },
     comment:
       "Nice job! Keep up the good work, looking forward to more content.",
+    rating: 10,
   },
   {
-    user: { name: "Emma Taylor" },
+    id: "1",
+    user: { id: "1", name: "John Doe" },
     comment: "Not sure about the conclusion, but the rest was insightful.",
+    rating: 10,
   },
 ];
 
 const Comments = ({}) => {
-  const [isCommenting, setIsCommenting] = useState(false);
-  const [newComment, setNewComment] = useState("");
+  const [isCommenting, setIsCommenting] = useState<boolean>(false);
+  const [newComment, setNewComment] = useState<string>("");
 
   const handleSaveComment = () => {
     if (newComment.trim()) {
       const comment = {
-        user: { name: "admin" },
+        user: { id: "2", name: "admin" },
         comment: newComment,
         rating: 0,
       };
 
-      saveComment(comment);
       setNewComment("");
     }
   };
@@ -80,7 +100,7 @@ const Comments = ({}) => {
         <p className="mb-4 text-xl font-semibold">
           Comments ({comments.length})
         </p>
-        <Button onClick={() => setIsCommenting(true)} variant="large">
+        <Button onClick={() => setIsCommenting(true)} size="lg">
           Show
         </Button>
         <div className="mt-4 rounded bg-gray-100 p-4">

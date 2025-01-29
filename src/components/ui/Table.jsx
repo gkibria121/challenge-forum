@@ -1,6 +1,6 @@
 import React from "react";
 
-const Table = ({ headers, data, renderRow, onClick, children }) => {
+const Table = ({ children }) => {
   return (
     <table className="border-collapse-unset w-full border-separate border-spacing-y-10">
       {children}

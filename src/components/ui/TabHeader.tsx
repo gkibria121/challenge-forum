@@ -1,14 +1,38 @@
 "use client";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
-const TabContext = createContext();
+type TabContextValue = {
+  activeTab: string;
+  setActiveTab: Function;
+};
 
-const Tabs = ({ children, onTabChange = () => {} }) => {
-  const TabListReactEl = React.Children.toArray(children).find(
-    (child) => child.type.name === TabList.name,
-  );
+const TabContext = createContext<TabContextValue | null>(null);
+
+const Tabs = ({
+  children,
+  onTabChange = () => {},
+}: {
+  children: React.ReactNode;
+  onTabChange: Function;
+}) => {
+  interface TabProps {
+    id: string;
+    children: React.ReactElement<TabProps>[];
+  }
+
+  const TabListReactEl: React.ReactElement<TabProps> = React.Children.toArray(
+    children,
+  ).find(
+    (child: any) => child.type.name === TabList.name,
+  ) as React.ReactElement<TabProps>;
   const tabKeys = TabListReactEl.props.children.map((child) => child.props?.id);
-  const [activeTab, setActiveTab] = useState(tabKeys[0] ?? "");
+  const [activeTab, setActiveTab] = useState<string>(tabKeys[0] ?? "");
 
   useEffect(() => {
     onTabChange(activeTab);
@@ -18,7 +42,7 @@ const Tabs = ({ children, onTabChange = () => {} }) => {
   return (
     <TabContext.Provider value={{ activeTab, setActiveTab }}>
       <div className="h-full w-full">
-        {React.Children.map(children, (child) => {
+        {React.Children.map(children, (child: any) => {
           if (child.type?.name !== TabPanel.name) {
             return child;
           }
@@ -32,12 +56,12 @@ const Tabs = ({ children, onTabChange = () => {} }) => {
   );
 };
 
-const TabList = ({ children }) => {
+const TabList = ({ children }: PropsWithChildren) => {
   return <div className="relative">{children}</div>;
 };
 
-function Tab({ children, id }) {
-  const { activeTab, setActiveTab } = useTabContext();
+function Tab({ children, id }: PropsWithChildren & { id: string }) {
+  const { activeTab, setActiveTab } = useTabContext() as TabContextValue;
   const isActive = activeTab === id;
   return (
     <button
@@ -53,12 +77,18 @@ function Tab({ children, id }) {
   );
 }
 
-const TabActions = ({ children }) => {
+const TabActions = ({ children }: PropsWithChildren) => {
   return <div>{children}</div>;
 };
 
-function TabPanel({ children, id }) {
-  const { activeTab } = useTabContext();
+function TabPanel({
+  children,
+  id,
+}: {
+  children: React.ReactNode;
+  id?: string;
+}) {
+  const { activeTab } = useTabContext() as TabContextValue;
 
   return (
     <div className={`h-full w-full ${activeTab !== id ? "hidden" : ""}`}>

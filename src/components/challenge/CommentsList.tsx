@@ -1,4 +1,5 @@
-const CommentsList = ({ comments }) => (
+import { Comment } from "@/types/challenges";
+const CommentsList = ({ comments }: { comments: Comment[] }) => (
   <>
     {comments
       .slice()

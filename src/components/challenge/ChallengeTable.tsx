@@ -1,18 +1,28 @@
 "use client";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import Table from "@/components/ui/Table";
+import { Challenge, PropsWithChallengeId } from "@/types/challenges";
 import Tag from "@/components/ui/Tag";
 import { useRouter } from "next/navigation";
 
-const TableContext = React.createContext();
+type ContextValueType = {
+  challenges: Challenge[];
+  onRowClick: ((id: string) => void) | (() => void);
+};
 
-function ChallengeTable(props) {
+const TableContext = React.createContext<object | null>(null);
+
+function ChallengeTable(props: {
+  children: React.ReactNode;
+  challenges: Challenge[];
+  redirectToPage: boolean;
+}) {
   const { children, challenges, redirectToPage } = props;
   const rotuer = useRouter();
-  const contextValue = {
+  const contextValue: ContextValueType = {
     challenges,
     onRowClick: redirectToPage
-      ? (id) => {
+      ? (id: string) => {
           rotuer.push(`/challenges/${id}`);
         }
       : () => {},
@@ -34,7 +44,7 @@ function ChallengeTable(props) {
   );
 }
 
-function Heading({ children }) {
+function Heading({ children }: { children?: React.ReactElement }) {
   return (
     <Table.Head>
       {[
@@ -55,13 +65,17 @@ function Heading({ children }) {
   );
 }
 
-function Body({ children }) {
-  const { challenges, onRowClick } = React.useContext(TableContext);
+function Body({ children }: { children?: React.ReactElement }) {
+  const { challenges, onRowClick } = React.useContext(
+    TableContext,
+  ) as ContextValueType;
 
   if (!challenges) {
     return null;
   }
-  const childrenArray = React.Children.toArray(children);
+  const childrenArray = React.Children.toArray(
+    children,
+  ) as React.ReactElement[];
 
   return (
     <Table.Body>
@@ -75,8 +89,8 @@ function Body({ children }) {
             ))}
           </Table.Col>
           {childrenArray
-            .filter((child) => child.type.name === ColExtra.name)
-            .map((child) => {
+            .filter((child: any) => child.type.name === ColExtra.name)
+            .map((child: any) => {
               return React.cloneElement(child, {
                 ...child.props,
                 challengeId: challenge.id,
@@ -84,19 +98,23 @@ function Body({ children }) {
             })}
         </Table.Row>
       ))}
-      {childrenArray.filter((child) => child.type.name === RowExtra.name)}
+      {childrenArray.filter((child: any) => child.type.name === RowExtra.name)}
     </Table.Body>
   );
 }
 
-function RowExtra({ children }) {
+function RowExtra({ children }: PropsWithChildren) {
   return children;
 }
 
-function ColExtra({ challengeId, children, ...props }) {
+function ColExtra({
+  challengeId,
+  children,
+  ...props
+}: PropsWithChildren & PropsWithChallengeId) {
   return (
     <Table.Col {...props}>
-      {React.Children.map(children, (child) =>
+      {React.Children.map(children, (child: any) =>
         React.cloneElement(child, {
           ...child.props,
           onClick: () => child.props.onClick?.(challengeId),

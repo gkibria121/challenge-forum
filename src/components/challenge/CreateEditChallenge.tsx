@@ -9,14 +9,27 @@ import Main from "../ui/Main";
 import Container from "../ui/Container";
 import { addChallengeAction } from "@/actions/challenges";
 import { updateChallengeAction } from "@/actions/challenges";
-const CreateChallenge = ({ mode = "create", challenge = {} }) => {
+import { Challenge } from "@/types/challenges";
+const CreateChallenge = ({
+  mode = "create",
+  challenge,
+}: {
+  mode: "create" | "edit";
+  challenge?: Challenge;
+}) => {
   const isEditing = mode !== "create";
-  const updateChallengeWithId = updateChallengeAction.bind(null, challenge?.id);
+
   const router = useRouter();
   return (
     <Main>
       <Container>
-        <form action={isEditing ? updateChallengeWithId : addChallengeAction}>
+        <form
+          action={
+            isEditing && challenge
+              ? updateChallengeAction.bind(null, challenge?.id)
+              : addChallengeAction
+          }
+        >
           <Tabs>
             <Tabs.TabList>
               {[
@@ -33,7 +46,7 @@ const CreateChallenge = ({ mode = "create", challenge = {} }) => {
               <AddChallengeForm challenge={challenge} isEditing={isEditing} />
             </Tabs.TabPanel>
             <Tabs.TabPanel>
-              <HintEditor hints={challenge.hints} isEditing={isEditing} />
+              <HintEditor hints={challenge?.hints} isEditing={isEditing} />
             </Tabs.TabPanel>
           </Tabs>
           <input
@@ -51,7 +64,7 @@ const CreateChallenge = ({ mode = "create", challenge = {} }) => {
             >
               cancel
             </Button>
-            <Button variant="green" buttonType="submit">
+            <Button variant="success" buttonType="submit">
               save
             </Button>
           </div>
