@@ -2,9 +2,12 @@ import Main from "@/components/ui/Main";
 import Container from "@/components/ui/Container";
 import NavLinks from "@/components/ui/NavLinks";
 import { getChallenge } from "@/services/challenge";
-import Button from "@/components/ui/Button";
-
-export async function generateMetadata({ params }) {
+import { GenerateMetaData } from "@/types/metadata";
+import { ChallengeIdParam, ParamsWithChallengeId } from "@/types/params";
+import React from "react";
+export async function generateMetadata({
+  params,
+}: ParamsWithChallengeId): Promise<GenerateMetaData> {
   const { challengeId } = await params;
 
   const challenge = await getChallenge(challengeId);
@@ -15,7 +18,12 @@ export async function generateMetadata({ params }) {
   };
 }
 
-async function ChallengeLayout({ children, params }) {
+type ChalleneLayoutProps = {
+  children: React.ReactElement;
+  params: ChallengeIdParam;
+};
+
+async function ChallengeLayout({ children, params }: ChalleneLayoutProps) {
   const { challengeId } = await params;
 
   return (

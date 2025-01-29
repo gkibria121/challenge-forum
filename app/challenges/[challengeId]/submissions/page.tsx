@@ -1,8 +1,9 @@
 import Submissions from "@/components/submission/Submissions";
 import { getChallenge } from "@/services/challenge";
+import { ParamsWithChallengeId } from "@/types/params";
 import React from "react";
 
-async function Page({ params }) {
+async function Page({ params }: ParamsWithChallengeId) {
   const { challengeId } = await params;
   const challenge = await getChallenge(challengeId);
   const submissions = challenge.submissions;

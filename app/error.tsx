@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-function Error() {
+function Error(): React.ReactElement {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-blue-50 to-white">
       <div className="rounded-lg border border-blue-200 bg-white p-8 text-center shadow-lg">
