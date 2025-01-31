@@ -2,51 +2,39 @@
   "challenges": [
     {
       "id": "1",
-      "title": "Palindrome Checker",
-      "tags": ["coding"],
-      "description": "random description",
+      "title": "Binary Search",
+      "tags": ["algorithm", "sorting"],
+      "description": "Implement binary search on a sorted array.",
       "submissions": [
         {
           "id": "1",
           "user": {
             "name": "gkibria"
           },
-          "description": "Easy solve with python.",
-          "code": "print('hello world!')",
-          "language": "python",
-          "comments": []
+          "description": "Easy solve with Python's built-in bisect module.",
+          "code": "import bisect\narr = [1, 3, 5]\nprint(bisect.bisect_left(arr, 4))",
+          "language": "python"
         },
         {
           "id": "2",
           "user": {
             "name": "mehedi"
           },
-          "description": "Implemented with java",
-          "code": "System.console.printLine('hello, worl'!)",
-          "language": "python",
-          "comments": []
-        },
-        {
-          "id": "3",
-          "user": {
-            "name": "talha"
-          },
-          "description": "Implemented with javascript",
-          "code": "console.log('hello world!')",
-          "language": "python",
-          "comments": []
+          "description": "Implemented with Java using Arrays.binarySearch.",
+          "code": "import java.util.Arrays\nint[] arr = {1, 3, 5};\nSystem.out.println(Arrays.binarySearch(arr, 4))",
+          "language": "java"
         }
       ],
       "hints": {
-        "title": "What is palindrome",
-        "description": "A palindrome reads the same backward as forward."
+        "title": "What is binary search",
+        "description": "Binary search is an efficient algorithm for finding an item from a sorted list of items."
       }
     },
     {
       "id": "2",
-      "title": "FizzBuzz",
-      "tags": ["principles"],
-      "description": "",
+      "title": "Fibonacci Sequence",
+      "tags": ["recursion", "iteration"],
+      "description": "Generate the first N Fibonacci numbers using both recursive and iterative methods.",
       "submissions": [],
       "hints": {
         "title": "",
@@ -55,9 +43,9 @@
     },
     {
       "id": "3",
-      "title": "Reverse a String",
-      "tags": ["coding", "principles", "Design pattern"],
-      "description": "",
+      "title": "Matrix Multiplication",
+      "tags": ["matrix", "linear algebra"],
+      "description": "Multiply two matrices and return the resulting matrix.",
       "submissions": [],
       "hints": {
         "title": "",
@@ -66,9 +54,9 @@
     },
     {
       "id": "4",
-      "title": "Tower of Hanoi Algorithm",
-      "tags": ["singleton"],
-      "description": "",
+      "title": "Palindrome Checker",
+      "tags": ["string manipulation", "algorithm"],
+      "description": "Check if a string is the same forwards and backwards.",
       "submissions": [],
       "hints": {
         "title": "",
@@ -77,9 +65,9 @@
     },
     {
       "id": "5",
-      "title": "Publisher Subscriber pattern",
-      "tags": ["experimental"],
-      "description": "",
+      "title": "Prime Number Checker",
+      "tags": ["number theory", "optimization"],
+      "description": "Determine if a given number is prime using efficient algorithms.",
       "submissions": [],
       "hints": {
         "title": "",
@@ -88,9 +76,9 @@
     },
     {
       "id": "6",
-      "title": "Create a virtual DOM using JavaScript",
-      "tags": ["data modeling"],
-      "description": "",
+      "title": "Calculator",
+      "tags": ["user interface", "arithmetic"],
+      "description": "Create a simple calculator that can perform basic arithmetic operations.",
       "submissions": [],
       "hints": {
         "title": "",
@@ -99,9 +87,9 @@
     },
     {
       "id": "7",
-      "title": "Singleton Method Design Pattern",
-      "tags": ["DOM"],
-      "description": "",
+      "title": "File Encryptor",
+      "tags": ["encryption", "cybersecurity"],
+      "description": "Encrypt and decrypt a text file using a simple cipher algorithm.",
       "submissions": [],
       "hints": {
         "title": "",
@@ -110,9 +98,9 @@
     },
     {
       "id": "8",
-      "title": "Design a URL Shortener",
-      "tags": ["AJAX"],
-      "description": "",
+      "title": "Social Media Analyzer",
+      "tags": ["data analysis", "API"],
+      "description": "Analyze social media posts for sentiment, keywords, and trends.",
       "submissions": [],
       "hints": {
         "title": "",
@@ -121,9 +109,9 @@
     },
     {
       "id": "9",
-      "title": "Create a todo app maintaining SOLID",
-      "tags": ["IFI"],
-      "description": "",
+      "title": "E-commerce System",
+      "tags": ["frontend", "backend"],
+      "description": "Design a simple e-commerce system that allows users to view products and place orders.",
       "submissions": [],
       "hints": {
         "title": "",
@@ -132,14 +120,46 @@
     },
     {
       "id": "10",
-      "title": "Square Root",
-      "tags": ["principles"],
-      "description": "",
+      "title": "Password Generator",
+      "tags": ["security", "string manipulation"],
+      "description": "Generate a random password based on specified criteria.",
       "submissions": [],
       "hints": {
         "title": "",
         "description": ""
       }
+    }
+  ],
+  "submissions": [
+    {
+      "id": "1",
+      "challengeId": "1",
+      "user": {
+        "name": "gkibria"
+      },
+      "description": "Easy solve with Python.",
+      "code": "print('hello world!')",
+      "language": "python"
+    },
+    {
+      "id": "2", 
+      "challengeId": "1",
+      "user": {
+        "name": "mehedi"
+      },
+      "description": "Implemented with Java",
+      "code": "System.console.printLine('hello, worl'!)",
+      "language": "java"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "submissionId": "1",
+      "user": {
+        "name": "reviewer"
+      },
+      "text": "Good attempt!"
     }
   ]
 }
