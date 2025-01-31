@@ -1,5 +1,5 @@
 import React from "react";
-import Description from "@/components/challenge/Description.jsx";
+import Description from "@/components/challenge/Description";
 import { getChallenge } from "@/services/challenge";
 import { ParamsWithChallengeId } from "@/types/params";
 export const generateMetadata = async () => {
