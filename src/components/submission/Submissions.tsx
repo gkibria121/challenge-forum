@@ -3,9 +3,10 @@ import Comments from "@/components/challenge/Comments";
 import SubmissionCard from "@/components/challenge/SubmissionCard";
 import SubmissionEditor from "@/components/challenge/SubmissionEditor";
 import Submission from "@/components/submission/Submission";
+import { Submission as SubmissionType } from "@/types/challenges";
 import { useState } from "react";
 
-function Submissions({ submissions }) {
+function Submissions({ submissions }: { submissions: SubmissionType[] }) {
   const [activeSubmission, setActiveSubmission] = useState(submissions[0]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const saveComment = () => {};
@@ -16,6 +17,7 @@ function Submissions({ submissions }) {
         {submissions.map((submission) => (
           <SubmissionCard
             key={submission.id}
+            id={submission.id}
             submission={submission}
             isActive={activeSubmission.id === submission.id}
             onActiveSubmission={setActiveSubmission}
@@ -27,13 +29,13 @@ function Submissions({ submissions }) {
         {isSubmitting ? (
           <SubmissionEditor
             onCancel={() => setIsSubmitting(false)}
-            onSave={handleSubmissionSave}
+            onSave={() => {}}
           />
         ) : (
           activeSubmission && <Submission submission={activeSubmission} />
         )}
         <Comments
-          comments={activeSubmission?.comments ?? []}
+          comments={activeSubmission.comments ?? []}
           saveComment={saveComment}
         />
       </div>

@@ -2,12 +2,23 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 
-const Pagination = ({ currentPage, totalPages, perPage = 10 }) => {
+const Pagination = ({
+  currentPage,
+  totalPages,
+  perPage = 10,
+}: {
+  currentPage: number;
+  totalPages: number;
+  perPage: number;
+}) => {
   const router = useRouter();
   const pathName = usePathname();
   const searchParams = useSearchParams();
 
-  const createQueryString = (paramsToUpdate) => {
+  const createQueryString = (paramsToUpdate: {
+    page: number;
+    per_page: number;
+  }) => {
     const params = new URLSearchParams(searchParams.toString());
 
     Object.entries(paramsToUpdate).forEach(([key, value]) => {
@@ -21,7 +32,7 @@ const Pagination = ({ currentPage, totalPages, perPage = 10 }) => {
     return params.toString() ? `?${params.toString()}` : "";
   };
 
-  const onPageChange = (page) => {
+  const onPageChange = (page: number) => {
     const updatedQueryString = createQueryString({
       page: page,
       per_page: perPage,
@@ -101,7 +112,7 @@ const Pagination = ({ currentPage, totalPages, perPage = 10 }) => {
                   ? "cursor-default bg-white text-gray-400"
                   : "bg-white text-gray-700 hover:bg-gray-50 hover:text-blue-600"
             } border border-gray-200 shadow-sm`}
-            onClick={() => page !== "..." && onPageChange(page)}
+            onClick={() => page !== "..." && onPageChange(page as number)}
             disabled={page === "..."}
             aria-label={page === "..." ? "More pages" : `Page ${page}`}
             aria-current={page === currentPage ? "page" : undefined}

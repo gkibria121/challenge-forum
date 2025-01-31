@@ -1,7 +1,13 @@
 import Link from "next/link";
 import React from "react";
 
-const TabActions = ({ onSave, onCancel }) => {
+const TabActions = ({
+  onSave,
+  onCancel,
+}: {
+  onSave: React.MouseEventHandler<HTMLElement>;
+  onCancel: React.MouseEventHandler<HTMLElement>;
+}) => {
   return (
     <div className="tab__actions">
       <button

@@ -1,7 +1,13 @@
 "use client";
 import React, { useState } from "react";
 
-const SubmissionEditor = ({ onCancel, onSave }) => {
+const SubmissionEditor = ({
+  onCancel,
+  onSave,
+}: {
+  onCancel: () => void;
+  onSave: (formData: any) => void;
+}) => {
   const [formData, setFormData] = useState({
     language: "python",
     code: "",
@@ -11,7 +17,7 @@ const SubmissionEditor = ({ onCancel, onSave }) => {
     description: "",
     id: new Date().getTime(),
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<ObjectWithKeyValue<string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const languages = [
@@ -22,7 +28,9 @@ const SubmissionEditor = ({ onCancel, onSave }) => {
     { value: "php", label: "PHP" },
   ];
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -38,7 +46,7 @@ const SubmissionEditor = ({ onCancel, onSave }) => {
   };
 
   const validateForm = () => {
-    const newErrors = {};
+    const newErrors: ObjectWithKeyValue<string> = {};
     if (!formData.code.trim()) {
       newErrors.code = "Code is required";
     }
@@ -49,7 +57,7 @@ const SubmissionEditor = ({ onCancel, onSave }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validateForm()) return;
 

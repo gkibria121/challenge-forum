@@ -70,7 +70,13 @@ const comments: Comment[] = [
   },
 ];
 
-const Comments = ({}) => {
+const Comments = ({
+  comments,
+  saveComment,
+}: {
+  comments: Comment[];
+  saveComment: () => void;
+}) => {
   const [isCommenting, setIsCommenting] = useState<boolean>(false);
   const [newComment, setNewComment] = useState<string>("");
 

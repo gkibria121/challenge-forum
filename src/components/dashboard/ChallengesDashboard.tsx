@@ -1,19 +1,20 @@
 "use client";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/ui/Button";
 import ChallengeTable from "@/components/challenge/ChallengeTable";
 import Table from "@/components/ui/Table";
+import { Challenge } from "@/types/challenges";
 
-function ChallengesDashboard({ challenges }) {
+function ChallengesDashboard({ challenges }: { challenges: Challenge[] }) {
   const router = useRouter();
   return (
-    <ChallengeTable challenges={challenges} onChallengeCLick={() => {}}>
+    <ChallengeTable challenges={challenges} redirectToPage={false}>
       <ChallengeTable.Heading>
         <Table.Heading className="text-center">Actions</Table.Heading>
       </ChallengeTable.Heading>
       <ChallengeTable.Body>
-        <ChallengeTable.ColExtra>
+        <ChallengeTable.ColExtra challengeId="">
           <Button
             variant="dark"
             size="sm"

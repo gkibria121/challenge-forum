@@ -6,7 +6,7 @@ export interface Submission {
   description: string;
   code: string;
   language: string;
-  commants: Comment[];
+  comments: Comment[];
 }
 
 export interface Comment {

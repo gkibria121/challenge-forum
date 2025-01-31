@@ -1,6 +1,6 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
-function Main({ children }) {
+function Main({ children }: PropsWithChildren) {
   return <main className="flex items-start justify-center">{children}</main>;
 }
 

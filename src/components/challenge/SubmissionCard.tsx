@@ -1,4 +1,16 @@
-const SubmissionCard = ({ id, isActive, onActiveSubmission, submission }) => {
+import { Submission } from "@/types/challenges";
+
+const SubmissionCard = ({
+  id,
+  isActive,
+  onActiveSubmission,
+  submission,
+}: {
+  id: string;
+  isActive: boolean;
+  onActiveSubmission: (submission: Submission) => void;
+  submission: Submission;
+}) => {
   return (
     <div
       className={`border-secondary-1 h-60 w-full cursor-pointer rounded border p-4 transition-all duration-200 ease-in ${

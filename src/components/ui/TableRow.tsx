@@ -1,9 +1,22 @@
 "use client";
 
+import { onClickEventHandler } from "@/types/ui";
 import React from "react";
 
 // TableRow Component
-const TableRow = ({ number, title, tag, challengeId, onClick }) => {
+const TableRow = ({
+  number,
+  title,
+  tag,
+  challengeId,
+  onClick,
+}: {
+  number: number;
+  title: string;
+  tag: string;
+  challengeId: string;
+  onClick: onClickEventHandler;
+}) => {
   return (
     <tr
       className="table__row"
@@ -11,7 +24,7 @@ const TableRow = ({ number, title, tag, challengeId, onClick }) => {
       onClick={onClick}
     >
       <td className="table__column">{number}</td>
-      <td className="table__column" colSpan="3">
+      <td className="table__column" colSpan={3}>
         {title}
       </td>
       <td className="table__column tags">
@@ -20,6 +33,5 @@ const TableRow = ({ number, title, tag, challengeId, onClick }) => {
     </tr>
   );
 };
-
 
 export default TableRow;

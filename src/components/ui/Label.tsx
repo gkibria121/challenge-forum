@@ -1,4 +1,12 @@
-export default function Label({ htmlFor, children, ...props }) {
+import { PropsWithChildren } from "react";
+
+export default function Label({
+  htmlFor,
+  children,
+  ...props
+}: PropsWithChildren & {
+  htmlFor: string;
+}) {
   return (
     <label
       htmlFor={htmlFor}

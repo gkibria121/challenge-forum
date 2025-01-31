@@ -30,7 +30,7 @@ const CreateChallenge = ({
               : addChallengeAction
           }
         >
-          <Tabs>
+          <Tabs onTabChange={() => {}}>
             <Tabs.TabList>
               {[
                 { id: 1, label: "Description" },

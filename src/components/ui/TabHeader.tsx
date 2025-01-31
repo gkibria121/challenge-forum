@@ -19,7 +19,7 @@ const Tabs = ({
   onTabChange = () => {},
 }: {
   children: React.ReactNode;
-  onTabChange: Function;
+  onTabChange: Function | undefined;
 }) => {
   interface TabProps {
     id: string;
@@ -60,7 +60,7 @@ const TabList = ({ children }: PropsWithChildren) => {
   return <div className="relative">{children}</div>;
 };
 
-function Tab({ children, id }: PropsWithChildren & { id: string }) {
+function Tab({ children, id }: PropsWithChildren & { id: string | number }) {
   const { activeTab, setActiveTab } = useTabContext() as TabContextValue;
   const isActive = activeTab === id;
   return (

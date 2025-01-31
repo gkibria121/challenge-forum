@@ -1,7 +1,13 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-function NavLinks({ links, preFix = "" }) {
+function NavLinks({
+  links,
+  preFix = "",
+}: {
+  links: { id: string | number; href: string; label: string }[];
+  preFix: string;
+}) {
   const pathName = usePathname();
   return (
     <div className="relative">

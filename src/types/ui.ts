@@ -16,3 +16,9 @@ export type ButtonType = {
   disabled?: boolean;
   href?: string;
 };
+
+export type PropsWtihClassName = {
+  className: string | undefined;
+};
+
+export type onClickEventHandler = React.MouseEventHandler<HTMLElement>;
