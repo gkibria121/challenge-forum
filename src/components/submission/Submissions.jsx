@@ -11,8 +11,8 @@ function Submissions({ submissions }) {
   const saveComment = () => {};
 
   return (
-    <div className="flex h-full gap-8">
-      <div className="flex-basis-2/5 flex flex-col gap-8 p-4 shadow-md">
+    <div className="mt-10 flex h-full gap-8">
+      <div className="flex-basis-2/5 flex flex-col gap-8 p-4 pt-0">
         {submissions.map((submission) => (
           <SubmissionCard
             key={submission.id}

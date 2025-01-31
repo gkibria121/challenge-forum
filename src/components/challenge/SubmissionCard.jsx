@@ -1,9 +1,9 @@
 const SubmissionCard = ({ id, isActive, onActiveSubmission, submission }) => {
   return (
     <div
-      className={`h-60 w-full cursor-pointer rounded p-4 shadow-md transition-all duration-200 ease-in ${
+      className={`border-secondary-1 h-60 w-full cursor-pointer rounded border p-4 transition-all duration-200 ease-in ${
         isActive
-          ? "border-secondary-2 border-2"
+          ? "border-blue-500"
           : "hover:border-secondary-2 hover:translate-y-0.5 hover:border"
       }`}
       onClick={() => onActiveSubmission(submission)}
