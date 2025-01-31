@@ -8,7 +8,7 @@ import { useState } from "react";
 
 function Submissions({ submissions }: { submissions: SubmissionType[] }) {
   const [activeSubmission, setActiveSubmission] = useState(submissions[0]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const saveComment = () => {};
 
   return (
@@ -26,14 +26,7 @@ function Submissions({ submissions }: { submissions: SubmissionType[] }) {
         {!submissions.length && <p>No submissions!</p>}
       </div>
       <div className="flex flex-grow flex-col gap-8">
-        {isSubmitting ? (
-          <SubmissionEditor
-            onCancel={() => setIsSubmitting(false)}
-            onSave={() => {}}
-          />
-        ) : (
-          activeSubmission && <Submission submission={activeSubmission} />
-        )}
+        {activeSubmission && <Submission submission={activeSubmission} />}
         <Comments
           comments={activeSubmission.comments ?? []}
           saveComment={saveComment}

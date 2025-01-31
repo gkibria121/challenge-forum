@@ -5,6 +5,7 @@ import { getChallenge } from "@/services/challenge";
 import { GenerateMetaData } from "@/types/metadata";
 import { ChallengeIdParam, ParamsWithChallengeId } from "@/types/params";
 import React from "react";
+import Button from "@/components/ui/Button";
 export async function generateMetadata({
   params,
 }: ParamsWithChallengeId): Promise<GenerateMetaData> {
@@ -37,21 +38,17 @@ async function ChallengeLayout({ children, params }: ChalleneLayoutProps) {
           ]}
           preFix={`/challenges/${challengeId}/`}
         />
-        {children}
-
-        {/* <div className="absolute bottom-10 flex w-[80%] justify-between">
+        <div className="absolute right-0 top-0 m-4 flex">
           <Button
-            isLink={true}
-            variant={isValidChallengeId(id - 1) ? "dark" : "danger"}
-            href={`/challenges/${isValidChallengeId(id - 1) && id - 1}`}
             size="sm"
+            variant="primary"
+            isLink={true}
+            href={`/challenges/${challengeId}/submissions/add`}
           >
-            {isValidChallengeId(id - 1) ? "prev" : "back"}
+            Add
           </Button>
-          <Button isLink={true} href={`/challenges/${id + 1}`} size="sm">
-            Next
-          </Button>
-        </div> */}
+        </div>
+        {children}
       </Container>
     </Main>
   );
