@@ -1,4 +1,6 @@
-const Hints = ({ hints }) => (
+import { Hints as HintsType } from "@/types/challenges";
+
+const Hints = ({ hints }: { hints: HintsType }) => (
   <div className="mt-[10vh] block h-full w-full p-4">
     <h4 className="tab__heading">{hints?.title}</h4>
     <br />
