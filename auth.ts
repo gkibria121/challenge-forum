@@ -1,15 +1,35 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthConfig, DefaultSession } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
+import type { JWT } from "next-auth/jwt";
 
+// Extend the User type
+declare module "next-auth" {
+  interface User {
+    role?: "admin" | "user";
+  }
+
+  interface Session extends DefaultSession {
+    user: User & { role: "admin" | "user" };
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    role: "admin" | "user";
+  }
+}
+
+// NextAuth configuration
 export const { auth, handlers, signIn, signOut } = NextAuth({
   providers: [
     GithubProvider({
       profile(profile) {
         return {
+          id: profile.id.toString(),
           name: profile.name,
           image: profile.avatar_url,
           email: profile.email,
-          role: profile.email === "admin@example.com" ? "admin" : "user", // Example role assignment
+          role: profile.email === "gkibria121@gmail.com" ? "admin" : "user",
         };
       },
     }),
@@ -22,9 +42,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       return token;
     },
     async session({ session, token }) {
-      if (session.user) {
-        session.user.role = token.role; // Attach role to session
-      }
+      session.user.role = token.role; // Ensure session has role
       return session;
     },
     async signIn({ user, account, profile, email, credentials }) {
@@ -32,4 +50,4 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       return true;
     },
   },
-});
+} satisfies NextAuthConfig);

@@ -8,8 +8,7 @@ import { useAuth } from "@/contexts/AuthContext";
 
 function Header() {
   const pathname = usePathname();
-  const { isAuthenticated } = useAuth();
-  console.log(isAuthenticated);
+  const { isAuthenticated, isAdmin } = useAuth();
 
   const linkStyles = (path: string) => `
     inline-block px-4 py-2 text-lg font-medium transition-all duration-200
@@ -25,7 +24,7 @@ function Header() {
       <div className="mx-auto h-full max-w-6xl px-4">
         <ul className="flex h-full items-center justify-between">
           <li className="flex space-x-6">
-            {isAuthenticated && (
+            {isAuthenticated && isAdmin && (
               <Link href="/dashboard" className={linkStyles("/dashboard")}>
                 Dashboard
               </Link>

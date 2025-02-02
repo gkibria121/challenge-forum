@@ -10,11 +10,12 @@ const AuthContext = createContext<AuthoContextValueType>(authContextValue);
 
 function AuthContextProvider({ children }: PropsWithChildren) {
   const session = useSession();
-  console.log(session);
+
   const isAuthenticated = session.status === "authenticated";
+  const isAdmin = session.data?.user.role === "admin";
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated }}>
+    <AuthContext.Provider value={{ isAuthenticated, isAdmin }}>
       {children}
     </AuthContext.Provider>
   );
