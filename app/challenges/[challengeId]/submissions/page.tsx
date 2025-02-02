@@ -7,6 +7,7 @@ async function Page({ params }: ParamsWithChallengeId) {
   const { challengeId } = await params;
   const challenge = await getChallenge(challengeId);
   const submissions = challenge.submissions;
+
   if (!submissions.length) throw new Error("No submission");
   return <Submissions submissions={submissions} />;
 }

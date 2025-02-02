@@ -4,100 +4,35 @@ import CommentsList from "./CommentsList";
 import RatingStars from "./RatingStars";
 import Button from "@/components/ui/Button";
 import { Comment } from "@/types/challenges";
-const comments: Comment[] = [
-  {
-    id: "1",
-    user: { id: "1", name: "John Doe" },
-    comment: "This is a great post! I really enjoyed reading it.",
-    rating: 10,
-  },
-  {
-    id: "1",
-    user: { id: "1", name: "John Doe" },
-    comment: "I found this information really helpful. Thanks for sharing!",
-    rating: 10,
-  },
-  {
-    id: "1",
-    user: { id: "1", name: "John Doe" },
-    comment: "Great insights, I will definitely try these tips out!",
-    rating: 10,
-  },
-  {
-    id: "1",
-    user: { id: "1", name: "John Doe" },
-    comment: "I disagree with some points, but overall good article.",
-    rating: 10,
-  },
-  {
-    id: "1",
-    user: { id: "1", name: "John Doe" },
-    comment: "Amazing write-up! I can't wait to see more like this.",
-    rating: 10,
-  },
-  {
-    id: "1",
-    user: { id: "1", name: "John Doe" },
-    comment:
-      "I had some trouble understanding the last section, could you clarify?",
-    rating: 10,
-  },
-  {
-    id: "1",
-    user: { id: "1", name: "John Doe" },
-    comment:
-      "This post is a game-changer! Very informative and well-organized.",
-    rating: 10,
-  },
-  {
-    id: "1",
-    user: { id: "1", name: "John Doe" },
-    comment: "Thanks for the tips! I’ll try them out this weekend.",
-    rating: 10,
-  },
-  {
-    id: "1",
-    user: { id: "1", name: "John Doe" },
-    comment:
-      "Nice job! Keep up the good work, looking forward to more content.",
-    rating: 10,
-  },
-  {
-    id: "1",
-    user: { id: "1", name: "John Doe" },
-    comment: "Not sure about the conclusion, but the rest was insightful.",
-    rating: 10,
-  },
-];
+import TextArea from "../ui/TextArea";
+import { saveComment } from "@/actions/comments";
+import { ZodFormattedError } from "zod";
 
-const Comments = ({
-  comments,
-  saveComment,
-}: {
-  comments: Comment[];
-  saveComment: () => void;
-}) => {
+const Comments = ({ comments }: { comments: Comment[] }) => {
   const [isCommenting, setIsCommenting] = useState<boolean>(false);
-  const [newComment, setNewComment] = useState<string>("");
+  const [rating, setRating] = useState<number>(5);
+  const [errors, setErrors] = useState<
+    | ZodFormattedError<
+        {
+          rating: string;
+          comment: string;
+        },
+        string
+      >
+    | undefined
+  >();
 
-  const handleSaveComment = () => {
-    if (newComment.trim()) {
-      const comment = {
-        user: { id: "2", name: "admin" },
-        comment: newComment,
-        rating: 0,
-      };
-
-      setNewComment("");
-    }
+  const handleSaveComment = async (formData: FormData) => {
+    const { errors } = await saveComment(formData);
+    setErrors(errors);
   };
 
   const handleCancel = () => {
-    setNewComment("");
+    setIsCommenting(false);
   };
 
   return (
-    <>
+    <form action={handleSaveComment}>
       <div
         className={`relative p-4 shadow-md ${
           isCommenting ? "hidden" : "flex flex-col"
@@ -123,29 +58,27 @@ const Comments = ({
 
         <div className="mb-6">
           <div className="font-semibold text-gray-800">admin</div>
-          <RatingStars />
+          <RatingStars defaultRating={rating} onRatingChange={setRating} />
+          <input type="hidden" name="rating" value={rating} />
           <div className="mt-4">
-            <textarea
+            <TextArea
               name="comment"
-              id="comment"
-              className="resize-vertical h-32 w-full rounded border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
               placeholder="Write your comment here..."
+              error={errors?.comment?._errors}
             />
           </div>
           <div className="mt-4 flex gap-4">
-            <Button variant="danger" onClick={handleCancel}>
+            <Button variant="danger" buttonType="reset" onClick={handleCancel}>
               Cancel
             </Button>
-            <Button variant="success" onClick={handleSaveComment}>
+            <Button variant="success" buttonType="submit">
               Save
             </Button>
           </div>
         </div>
         <CommentsList comments={comments} />
       </div>
-    </>
+    </form>
   );
 };
 

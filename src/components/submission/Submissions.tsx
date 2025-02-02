@@ -9,8 +9,6 @@ import { useState } from "react";
 function Submissions({ submissions }: { submissions: SubmissionType[] }) {
   const [activeSubmission, setActiveSubmission] = useState(submissions[0]);
 
-  const saveComment = () => {};
-
   return (
     <div className="mt-10 flex h-full gap-8">
       <div className="flex-basis-2/5 flex flex-col gap-8 p-4 pt-0">
@@ -27,10 +25,7 @@ function Submissions({ submissions }: { submissions: SubmissionType[] }) {
       </div>
       <div className="flex flex-grow flex-col gap-8">
         {activeSubmission && <Submission submission={activeSubmission} />}
-        <Comments
-          comments={activeSubmission.comments ?? []}
-          saveComment={saveComment}
-        />
+        <Comments comments={activeSubmission.comments ?? []} />
       </div>
     </div>
   );

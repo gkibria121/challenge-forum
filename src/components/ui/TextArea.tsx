@@ -20,6 +20,7 @@ function TextArea({
         name={name}
         {...props}
         rows={rows}
+        placeholder={placeholder}
       ></textarea>
       {error && <Error message={error} isError={!!error} />}
     </>
