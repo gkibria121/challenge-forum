@@ -3,9 +3,13 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import Button from "./Button";
+import { logout } from "@/actions/auth";
 
 function Header() {
   const pathname = usePathname();
+  const session = useSession();
+
   const linkStyles = (path: string) => `
     inline-block px-4 py-2 text-lg font-medium transition-all duration-200
     ${
@@ -20,23 +24,38 @@ function Header() {
       <div className="mx-auto h-full max-w-6xl px-4">
         <ul className="flex h-full items-center justify-between">
           <li className="flex space-x-6">
-            <Link href="/dashboard" className={linkStyles("/dashboard")}>
-              Dashboard
-            </Link>
+            {session.data?.user?.id && (
+              <Link href="/dashboard" className={linkStyles("/dashboard")}>
+                Dashboard
+              </Link>
+            )}
             <Link href="/challenges" className={linkStyles("/challenges")}>
               Challenges
             </Link>
           </li>
           <li className="flex space-x-6">
-            <Link href="/login" className={linkStyles("/login")}>
-              Login
-            </Link>
-            <Link
-              href="/signup"
-              className="inline-block rounded-lg bg-white px-6 py-2 text-lg font-medium text-blue-700 transition-all duration-200 hover:bg-blue-50"
-            >
-              Sign Up
-            </Link>
+            {session.data ? (
+              <Button
+                variant="danger"
+                onClick={() => {
+                  logout();
+                }}
+              >
+                Logout
+              </Button>
+            ) : (
+              <>
+                <Link href="/login" className={linkStyles("/login")}>
+                  Login
+                </Link>
+                <Link
+                  href="/signup"
+                  className="inline-block rounded-lg bg-white px-6 py-2 text-lg font-medium text-blue-700 transition-all duration-200 hover:bg-blue-50"
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
           </li>
         </ul>
       </div>

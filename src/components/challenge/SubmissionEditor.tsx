@@ -7,6 +7,8 @@ import { handleSubmission } from "@/actions/submissions";
 import Input from "../ui/Input";
 import { useParams } from "next/navigation";
 import Error from "../ui/Error";
+import { useAuth } from "@/contexts/AuthContext";
+import toast from "react-hot-toast";
 const languages = [
   { value: "python", label: "Python" },
   { value: "csharp", label: "C#" },
@@ -16,7 +18,7 @@ const languages = [
 ];
 const SubmissionEditor = ({}) => {
   const onCancel = () => {};
-
+  const { isAuthenticated } = useAuth();
   const [errors, setErrors] = useState<
     Record<string, string | string[]> | undefined
   >({});
@@ -24,6 +26,10 @@ const SubmissionEditor = ({}) => {
   const { challengeId } = useParams();
 
   const clientSideAction = async (formData: FormData) => {
+    if (!isAuthenticated) {
+      toast.error("Please login before continue!");
+      return;
+    }
     const response = await handleSubmission(
       formData,
       `/challenges/${challengeId}/submissions`,

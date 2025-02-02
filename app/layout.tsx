@@ -2,6 +2,8 @@ import React from "react";
 import "/src/sass/main.scss";
 import Header from "@/components/ui/Header";
 import ContextProvider from "@/contexts/ContextProvider";
+import { Toaster } from "react-hot-toast";
+
 export default function RootLayout({
   children,
 }: {
@@ -16,8 +18,11 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Header />
-        <ContextProvider>{children}</ContextProvider>
+        <ContextProvider>
+          <Header />
+          {children}
+          <Toaster />
+        </ContextProvider>
       </body>
     </html>
   );

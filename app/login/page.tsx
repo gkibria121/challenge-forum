@@ -44,7 +44,7 @@ function Page() {
                   alt="Facebook logo"
                   className="h-6 w-6"
                 />
-                <span className="group-hover:text-blue-600">
+                <span className="text-black group-hover:text-blue-600">
                   Continue with Facebook
                 </span>
               </Button>
@@ -59,7 +59,7 @@ function Page() {
                   alt="Facebook logo"
                   className="h-6 w-6"
                 />
-                <span className="group-hover:text-blue-600">
+                <span className="text-black group-hover:text-blue-600">
                   Continue with Github
                 </span>
               </Button>
