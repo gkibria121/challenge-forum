@@ -9,6 +9,8 @@ const BUTTON_VARIANTS = {
   danger:
     "ml-1 bg-red-600 hover:bg-red-700 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
   dark: "ml-1 bg-gray-800 hover:bg-gray-900 focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700",
+  login:
+    "text-black group flex w-full items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white p-3 text-sm font-medium text-gray-700 shadow-sm transition-all hover:border-blue-100 hover:bg-blue-50 hover:shadow-md",
 };
 
 const BUTTON_SIZES = {

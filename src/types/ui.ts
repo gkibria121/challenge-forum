@@ -1,6 +1,11 @@
 import React from "react";
 
-export type ButtonVariantType = "primary" | "success" | "danger" | "dark";
+export type ButtonVariantType =
+  | "primary"
+  | "success"
+  | "danger"
+  | "dark"
+  | "login";
 export type ButtonSizeType = "sm" | "md" | "lg" | "xl";
 export type ButtonActionType = "button" | "submit" | "reset";
 

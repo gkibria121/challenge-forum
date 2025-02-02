@@ -1,11 +1,11 @@
 "use client";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
 function Header() {
   const pathname = usePathname();
-
   const linkStyles = (path: string) => `
     inline-block px-4 py-2 text-lg font-medium transition-all duration-200
     ${
