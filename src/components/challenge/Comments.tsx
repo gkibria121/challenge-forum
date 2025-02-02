@@ -7,13 +7,11 @@ import { Comment } from "@/types/challenges";
 import TextArea from "../ui/TextArea";
 import { saveComment } from "@/actions/comments";
 import { ZodFormattedError } from "zod";
-import { isAuthrized } from "../lib/authorization";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 import { useAuth } from "@/contexts/AuthContext";
 
 const Comments = ({ comments }: { comments: Comment[] }) => {
-  const session = useSession();
   const [isCommenting, setIsCommenting] = useState<boolean>(false);
   const [rating, setRating] = useState<number>(5);
   const [errors, setErrors] = useState<
@@ -28,7 +26,7 @@ const Comments = ({ comments }: { comments: Comment[] }) => {
   >();
   const { isAuthenticated } = useAuth();
   const handleSaveComment = async (formData: FormData) => {
-    if (isAuthenticated) toast.error("Please login before continue.");
+    if (!isAuthenticated) toast.error("Please login before continue.");
 
     const { errors } = await saveComment(formData);
 
